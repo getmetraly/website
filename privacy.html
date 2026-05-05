@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Metraly</title>
+  <meta name="description" content="Metraly Privacy Policy — a self-hosted platform where your data never leaves your infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="theme.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root,[data-theme="dark"]{--bg-base:#0b0f14;--bg-surface:#111722;--border:rgba(255,255,255,0.07);--text-primary:#f0f4f8;--text-secondary:#8b9bb4;--text-muted:#4a5568;--nav-bg:rgba(11,15,20,0.88)}
+    [data-theme="light"]{--bg-base:#f7f8fa;--bg-surface:#ffffff;--border:rgba(0,0,0,0.08);--text-primary:#0d1117;--text-secondary:#4a5568;--text-muted:#8b9bb4;--nav-bg:rgba(247,248,250,0.92)}
+    :root{--cyan:#00e5cc;--font-sans:'Plus Jakarta Sans',sans-serif}
+    body{font-family:var(--font-sans);background:var(--bg-base);color:var(--text-primary);-webkit-font-smoothing:antialiased;transition:background 0.2s}
+    :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 32px;gap:16px}
+    .nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:16px;margin-right:auto}
+    .logo-icon{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#a855f7);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white}
+    .nav-link{font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 10px;border-radius:6px;transition:all 0.15s}
+    .nav-link:hover{color:var(--text-primary);background:rgba(255,255,255,0.05)}
+    .theme-btn{width:30px;height:30px;border-radius:6px;background:transparent;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px}
+    .theme-icon-sun,.theme-icon-moon{display:block;line-height:1}
+    [data-theme="light"] .theme-icon-moon{display:none}[data-theme="light"] .theme-icon-sun{display:block}
+    [data-theme="dark"] .theme-icon-sun{display:none}[data-theme="dark"] .theme-icon-moon{display:block}
+    main{max-width:760px;margin:0 auto;padding:96px 32px 80px}
+    .page-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--cyan);margin-bottom:10px}
+    h1{font-size:36px;font-weight:800;letter-spacing:-1.5px;margin-bottom:8px}
+    .updated{font-size:13px;color:var(--text-muted);margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+    h2{font-size:18px;font-weight:700;margin-top:36px;margin-bottom:12px}
+    p,li{font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:12px}
+    ul{margin-left:20px;margin-bottom:16px}
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .highlight{background:rgba(0,229,204,0.06);border:1px solid rgba(0,229,204,0.2);border-radius:10px;padding:16px 20px;margin:20px 0}
+    .highlight p{margin-bottom:0}
+    footer{background:#080b10;border-top:1px solid var(--border);padding:24px 32px;text-align:center;font-size:12px;color:var(--text-muted)}
+    [data-theme="light"] footer{background:#f0f2f5}
+    footer a{color:var(--text-muted);text-decoration:none;margin:0 10px}
+    footer a:hover{color:var(--text-primary)}
+    @media(max-width:600px){main{padding:80px 20px 60px}nav{padding:0 16px}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html"><div class="logo-icon" aria-hidden="true">M</div>Metraly</a>
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="docs.html">Docs</a>
+  <button class="theme-btn" onclick="MetralyTheme.toggle()" aria-label="Switch theme">
+    <span class="theme-icon-sun" aria-hidden="true">☀️</span>
+    <span class="theme-icon-moon" aria-hidden="true">🌙</span>
+  </button>
+</nav>
+<main>
+  <div class="page-label">Legal</div>
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: May 2, 2026 · Effective: May 2, 2026</div>
+
+  <div class="highlight">
+    <p><strong style="color:var(--cyan)">TL;DR:</strong> Metraly is a self-hosted product. When you self-host Metraly, your data never leaves your infrastructure. We have no access to your metrics, repositories, or team data whatsoever. This policy primarily covers our website (getmetraly.com) and synthetic demo preview.</p>
+  </div>
+
+  <h2>1. About Metraly</h2>
+  <p>Metraly ("we", "us", "our") is an open-source, self-hosted engineering metrics platform. The core product — which you deploy on your own infrastructure — collects no data on our behalf. This Privacy Policy covers:</p>
+  <ul>
+    <li>Our marketing website at getmetraly.com</li>
+    <li>Our synthetic demo preview</li>
+    <li>Email communications with our team</li>
+  </ul>
+  <p>It does <strong>not</strong> cover data within your self-hosted Metraly deployment — that data is entirely yours.</p>
+
+  <h2>2. Data we collect (website only)</h2>
+  <p>On our marketing website, we may collect:</p>
+  <ul>
+    <li><strong>Contact information</strong> — if you email us or fill out a contact form (name, email, company)</li>
+    <li><strong>Basic analytics</strong> — page views, referrer, country (anonymised, no IP stored). We use privacy-first analytics with no cross-site tracking</li>
+    <li><strong>GitHub OAuth</strong> — if you star or interact with our GitHub repository, GitHub's own privacy policy applies</li>
+  </ul>
+  <p>We do not use advertising pixels, retargeting cookies, or third-party tracking scripts.</p>
+
+  <h2>3. Self-hosted Metraly</h2>
+  <p>When you self-host Metraly on your own infrastructure:</p>
+  <ul>
+    <li>Zero data is sent to us. Ever.</li>
+    <li>No telemetry, no crash reports, no usage analytics</li>
+    <li>No "phone home" on startup or during operation</li>
+    <li>AI features only connect to the endpoint you configure (your own LLM or a provider you choose)</li>
+    <li>Alert notifications are sent directly from your servers to your configured channels</li>
+  </ul>
+  <p>You can verify all of this by auditing the source code at <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noopener">github.com/getmetraly/metraly</a>.</p>
+
+  <h2>4. Demo preview</h2>
+  <p>The demo preview contains only fictional, synthetic mock data. Do not enter real company data, real credentials, or personal information into the demo preview. Preview login fields are placeholders and are not intended for real authentication.</p>
+
+  <h2>5. Data retention</h2>
+  <p>Contact inquiries: retained for up to 2 years or until you request deletion. Anonymised analytics: aggregated monthly, raw data deleted after 30 days. Synthetic preview interactions are not a place to store real user or company data.</p>
+
+  <h2>6. Your rights</h2>
+  <p>You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, email us at <a href="mailto:privacy@metraly.io">privacy@metraly.io</a>. We will respond within 30 days.</p>
+
+  <h2>7. Contact</h2>
+  <p>Privacy questions: <a href="mailto:privacy@metraly.io">privacy@metraly.io</a><br/>General: <a href="mailto:hello@metraly.io">hello@metraly.io</a></p>
+</main>
+<footer>
+  <a href="index.html">Home</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a><a href="terms.html">Terms</a>
+  <br/><br/>© 2026 Metraly
+</footer>
+</body>
+</html>
