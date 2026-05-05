@@ -12,7 +12,7 @@ The website should move from a static design prototype to a trustworthy public s
 
 - [x] **Phase 1: Source Truth Foundation** - Lock website source-of-truth rules and content inventory.
 - [x] **Phase 2: Canonical Public Copy** - Rewrite pricing, license, marketing, and legal claims from `../docs`.
-- [ ] **Phase 3: Next.js Vercel Foundation** - Convert the static site prototype into a Next.js app deployable on Vercel.
+- [x] **Phase 3: Next.js Vercel Foundation** - Convert the static site prototype into a Next.js app deployable on Vercel.
 - [ ] **Phase 4: Clickable Demo Mode** - Replace fake demo login with a synthetic-data app experience sourced from `../app/ui`.
 - [ ] **Phase 5: Documentation Surface** - Reconcile `docs.html` with `../docs` and establish a sync path.
 - [ ] **Phase 6: Launch Verification** - Add shared site structure and checks for links, console errors, responsiveness, and privacy-sensitive dependencies.
@@ -65,7 +65,7 @@ Plans:
 Plans:
 - [x] 03-01: Scaffold Next.js app shell and shared primitives
 - [x] 03-02: Migrate public pages and route compatibility
-- [ ] 03-03: Add Vercel build/deploy baseline and smoke checks
+- [x] 03-03: Add Vercel build/deploy baseline and smoke checks
 
 ### Phase 4: Clickable Demo Mode
 **Goal**: Let visitors click through a realistic Metraly app demo with synthetic data.
@@ -121,7 +121,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Source Truth Foundation | 2/2 | Complete | 2026-05-05 |
 | 2. Canonical Public Copy | 3/3 | Complete | 2026-05-05 |
-| 3. Next.js Vercel Foundation | 2/3 | In Progress | 2026-05-05 |
+| 3. Next.js Vercel Foundation | 3/3 | Complete | 2026-05-05 |
 | 4. Clickable Demo Mode | 0/3 | Not started | - |
 | 5. Documentation Surface | 0/2 | Not started | - |
 | 6. Launch Verification | 0/3 | Not started | - |

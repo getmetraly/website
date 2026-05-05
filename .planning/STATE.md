@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-05-05T11:14:20.480Z"
+last_updated: "2026-05-05T12:05:42Z"
 progress:
   total_phases: 7
   completed_phases: 2
-  total_plans: 8
-  completed_plans: 7
-  percent: 87
+  total_plans: 9
+  completed_plans: 8
+  percent: 89
 ---
 
 # GSD State: Metraly Website
@@ -40,12 +40,11 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 - Model profile: Inherit/current default
 
 ## Current Roadmap
-
 | Phase | Status | Goal |
 |-------|--------|------|
 | 1 | Complete | Source Truth Foundation |
 | 2 | Complete | Canonical Public Copy |
-| 3 | In Progress | Next.js Vercel Foundation (2/3 plans) |
+| 3 | Complete | Next.js Vercel Foundation (3/3 plans) |
 | 4 | Pending | Clickable Demo Mode |
 | 5 | Pending | Documentation Surface |
 | 6 | Pending | Launch Verification |
@@ -67,11 +66,10 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 - The website, app, and docs are separate git repositories; changes must not assume one commit spans all three.
 
 ## Next Action
-
-Continue Phase 3:
+Phase 3 Complete. Ready for Phase 4:
 
 ```text
-$gsd-execute-phase 3
+$gsd-execute-phase 4
 ```
 
-Phase 3, Plan 02 completed. Ready for Plan 03 (Add Vercel build/deploy baseline).
+Phase 3, Plan 03 completed: Next.js site is now buildable and deployable to Vercel with legacy .html redirects.
