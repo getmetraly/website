@@ -10,7 +10,7 @@ The website should move from a static design prototype to a trustworthy public s
 
 ## Phases
 
-- [ ] **Phase 1: Source Truth Foundation** - Lock website source-of-truth rules and content inventory.
+- [x] **Phase 1: Source Truth Foundation** - Lock website source-of-truth rules and content inventory.
 - [ ] **Phase 2: Canonical Public Copy** - Rewrite pricing, license, marketing, and legal claims from `../docs`.
 - [ ] **Phase 3: Clickable Demo Mode** - Replace fake demo login with a synthetic-data app experience sourced from `../app/ui`.
 - [ ] **Phase 4: Documentation Surface** - Reconcile `docs.html` with `../docs` and establish a sync path.
@@ -101,7 +101,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Source Truth Foundation | 0/2 | Not started | - |
+| 1. Source Truth Foundation | 2/2 | Complete | 2026-05-05 |
 | 2. Canonical Public Copy | 0/3 | Not started | - |
 | 3. Clickable Demo Mode | 0/3 | Not started | - |
 | 4. Documentation Surface | 0/2 | Not started | - |
@@ -109,10 +109,10 @@ Plans:
 
 ## Next Phase
 
-**Phase 1: Source Truth Foundation** should be planned first.
+**Phase 2: Canonical Public Copy** should be planned next.
 
 Recommended next command:
 
 ```text
-$gsd-plan-phase 1
+$gsd-plan-phase 2
 ```

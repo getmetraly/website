@@ -1,7 +1,7 @@
 # GSD State: Metraly Website
 
 **Initialized:** 2026-05-05
-**Current focus:** Phase 1 - Source Truth Foundation
+**Current focus:** Phase 2 - Canonical Public Copy
 
 ## Project Reference
 
@@ -29,7 +29,7 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 
 | Phase | Status | Goal |
 |-------|--------|------|
-| 1 | Pending | Source Truth Foundation |
+| 1 | Complete | Source Truth Foundation |
 | 2 | Pending | Canonical Public Copy |
 | 3 | Pending | Clickable Demo Mode |
 | 4 | Pending | Documentation Surface |
@@ -52,8 +52,8 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 
 ## Next Action
 
-Plan Phase 1:
+Plan Phase 2:
 
 ```text
-$gsd-plan-phase 1
+$gsd-plan-phase 2
 ```

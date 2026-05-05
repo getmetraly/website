@@ -9,10 +9,10 @@ v1 here means the first launch-ready website baseline: canonical public content,
 
 ### Source Of Truth
 
-- [ ] **TRUTH-01**: Website planning records `../docs` as canonical for pricing, plans, license, product status, roadmap, legal, and documentation.
-- [ ] **TRUTH-02**: Website planning records `../app` as canonical for product implementation status and app/demo UI source.
-- [ ] **TRUTH-03**: Each public page that describes product facts is reconciled against explicit source documents in `../docs`.
-- [ ] **TRUTH-04**: Content that describes future or designed capabilities is labeled honestly and does not imply shipped functionality.
+- [x] **TRUTH-01**: Website planning records `../docs` as canonical for pricing, plans, license, product status, roadmap, legal, and documentation.
+- [x] **TRUTH-02**: Website planning records `../app` as canonical for product implementation status and app/demo UI source.
+- [x] **TRUTH-03**: Each public page that describes product facts is reconciled against explicit source documents in `../docs`.
+- [x] **TRUTH-04**: Content that describes future or designed capabilities is labeled honestly and does not imply shipped functionality.
 
 ### Pricing And License
 
@@ -84,10 +84,10 @@ Deferred beyond the first launch-ready baseline.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TRUTH-01 | Phase 1 | Pending |
-| TRUTH-02 | Phase 1 | Pending |
-| TRUTH-03 | Phase 1 | Pending |
-| TRUTH-04 | Phase 1 | Pending |
+| TRUTH-01 | Phase 1 | Complete |
+| TRUTH-02 | Phase 1 | Complete |
+| TRUTH-03 | Phase 1 | Complete |
+| TRUTH-04 | Phase 1 | Complete |
 | PRICE-01 | Phase 2 | Pending |
 | PRICE-02 | Phase 2 | Pending |
 | PRICE-03 | Phase 2 | Pending |
@@ -120,4 +120,4 @@ Deferred beyond the first launch-ready baseline.
 
 ---
 *Requirements defined: 2026-05-05*
-*Last updated: 2026-05-05 after initialization*
+*Last updated: 2026-05-05 after Phase 1 verification*
