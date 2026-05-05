@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — Metraly</title>
+  <meta name="description" content="Full documentation for Metraly — self-hosted engineering metrics platform. Getting started, API reference, integrations, AI configuration, and more." />
+  <meta property="og:title" content="Documentation — Metraly" />
+  <meta property="og:description" content="Everything you need to deploy, configure, and extend Metraly on your own infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="theme.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root, [data-theme="dark"] {
+      --bg-base: #0b0f14;
+      --bg-surface: #111722;
+      --bg-card: #151d28;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.13);
+      --text-primary: #f0f4f8;
+      --text-secondary: #8b9bb4;
+      --text-muted: #4a5568;
+      --nav-bg: rgba(11,15,20,0.92);
+      --sidebar-bg: #0a0e14;
+      --code-bg: #0a0e14;
+      --scrollbar-thumb: #2a3548;
+      --search-bg: #111722;
+    }
+    [data-theme="light"] {
+      --bg-base: #f7f8fa;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --border-bright: rgba(0,0,0,0.15);
+      --text-primary: #0d1117;
+      --text-secondary: #4a5568;
+      --text-muted: #8b9bb4;
+      --nav-bg: rgba(247,248,250,0.95);
+      --sidebar-bg: #f0f2f5;
+      --code-bg: #1a1f2e;
+      --scrollbar-thumb: #cbd5e0;
+      --search-bg: #f0f2f5;
+    }
+    :root {
+      --cyan: #00e5cc; --purple: #a855f7; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --indigo: #6366f1;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-w: 260px; --topbar-h: 56px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg-base); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; transition: background 0.2s, color 0.2s; }
+
+    .skip-link { position:absolute; top:-40px; left:16px; z-index:9999; background:var(--cyan); color:#000; font-weight:700; padding:8px 16px; border-radius:6px; text-decoration:none; font-size:14px; transition:top 0.15s; }
+    .skip-link:focus { top:8px; }
+    :focus-visible { outline:2px solid var(--cyan); outline-offset:2px; border-radius:4px; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+    /* ─── TOPBAR ─────────────────────────── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--topbar-h);
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 20px; gap: 12px;
+    }
+    .topbar-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text-primary); font-weight:700; font-size:16px; flex-shrink:0; }
+    .logo-icon { width:26px; height:26px; border-radius:7px; background:linear-gradient(135deg,#6366f1,#a855f7); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:white; }
+    .topbar-sep { width:1px; height:20px; background:var(--border-bright); flex-shrink:0; }
+    .topbar-label { font-size:14px; color:var(--text-muted); font-weight:500; flex-shrink:0; }
+
+    /* Search */
+    .topbar-search-wrap {
+      flex:1; max-width:400px; margin-left:auto; position:relative;
+    }
+    .topbar-search {
+      width:100%; display:flex; align-items:center; gap:8px;
+      background: var(--search-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 12px;
+      cursor: text; transition: border-color 0.15s;
+    }
+    .topbar-search:focus-within { border-color: var(--cyan); }
+    .topbar-search input {
+      flex:1; background:transparent; border:none; outline:none;
+      font-size:13px; color:var(--text-primary); font-family:var(--font-sans);
+    }
+    .topbar-search input::placeholder { color:var(--text-muted); }
+    .topbar-search-kbd { font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(255,255,255,0.05); border:1px solid var(--border-bright); color:var(--text-muted); font-family:var(--font-mono); flex-shrink:0; }
+
+    /* Search results dropdown */
+    .search-results {
+      position:absolute; top:calc(100% + 6px); left:0; right:0;
+      background:var(--bg-card); border:1px solid var(--border-bright);
+      border-radius:10px; overflow:hidden;
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+      display:none; z-index:300;
+    }
+    .search-results.show { display:block; }
+    .search-result-item {
+      padding:10px 14px; cursor:pointer; transition:background 0.1s;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:flex-start; gap:10px;
+    }
+    .search-result-item:last-child { border-bottom:none; }
+    .search-result-item:hover, .search-result-item.focused { background:var(--bg-surface); }
+    .search-result-page { font-size:11px; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+    .search-result-text { font-size:13px; color:var(--text-primary); }
+    .search-result-text mark { background:rgba(0,229,204,0.2); color:var(--cyan); border-radius:2px; }
+    .search-no-results { padding:16px; text-align:center; font-size:13px; color:var(--text-muted); }
+    .search-icon { color:var(--text-muted); flex-shrink:0; margin-top:2px; }
+
+    .topbar-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .topbar-btn { padding:6px 12px; border-radius:6px; background:transparent; border:1px solid var(--border-bright); color:var(--text-secondary); font-size:13px; font-weight:500; cursor:pointer; font-family:var(--font-sans); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.15s; }
+    .topbar-btn:hover { color:var(--text-primary); background:var(--bg-surface); }
+    .version-sel { padding:5px 8px; border-radius:6px; background:var(--bg-surface); border:1px solid var(--border); color:var(--text-secondary); font-size:12px; font-family:var(--font-mono); cursor:pointer; }
+    .theme-toggle { width:32px; height:32px; border-radius:7px; background:transparent; border:1px solid var(--border-bright); color:var(--text-secondary); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all 0.15s; flex-shrink:0; }
+    .theme-toggle:hover { background:var(--bg-surface); color:var(--text-primary); }
+    .theme-icon-sun, .theme-icon-moon { line-height:1; display:block; }
+    [data-theme="light"] .theme-icon-moon { display:none; }
+    [data-theme="light"] .theme-icon-sun { display:block; }
+    [data-theme="dark"] .theme-icon-sun { display:none; }
+    [data-theme="dark"] .theme-icon-moon { display:block; }
+
+    /* Mobile sidebar toggle */
+    .sidebar-toggle {
+      display:none; width:32px; height:32px; border-radius:7px;
+      background:transparent; border:1px solid var(--border-bright);
+      align-items:center; justify-content:center; cursor:pointer;
+      font-size:16px; color:var(--text-secondary); flex-shrink:0;
+    }
+
+    /* ─── LAYOUT ─────────────────────────── */
+    .docs-layout { display:flex; padding-top:var(--topbar-h); min-height:100vh; }
+
+    /* ─── SIDEBAR ────────────────────────── */
+    .sidebar {
+      width:var(--sidebar-w); flex-shrink:0;
+      position:fixed; top:var(--topbar-h); bottom:0; left:0;
+      background:var(--sidebar-bg); border-right:1px solid var(--border);
+      overflow-y:auto; padding:20px 0 60px;
+      transition:transform 0.25s ease;
+      z-index:100;
+    }
+    .sidebar-section { margin-bottom:6px; }
+    .sidebar-heading { padding:8px 20px 4px; font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); }
+    .sidebar-link { display:flex; align-items:center; gap:8px; padding:7px 20px; font-size:13px; color:var(--text-secondary); text-decoration:none; border-left:2px solid transparent; transition:all 0.12s; cursor:pointer; }
+    .sidebar-link:hover { color:var(--text-primary); background:rgba(255,255,255,0.03); }
+    .sidebar-link.active { color:var(--cyan); border-left-color:var(--cyan); background:rgba(0,229,204,0.05); }
+    .sidebar-badge { font-size:9px; padding:1px 6px; border-radius:4px; font-weight:700; margin-left:auto; }
+    .badge-new { background:rgba(168,85,247,0.2); color:var(--purple); }
+    .sidebar-icon { font-size:13px; width:16px; text-align:center; flex-shrink:0; }
+    .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:99; }
+
+    /* ─── MAIN CONTENT ───────────────────── */
+    .docs-main { margin-left:var(--sidebar-w); flex:1; display:flex; min-width:0; }
+    .docs-content { flex:1; max-width:800px; padding:48px 48px 100px; min-width:0; }
+    .docs-toc { width:220px; flex-shrink:0; position:sticky; top:calc(var(--topbar-h) + 24px); align-self:flex-start; padding:0 24px; max-height:calc(100vh - 100px); overflow-y:auto; }
+    .toc-title { font-size:11px; font-weight:700; letter-spacing:0.7px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
+    .toc-link { display:block; font-size:12px; color:var(--text-muted); text-decoration:none; padding:4px 0 4px 10px; border-left:2px solid transparent; transition:all 0.12s; }
+    .toc-link:hover { color:var(--text-primary); border-left-color:var(--border-bright); }
+    .toc-link.active { color:var(--cyan); border-left-color:var(--cyan); }
+    .toc-link-sub { padding-left:22px; font-size:11px; }
+
+    /* ─── BACK TO TOP ────────────────────── */
+    .back-to-top {
+      position:fixed; bottom:28px; right:28px; z-index:50;
+      width:40px; height:40px; border-radius:50%;
+      background:var(--bg-card); border:1px solid var(--border-bright);
+      color:var(--text-secondary); cursor:pointer; font-size:16px;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 16px rgba(0,0,0,0.3);
+      opacity:0; pointer-events:none; transition:opacity 0.2s, transform 0.2s;
+      transform:translateY(10px);
+    }
+    .back-to-top.visible { opacity:1; pointer-events:all; transform:translateY(0); }
+    .back-to-top:hover { background:var(--bg-surface); color:var(--cyan); }
+
+    /* ─── TYPOGRAPHY ─────────────────────── */
+    .doc-page { display:none; }
+    .doc-page.active { display:block; }
+    .doc-eyebrow { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .doc-eyebrow::before { content:''; width:16px; height:2px; background:var(--cyan); }
+    h1.doc-title { font-size:38px; font-weight:800; letter-spacing:-1.5px; line-height:1.1; margin-bottom:16px; }
+    .doc-lead { font-size:17px; color:var(--text-secondary); line-height:1.7; margin-bottom:40px; padding-bottom:32px; border-bottom:1px solid var(--border); }
+    h2.doc-h2 { font-size:22px; font-weight:700; letter-spacing:-0.5px; margin-top:48px; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    h2.doc-h2::before { content:''; width:3px; height:20px; border-radius:2px; background:linear-gradient(to bottom,var(--cyan),var(--purple)); }
+    h3.doc-h3 { font-size:16px; font-weight:700; margin-top:32px; margin-bottom:10px; }
+    p.doc-p { font-size:15px; color:var(--text-secondary); line-height:1.75; margin-bottom:16px; }
+    ul.doc-ul { margin-left:20px; margin-bottom:16px; display:flex; flex-direction:column; gap:6px; }
+    ul.doc-ul li { font-size:14px; color:var(--text-secondary); line-height:1.6; }
+    code.inline-code { font-family:var(--font-mono); font-size:12px; background:rgba(0,229,204,0.08); color:var(--cyan); padding:2px 6px; border-radius:4px; border:1px solid rgba(0,229,204,0.15); }
+
+    /* Code blocks */
+    .code-block { background:var(--code-bg); border:1px solid var(--border-bright); border-radius:10px; overflow:hidden; margin:20px 0; }
+    .code-block-header { padding:10px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .code-lang { font-size:11px; font-weight:600; color:var(--text-muted); font-family:var(--font-mono); }
+    .code-copy { font-size:11px; color:var(--text-muted); cursor:pointer; background:none; border:none; font-family:var(--font-sans); transition:color 0.15s; padding:0; }
+    .code-copy:hover { color:var(--cyan); }
+    .code-block pre { padding:20px; overflow-x:auto; font-family:var(--font-mono); font-size:13px; line-height:1.8; color:var(--text-primary); }
+    .t-comment{color:#4a5568} .t-key{color:var(--cyan)} .t-val{color:var(--green)}
+    .t-str{color:var(--orange)} .t-kw{color:var(--purple)} .t-cmd{color:var(--text-primary)}
+    .t-prompt{color:var(--cyan)} .t-output{color:var(--green)}
+
+    /* Callouts */
+    .callout { padding:16px 20px; border-radius:10px; margin:20px 0; display:flex; gap:12px; align-items:flex-start; }
+    .callout-info { background:rgba(0,229,204,0.06); border:1px solid rgba(0,229,204,0.2); }
+    .callout-warn { background:rgba(245,158,11,0.06); border:1px solid rgba(245,158,11,0.2); }
+    .callout-tip { background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.2); }
+    .callout-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+    .callout-content { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+    .callout-content strong { color:var(--text-primary); }
+
+    /* Tables */
+    .doc-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:13px; }
+    .doc-table th { text-align:left; padding:10px 14px; font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); background:rgba(255,255,255,0.03); border-bottom:1px solid var(--border); }
+    .doc-table td { padding:10px 14px; border-bottom:1px solid var(--border); color:var(--text-secondary); vertical-align:top; }
+    .doc-table td:first-child { font-family:var(--font-mono); color:var(--cyan); white-space:nowrap; }
+    .doc-table tr:last-child td { border-bottom:none; }
+    .doc-table tr:hover td { background:rgba(255,255,255,0.02); }
+
+    /* Method badges */
+    .method { font-size:11px; font-weight:700; padding:3px 8px; border-radius:5px; font-family:var(--font-mono); flex-shrink:0; }
+    .method-get{background:rgba(34,197,94,0.15);color:var(--green)}
+    .method-post{background:rgba(99,102,241,0.15);color:var(--indigo)}
+    .method-put{background:rgba(245,158,11,0.15);color:var(--orange)}
+    .method-del{background:rgba(239,68,68,0.15);color:var(--red)}
+
+    .endpoint-row { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+    .endpoint-row:last-child { border-bottom:none; }
+    .endpoint-info { flex:1; min-width:0; }
+    .endpoint-path { font-family:var(--font-mono); font-size:13px; color:var(--text-primary); }
+    .endpoint-desc { font-size:12px; color:var(--text-muted); margin-top:3px; }
+
+    /* Try it button */
+    .try-it-btn {
+      font-size:10px; padding:4px 10px; border-radius:5px; cursor:pointer;
+      background:rgba(0,229,204,0.08); color:var(--cyan);
+      border:1px solid rgba(0,229,204,0.2); font-family:var(--font-sans);
+      font-weight:600; white-space:nowrap; transition:all 0.15s;
+      flex-shrink:0; margin-top:2px;
+    }
+    .try-it-btn:hover { background:rgba(0,229,204,0.15); }
+    .try-it-btn.copied { background:rgba(34,197,94,0.15); color:var(--green); border-color:rgba(34,197,94,0.3); }
+
+    /* Steps */
+    .steps { display:flex; flex-direction:column; gap:0; margin:20px 0; }
+    .step-item { display:flex; gap:16px; position:relative; }
+    .step-item::before { content:''; position:absolute; left:14px; top:30px; bottom:-8px; width:1px; background:var(--border); }
+    .step-item:last-child::before { display:none; }
+    .step-num { width:28px; height:28px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; background:rgba(0,229,204,0.1); color:var(--cyan); border:1px solid rgba(0,229,204,0.3); margin-top:2px; z-index:1; position:relative; }
+    .step-body { padding-bottom:24px; }
+    .step-title { font-size:14px; font-weight:700; margin-bottom:6px; }
+    .step-desc { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+
+    /* Nav between pages */
+    .doc-nav-bottom { display:flex; justify-content:space-between; margin-top:56px; padding-top:32px; border-top:1px solid var(--border); gap:16px; }
+    .doc-nav-link { flex:1; padding:16px 20px; border-radius:10px; background:var(--bg-card); border:1px solid var(--border); text-decoration:none; color:var(--text-secondary); transition:all 0.15s; cursor:pointer; }
+    .doc-nav-link:hover { border-color:var(--border-bright); color:var(--text-primary); }
+    .doc-nav-link.next { text-align:right; }
+    .doc-nav-dir { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:4px; }
+    .doc-nav-title { font-size:14px; font-weight:700; color:var(--text-primary); }
+
+    /* Changelog */
+    .changelog-entry { padding:28px 0; border-bottom:1px solid var(--border); display:flex; gap:24px; }
+    .changelog-entry:last-child { border-bottom:none; }
+    .changelog-version { min-width:100px; }
+    .changelog-ver-num { font-family:var(--font-mono); font-size:14px; font-weight:700; color:var(--cyan); margin-bottom:4px; }
+    .changelog-date { font-size:11px; color:var(--text-muted); }
+    .changelog-badge { font-size:10px; padding:2px 7px; border-radius:4px; font-weight:700; margin-top:6px; display:inline-block; }
+    .badge-alpha { background:rgba(245,158,11,0.15); color:var(--orange); }
+    .changelog-content h3 { font-size:15px; font-weight:700; margin-bottom:10px; }
+    .changelog-items { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .changelog-items li { font-size:13px; color:var(--text-secondary); padding-left:16px; position:relative; line-height:1.5; }
+    .changelog-items li::before { content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--cyan); }
+    .changelog-items li.fix::before { background:var(--orange); }
+    .changelog-items li.break::before { background:var(--red); }
+
+    /* ─── RESPONSIVE ─────────────────────── */
+    @media(max-width:1100px) { .docs-toc { display:none; } }
+    @media(max-width:780px) {
+      .sidebar { transform:translateX(-100%); }
+      .sidebar.open { transform:translateX(0); }
+      .sidebar-overlay.open { display:block; }
+      .docs-main { margin-left:0; }
+      .docs-content { padding:32px 20px 80px; }
+      .sidebar-toggle { display:flex; }
+      h1.doc-title { font-size:28px; }
+      .topbar-label { display:none; }
+      .topbar-sep { display:none; }
+    }
+    @media(max-width:480px) {
+      .version-sel { display:none; }
+      .topbar { padding:0 12px; gap:8px; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#docs-content">Skip to content</a>
+
+<!-- TOPBAR -->
+<div class="topbar" role="banner">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <a class="topbar-logo" href="index.html" aria-label="Metraly home">
+    <div class="logo-icon" aria-hidden="true">M</div>
+    Metraly
+  </a>
+  <div class="topbar-sep" aria-hidden="true"></div>
+  <div class="topbar-label">Docs</div>
+
+  <div class="topbar-search-wrap" role="search">
+    <div class="topbar-search">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted);flex-shrink:0" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" id="search-input" placeholder="Search documentation..." autocomplete="off" aria-label="Search documentation" aria-controls="search-results" aria-autocomplete="list" />
+      <div class="topbar-search-kbd" aria-label="Keyboard shortcut">⌘K</div>
+    </div>
+    <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+  </div>
+
+  <div class="topbar-right">
+    <select class="version-sel" aria-label="Select version">
+      <option>v0.1.0-alpha</option>
+    </select>
+    <button class="theme-toggle" onclick="MetralyTheme.toggle()" aria-label="Switch theme">
+      <span class="theme-icon-sun" aria-hidden="true">☀️</span>
+      <span class="theme-icon-moon" aria-hidden="true">🌙</span>
+    </button>
+    <a href="https://github.com/getmetraly/metraly" class="topbar-btn" target="_blank" rel="noopener" aria-label="GitHub repository">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="index.html" class="topbar-btn">← Home</a>
+  </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- LAYOUT -->
+<div class="docs-layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Documentation navigation">
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Getting Started</div>
+      <a class="sidebar-link" href="#getting-started" onclick="showPage('getting-started');return false;"><span class="sidebar-icon" aria-hidden="true">🚀</span> Getting Started</a>
+      <a class="sidebar-link" href="#installation" onclick="showPage('installation');return false;"><span class="sidebar-icon" aria-hidden="true">📦</span> Installation</a>
+      <a class="sidebar-link" href="#configuration" onclick="showPage('configuration');return false;"><span class="sidebar-icon" aria-hidden="true">⚙️</span> Configuration</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Core Concepts</div>
+      <a class="sidebar-link" href="#architecture" onclick="showPage('architecture');return false;"><span class="sidebar-icon" aria-hidden="true">🏗️</span> Architecture</a>
+      <a class="sidebar-link" href="#api" onclick="showPage('api');return false;"><span class="sidebar-icon" aria-hidden="true">🔌</span> API Reference</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Integrations</div>
+      <a class="sidebar-link" href="#integrations" onclick="showPage('integrations');return false;"><span class="sidebar-icon" aria-hidden="true">🔗</span> Overview</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Advanced</div>
+      <a class="sidebar-link" href="#alerts" onclick="showPage('alerts');return false;"><span class="sidebar-icon" aria-hidden="true">🔔</span> Alerts &amp; Notifications</a>
+      <a class="sidebar-link" href="#ai" onclick="showPage('ai');return false;"><span class="sidebar-icon" aria-hidden="true">✦</span> AI Configuration <span class="sidebar-badge badge-new">NEW</span></a>
+      <a class="sidebar-link" href="#plugins" onclick="showPage('plugins');return false;"><span class="sidebar-icon" aria-hidden="true">🧩</span> Plugin Development</a>
+      <a class="sidebar-link" href="#enterprise" onclick="showPage('enterprise');return false;"><span class="sidebar-icon" aria-hidden="true">🔐</span> Enterprise Features</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Community</div>
+      <a class="sidebar-link" href="#contributing" onclick="showPage('contributing');return false;"><span class="sidebar-icon" aria-hidden="true">🤝</span> Contributing</a>
+      <a class="sidebar-link" href="#changelog" onclick="showPage('changelog');return false;"><span class="sidebar-icon" aria-hidden="true">📋</span> Changelog</a>
+      <a class="sidebar-link" href="#faq" onclick="showPage('faq');return false;"><span class="sidebar-icon" aria-hidden="true">❓</span> FAQ</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="docs-main">
+    <div class="docs-content" id="docs-content">
+
+      <!-- ── GETTING STARTED ─────────────── -->
+      <div id="page-getting-started" class="doc-page active" data-screen-label="Getting Started">
+        <div class="doc-eyebrow">Documentation</div>
+        <h1 class="doc-title">Getting Started</h1>
+        <p class="doc-lead">Metraly is a self-hosted engineering metrics platform. This guide walks you from zero to a running instance with demo data in under 5 minutes.</p>
+        <div class="callout callout-info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-content"><strong>Alpha stage:</strong> Metraly is currently in Alpha. APIs may change, but core functionality is production-tested. We welcome bug reports and contributions on GitHub.</div>
+        </div>
+        <h2 class="doc-h2">Prerequisites</h2>
+        <ul class="doc-ul">
+          <li>Docker 24+ and Docker Compose v2</li>
+          <li>Git</li>
+          <li>4GB RAM minimum (8GB recommended for demo data seed)</li>
+          <li>Ports 3000 (UI), 8080 (API), 5432 (Postgres), 6379 (Redis) available</li>
+        </ul>
+        <h2 class="doc-h2">Quick Start</h2>
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-title">Clone the repository</div>
+              <div class="code-block"><div class="code-block-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div><pre><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/getmetraly/metraly.git</span>
+<span class="t-prompt">$</span> <span class="t-cmd">cd metraly</span></pre></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-title">Start all services</div>
+              <div class="step-desc">This starts the Go API server, PostgreSQL 16 + TimescaleDB, and Redis. Migrations run automatically.</div>
+              <div class="code-block"><div class="code-block-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div><pre><span class="t-prompt">$</span> <span class="t-cmd">make docker-up</span>
+<span class="t-output">✓ Starting API server on :8080</span>
+<span class="t-output">✓ PostgreSQL 16 + TimescaleDB ready</span>
+<span class="t-output">✓ Redis ready on :6379</span>
+<span class="t-output">✓ Migrations applied (zero-dependency runner)</span></pre></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-title">Seed demo data</div>
+              <div class="step-desc">Populates the database with 3 months of deterministic demo data across 5 teams.</div>
+              <div class="code-block"><div class="code-block-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)" aria-label="Copy code">Copy</button></div><pre><span class="t-prompt">$</span> <span class="t-cmd">make seed</span>
+<span class="t-output">✓ Seeded 5 teams, 23 repositories</span>
+<span class="t-output">✓ 90 days of DORA metrics</span>
+<span class="t-output">✓ Demo users created (admin/admin)</span></pre></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <div class="step-title">Open the UI</div>
+              <div class="step-desc">Navigate to <code class="inline-code">http://localhost:3000</code>. Log in with <code class="inline-code">admin / admin</code>.</div>
+            </div>
+          </div>
+        </div>
+        <div class="doc-nav-bottom">
+          <div></div>
+          <a class="doc-nav-link next" href="#installation" onclick="showPage('installation');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Installation</div></a>
+        </div>
+      </div>
+
+      <!-- ── INSTALLATION ────────────────── -->
+      <div id="page-installation" class="doc-page" data-screen-label="Installation">
+        <div class="doc-eyebrow">Getting Started</div>
+        <h1 class="doc-title">Installation</h1>
+        <p class="doc-lead">Metraly supports Docker Compose for quick setup and Kubernetes/Helm for production deployments.</p>
+        <h2 class="doc-h2">Docker Compose (Recommended)</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">docker-compose.yml</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-kw">version</span>: <span class="t-str">'3.9'</span>
+<span class="t-kw">services</span>:
+  <span class="t-key">api</span>:
+    <span class="t-kw">build</span>: <span class="t-str">./cmd/api</span>
+    <span class="t-kw">ports</span>: [<span class="t-str">"8080:8080"</span>]
+    <span class="t-kw">environment</span>:
+      DATABASE_URL: <span class="t-str">postgres://metraly:metraly@db:5432/metraly</span>
+      REDIS_URL: <span class="t-str">redis://redis:6379</span>
+    <span class="t-kw">depends_on</span>: [db, redis]
+  <span class="t-key">db</span>:
+    <span class="t-kw">image</span>: <span class="t-str">timescale/timescaledb:latest-pg16</span>
+    <span class="t-kw">volumes</span>: [<span class="t-str">pgdata:/var/lib/postgresql/data</span>]
+  <span class="t-key">redis</span>:
+    <span class="t-kw">image</span>: <span class="t-str">redis:7-alpine</span></pre></div>
+        <h2 class="doc-h2">Makefile Targets</h2>
+        <table class="doc-table"><thead><tr><th>Target</th><th>Description</th></tr></thead><tbody>
+          <tr><td>make docker-up</td><td>Start all services (API, PostgreSQL, Redis)</td></tr>
+          <tr><td>make docker-down</td><td>Stop and remove containers</td></tr>
+          <tr><td>make seed</td><td>Fill DB with deterministic demo data</td></tr>
+          <tr><td>make migrate</td><td>Run pending database migrations</td></tr>
+          <tr><td>make build</td><td>Build the Go binary</td></tr>
+          <tr><td>make test</td><td>Run the test suite</td></tr>
+        </tbody></table>
+        <h2 class="doc-h2">Kubernetes / Helm</h2>
+        <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-content"><strong>Coming soon.</strong> The Helm chart is under development. For now, use Docker Compose or adapt the provided Kubernetes manifests in <code class="inline-code">deploy/k8s/</code>.</div></div>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#getting-started" onclick="showPage('getting-started');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Getting Started</div></a>
+          <a class="doc-nav-link next" href="#configuration" onclick="showPage('configuration');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Configuration</div></a>
+        </div>
+      </div>
+
+      <!-- ── CONFIGURATION ──────────────── -->
+      <div id="page-configuration" class="doc-page" data-screen-label="Configuration">
+        <div class="doc-eyebrow">Getting Started</div>
+        <h1 class="doc-title">Configuration</h1>
+        <p class="doc-lead">Metraly is configured entirely via environment variables. No YAML config files to manage.</p>
+        <h2 class="doc-h2">Core Variables</h2>
+        <table class="doc-table"><thead><tr><th>Variable</th><th>Required</th><th>Description</th></tr></thead><tbody>
+          <tr><td>DATABASE_URL</td><td style="color:var(--red)">Yes</td><td>PostgreSQL connection string (pgx format)</td></tr>
+          <tr><td>REDIS_URL</td><td style="color:var(--red)">Yes</td><td>Redis connection string</td></tr>
+          <tr><td>JWT_PRIVATE_KEY</td><td style="color:var(--red)">Yes</td><td>RS256 private key in PEM format</td></tr>
+          <tr><td>JWT_PUBLIC_KEY</td><td style="color:var(--red)">Yes</td><td>RS256 public key in PEM format</td></tr>
+          <tr><td>PORT</td><td style="color:var(--text-muted)">No</td><td>API port (default: 8080)</td></tr>
+          <tr><td>LOG_LEVEL</td><td style="color:var(--text-muted)">No</td><td>debug | info | warn | error (default: info)</td></tr>
+        </tbody></table>
+        <h2 class="doc-h2">OIDC / SSO</h2>
+        <table class="doc-table"><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody>
+          <tr><td>OIDC_ISSUER_URL</td><td>Issuer URL from your identity provider (lazy-initialized)</td></tr>
+          <tr><td>OIDC_CLIENT_ID</td><td>OAuth2 client ID</td></tr>
+          <tr><td>OIDC_CLIENT_SECRET</td><td>OAuth2 client secret</td></tr>
+          <tr><td>OIDC_REDIRECT_URL</td><td>Callback URL (e.g. https://metraly.yourdomain.com/auth/oidc/callback)</td></tr>
+        </tbody></table>
+        <h2 class="doc-h2">AI Configuration</h2>
+        <table class="doc-table"><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody>
+          <tr><td>AI_ENDPOINT</td><td>OpenAI-compatible endpoint URL (can be Ollama, LM Studio, etc.)</td></tr>
+          <tr><td>AI_API_KEY</td><td>API key for the AI provider (empty for local models)</td></tr>
+          <tr><td>AI_MODEL</td><td>Model name (e.g. gpt-4o, claude-3-5-sonnet, llama3)</td></tr>
+          <tr><td>AI_ENABLED</td><td>true | false (default: false)</td></tr>
+        </tbody></table>
+        <div class="callout callout-tip"><div class="callout-icon">💡</div><div class="callout-content"><strong>Generate JWT keys:</strong> Run <code class="inline-code">openssl genrsa -out private.pem 4096</code> and <code class="inline-code">openssl rsa -in private.pem -pubout -out public.pem</code> to generate a key pair.</div></div>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#installation" onclick="showPage('installation');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Installation</div></a>
+          <a class="doc-nav-link next" href="#architecture" onclick="showPage('architecture');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Architecture</div></a>
+        </div>
+      </div>
+
+      <!-- ── ARCHITECTURE ────────────────── -->
+      <div id="page-architecture" class="doc-page" data-screen-label="Architecture">
+        <div class="doc-eyebrow">Core Concepts</div>
+        <h1 class="doc-title">Architecture</h1>
+        <p class="doc-lead">Metraly follows a strict layered architecture with clear separation between HTTP, business logic, and data access.</p>
+        <h2 class="doc-h2">Stack</h2>
+        <table class="doc-table"><thead><tr><th>Layer</th><th>Technology</th><th>Notes</th></tr></thead><tbody>
+          <tr><td>API Server</td><td>Go (cmd/api/)</td><td>20 REST endpoints, go-chi/chi/v5 router</td></tr>
+          <tr><td>Primary DB</td><td>PostgreSQL 16 + TimescaleDB</td><td>Time-series metrics, hypertables</td></tr>
+          <tr><td>Cache / Sessions</td><td>Redis</td><td>Refresh tokens, per-operation TTL cache</td></tr>
+          <tr><td>Frontend</td><td>React + TypeScript + Vite</td><td>Feature-based structure in ui_new/</td></tr>
+          <tr><td>Auth</td><td>JWT RS256 + OIDC</td><td>15-min access tokens, RBAC</td></tr>
+          <tr><td>Logging</td><td>zerolog</td><td>Structured JSON logs</td></tr>
+        </tbody></table>
+        <h2 class="doc-h2">Layered Design</h2>
+        <p class="doc-p">Every feature follows the same pattern: <strong>Handler → Biz → Repo → PostgreSQL/Redis</strong></p>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">go</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-comment">// Handler — HTTP binding only</span>
+<span class="t-kw">func</span> (h *MetricsHandler) GetMetric(w http.ResponseWriter, r *http.Request) {
+    id := chi.URLParam(r, <span class="t-str">"id"</span>)
+    result, err := h.biz.GetMetric(r.Context(), id, r.URL.Query())
+    <span class="t-kw">if</span> err != nil { h.err(w, err); return }
+    h.json(w, result)
+}
+
+<span class="t-comment">// Biz — business logic, cache ownership</span>
+<span class="t-kw">func</span> (b *MetricsBiz) GetMetric(ctx context.Context, id string, q url.Values) (*Metric, error) {
+    <span class="t-kw">if</span> cached := b.cache.Get(id); cached != nil { return cached, nil }
+    m, err := b.repo.FindMetric(ctx, id, parseTimeRange(q))
+    <span class="t-kw">if</span> err == nil { b.cache.Set(id, m, 5*time.Minute) }
+    return m, err
+}</pre></div>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#configuration" onclick="showPage('configuration');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Configuration</div></a>
+          <a class="doc-nav-link next" href="#api" onclick="showPage('api');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">API Reference</div></a>
+        </div>
+      </div>
+
+      <!-- ── API REFERENCE ──────────────── -->
+      <div id="page-api" class="doc-page" data-screen-label="API Reference">
+        <div class="doc-eyebrow">Core Concepts</div>
+        <h1 class="doc-title">API Reference</h1>
+        <p class="doc-lead">Metraly exposes 20 REST endpoints. All responses are JSON. Authentication uses JWT RS256 Bearer tokens.</p>
+        <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div class="callout-content">Base URL: <code class="inline-code">http://localhost:8080</code>. Include <code class="inline-code">Authorization: Bearer &lt;token&gt;</code> on all authenticated endpoints.</div></div>
+
+        <h2 class="doc-h2">Authentication</h2>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/auth/login</div><div class="endpoint-desc">Email + password → access token (15 min) + refresh token</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/auth/login','-d \'{"email":"admin@example.com","password":"admin"}\' -H \'Content-Type: application/json\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/auth/refresh</div><div class="endpoint-desc">Exchange refresh token for new access token</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/auth/refresh','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/auth/logout</div><div class="endpoint-desc">Revoke refresh token from Redis</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/auth/logout','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/auth/oidc/login</div><div class="endpoint-desc">Redirect to OIDC provider</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/auth/oidc/login','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/auth/oidc/callback</div><div class="endpoint-desc">OIDC callback — exchange code for session</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/auth/oidc/callback','',this)">Copy curl</button></div>
+
+        <h2 class="doc-h2">System</h2>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/health</div><div class="endpoint-desc">Health check — returns DB + Redis status</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/health','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/me</div><div class="endpoint-desc">Current authenticated user + roles</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/me','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/activity</div><div class="endpoint-desc">Recent activity feed across all sources</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/activity','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+
+        <h2 class="doc-h2">Metrics</h2>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/metrics/{id}?timeRange=30d&amp;team=backend</div><div class="endpoint-desc">Fetch a specific metric with time range and team filters</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/metrics/deploy_frequency?timeRange=30d','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/metrics/{id}/breakdown</div><div class="endpoint-desc">Per-team / per-repo breakdown of a metric</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/metrics/deploy_frequency/breakdown','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/dora</div><div class="endpoint-desc">All four DORA metrics in one request</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/dora','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+
+        <h2 class="doc-h2">Dashboards</h2>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/dashboards</div><div class="endpoint-desc">List all dashboards accessible to current user</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/dashboards','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/dashboards</div><div class="endpoint-desc">Create a new dashboard from template or blank</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/dashboards','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}</div><div class="endpoint-desc">Get dashboard with all widget configs</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/dashboards/1','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-put">PUT</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}</div><div class="endpoint-desc">Update dashboard metadata (optimistic lock via version field)</div></div><button class="try-it-btn" onclick="tryCurl('PUT','http://localhost:8080/dashboards/1','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}/fork</div><div class="endpoint-desc">Fork a dashboard (creates personal copy)</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/dashboards/1/fork','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-put">PUT</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}/layout</div><div class="endpoint-desc">Save widget grid layout positions</div></div><button class="try-it-btn" onclick="tryCurl('PUT','http://localhost:8080/dashboards/1/layout','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-put">PUT</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}/share</div><div class="endpoint-desc">Set sharing permissions (team IDs, roles)</div></div><button class="try-it-btn" onclick="tryCurl('PUT','http://localhost:8080/dashboards/1/share','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/dashboards/{id}/data</div><div class="endpoint-desc">Batch-fetch data for all widgets on a dashboard</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/dashboards/1/data','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/widgets/data</div><div class="endpoint-desc">Fetch data for a single widget by config</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/widgets/data','',this)">Copy curl</button></div>
+
+        <h2 class="doc-h2">AI &amp; Plugins</h2>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/ai/insights</div><div class="endpoint-desc">AI-generated anomaly detection and sprint summaries</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/ai/insights','-H \'Authorization: Bearer $TOKEN\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/ai/chat</div><div class="endpoint-desc">Natural language query interface — returns streamed response</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/ai/chat','-d \'{"message":"Why did CI time increase?"}\' -H \'Content-Type: application/json\'',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/templates</div><div class="endpoint-desc">List available dashboard templates</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/templates','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-get">GET</span><div class="endpoint-info"><div class="endpoint-path">/plugins</div><div class="endpoint-desc">List installed and available plugins</div></div><button class="try-it-btn" onclick="tryCurl('GET','http://localhost:8080/plugins','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/plugins/{id}/install</div><div class="endpoint-desc">Install a plugin from the marketplace</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/plugins/github/install','',this)">Copy curl</button></div>
+        <div class="endpoint-row"><span class="method method-post">POST</span><div class="endpoint-info"><div class="endpoint-path">/sources/connect</div><div class="endpoint-desc">Connect a new data source (GitHub, GitLab, Jira, etc.)</div></div><button class="try-it-btn" onclick="tryCurl('POST','http://localhost:8080/sources/connect','',this)">Copy curl</button></div>
+
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#architecture" onclick="showPage('architecture');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Architecture</div></a>
+          <a class="doc-nav-link next" href="#integrations" onclick="showPage('integrations');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Integrations</div></a>
+        </div>
+      </div>
+
+      <!-- ── INTEGRATIONS ───────────────── -->
+      <div id="page-integrations" class="doc-page" data-screen-label="Integrations">
+        <div class="doc-eyebrow">Integrations</div>
+        <h1 class="doc-title">Integrations</h1>
+        <p class="doc-lead">Connect Metraly to your Git providers, CI/CD systems, and project management tools via the Connect Sources wizard or the API.</p>
+        <h2 class="doc-h2">GitHub</h2>
+        <p class="doc-p">Required scopes: <code class="inline-code">repo</code>, <code class="inline-code">read:org</code>, <code class="inline-code">workflow</code>. Connect via <strong>Configure → Connect Sources → GitHub</strong>.</p>
+        <h2 class="doc-h2">GitLab</h2>
+        <p class="doc-p">Works with both GitLab.com and self-hosted instances. Set <code class="inline-code">GITLAB_URL</code> for self-hosted.</p>
+        <h2 class="doc-h2">Jenkins</h2>
+        <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-content">Jenkins integration is in Beta. Requires Jenkins 2.361+ with the Remote Access API enabled.</div></div>
+        <h2 class="doc-h2">Jira</h2>
+        <p class="doc-p">Use a Jira service account API token, not a personal token, for production. Required: project read permissions on boards you want to track.</p>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#api" onclick="showPage('api');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">API Reference</div></a>
+          <a class="doc-nav-link next" href="#alerts" onclick="showPage('alerts');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Alerts &amp; Notifications</div></a>
+        </div>
+      </div>
+
+      <!-- ── ALERTS ─────────────────────── -->
+      <div id="page-alerts" class="doc-page" data-screen-label="Alerts & Notifications">
+        <div class="doc-eyebrow">Advanced</div>
+        <h1 class="doc-title">Alerts &amp; Notifications</h1>
+        <p class="doc-lead">Configure threshold-based alerts delivered to Telegram, Slack, or Discord directly from your infrastructure.</p>
+        <div class="callout callout-info"><div class="callout-icon">🔒</div><div class="callout-content"><strong>Data privacy:</strong> Alert messages are sent directly from your Metraly instance. Only the message content (no raw metrics data) leaves your network.</div></div>
+        <h2 class="doc-h2">Alert Rule Syntax</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">alert rule</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-comment"># Condition with team filter</span>
+<span class="t-key">cycle_time</span> &gt; <span class="t-val">3d</span>  AND  team = <span class="t-str">"backend"</span>
+
+<span class="t-comment"># With time window</span>
+<span class="t-key">ci_success_rate</span> &lt; <span class="t-val">80%</span>  WINDOW <span class="t-val">24h</span></pre></div>
+        <h2 class="doc-h2">Telegram Setup</h2>
+        <div class="steps">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title">Create a Telegram Bot</div><div class="step-desc">Message <code class="inline-code">@BotFather</code> and use <code class="inline-code">/newbot</code>. Save the bot token.</div></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title">Get the Chat ID</div><div class="step-desc">Add the bot to your group, call <code class="inline-code">https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code>.</div></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title">Configure in Metraly</div><div class="step-desc">Go to <strong>Settings → Notifications → Telegram</strong>, paste your bot token and chat ID.</div></div></div>
+        </div>
+        <h2 class="doc-h2">Slack &amp; Discord</h2>
+        <p class="doc-p">Create a Slack Incoming Webhook or Discord server webhook. Paste the URL in <strong>Settings → Notifications</strong>.</p>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#integrations" onclick="showPage('integrations');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Integrations</div></a>
+          <a class="doc-nav-link next" href="#ai" onclick="showPage('ai');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">AI Configuration</div></a>
+        </div>
+      </div>
+
+      <!-- ── AI ─────────────────────────── -->
+      <div id="page-ai" class="doc-page" data-screen-label="AI Configuration">
+        <div class="doc-eyebrow">Advanced</div>
+        <h1 class="doc-title">AI Configuration</h1>
+        <p class="doc-lead">Metraly supports three AI modes: built-in provider, bring-your-own API key, and fully air-gapped self-hosted LLM.</p>
+        <div class="callout callout-tip"><div class="callout-icon">🛡️</div><div class="callout-content"><strong>No training on your data.</strong> Metraly never sends your metrics to a training pipeline. AI uses your configured endpoint only, with no telemetry.</div></div>
+        <h2 class="doc-h2">Option A: Built-in Provider</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">.env</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-key">AI_ENABLED</span>=<span class="t-val">true</span>
+<span class="t-comment"># No other AI variables needed</span></pre></div>
+        <h2 class="doc-h2">Option B: Bring Your Own API Key</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">.env</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-key">AI_ENABLED</span>=<span class="t-val">true</span>
+<span class="t-key">AI_ENDPOINT</span>=<span class="t-str">https://api.openai.com/v1</span>
+<span class="t-key">AI_API_KEY</span>=<span class="t-str">sk-...</span>
+<span class="t-key">AI_MODEL</span>=<span class="t-str">gpt-4o</span></pre></div>
+        <h2 class="doc-h2">Option C: Self-hosted LLM (Air-gapped)</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">.env (Ollama)</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-key">AI_ENABLED</span>=<span class="t-val">true</span>
+<span class="t-key">AI_ENDPOINT</span>=<span class="t-str">http://ollama:11434/v1</span>
+<span class="t-key">AI_API_KEY</span>=<span class="t-str">ollama</span>
+<span class="t-key">AI_MODEL</span>=<span class="t-str">llama3.1:8b</span></pre></div>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#alerts" onclick="showPage('alerts');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Alerts &amp; Notifications</div></a>
+          <a class="doc-nav-link next" href="#plugins" onclick="showPage('plugins');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Plugin Development</div></a>
+        </div>
+      </div>
+
+      <!-- ── PLUGINS ────────────────────── -->
+      <div id="page-plugins" class="doc-page" data-screen-label="Plugin Development">
+        <div class="doc-eyebrow">Advanced</div>
+        <h1 class="doc-title">Plugin Development</h1>
+        <p class="doc-lead">Extend Metraly with custom data sources, visualisations, alert destinations, and AI providers — without touching the core.</p>
+        <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-content"><strong>Plugin SDK is under development.</strong> The interface is stable for data-source plugins; widget and AI provider plugins may change before stable release.</div></div>
+        <h2 class="doc-h2">Plugin Types</h2>
+        <table class="doc-table"><thead><tr><th>Type</th><th>Status</th><th>Description</th></tr></thead><tbody>
+          <tr><td>data-source</td><td style="color:var(--green)">Stable</td><td>Collect metrics from a new tool</td></tr>
+          <tr><td>widget</td><td style="color:var(--orange)">Beta</td><td>Custom dashboard visualisation component</td></tr>
+          <tr><td>alert-destination</td><td style="color:var(--orange)">Beta</td><td>Custom notification channel</td></tr>
+          <tr><td>ai-provider</td><td style="color:var(--text-muted)">Planned</td><td>Custom LLM provider adapter</td></tr>
+        </tbody></table>
+        <h2 class="doc-h2">Plugin Manifest</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">plugin.json</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre>{
+  <span class="t-key">"id"</span>: <span class="t-str">"bitbucket-source"</span>,
+  <span class="t-key">"name"</span>: <span class="t-str">"Bitbucket"</span>,
+  <span class="t-key">"version"</span>: <span class="t-str">"1.0.0"</span>,
+  <span class="t-key">"type"</span>: <span class="t-str">"data-source"</span>,
+  <span class="t-key">"endpoint"</span>: <span class="t-str">"http://plugin-sidecar:9000"</span>
+}</pre></div>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#ai" onclick="showPage('ai');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">AI Configuration</div></a>
+          <a class="doc-nav-link next" href="#enterprise" onclick="showPage('enterprise');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Enterprise Features</div></a>
+        </div>
+      </div>
+
+      <!-- ── ENTERPRISE ─────────────────── -->
+      <div id="page-enterprise" class="doc-page" data-screen-label="Enterprise Features">
+        <div class="doc-eyebrow">Advanced</div>
+        <h1 class="doc-title">Enterprise Features</h1>
+        <p class="doc-lead">SSO, RBAC, audit trails, and data residency control — all included, no enterprise tier required.</p>
+        <h2 class="doc-h2">OIDC Providers</h2>
+        <ul class="doc-ul">
+          <li><strong>Okta</strong> — <code class="inline-code">OIDC_ISSUER_URL=https://your-org.okta.com</code></li>
+          <li><strong>Azure AD</strong> — <code class="inline-code">https://login.microsoftonline.com/{tenant}/v2.0</code></li>
+          <li><strong>Google Workspace</strong> — <code class="inline-code">https://accounts.google.com</code></li>
+          <li><strong>Keycloak</strong> — <code class="inline-code">https://keycloak.yourdomain.com/realms/your-realm</code></li>
+          <li><strong>Authentik</strong> — <code class="inline-code">https://authentik.yourdomain.com/application/o/metraly</code></li>
+        </ul>
+        <h2 class="doc-h2">RBAC Roles</h2>
+        <table class="doc-table"><thead><tr><th>Role</th><th>Permissions</th></tr></thead><tbody>
+          <tr><td>admin</td><td>Full access — manage users, sources, system settings</td></tr>
+          <tr><td>editor</td><td>Create and edit dashboards, configure alerts</td></tr>
+          <tr><td>team-lead</td><td>Edit team dashboards, manage team alerts</td></tr>
+          <tr><td>viewer</td><td>Read-only access to shared dashboards</td></tr>
+        </tbody></table>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#plugins" onclick="showPage('plugins');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Plugin Development</div></a>
+          <a class="doc-nav-link next" href="#contributing" onclick="showPage('contributing');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Contributing</div></a>
+        </div>
+      </div>
+
+      <!-- ── CONTRIBUTING ───────────────── -->
+      <div id="page-contributing" class="doc-page" data-screen-label="Contributing">
+        <div class="doc-eyebrow">Community</div>
+        <h1 class="doc-title">Contributing</h1>
+        <p class="doc-lead">Metraly is built in public. We welcome bug reports, feature ideas, and pull requests.</p>
+        <h2 class="doc-h2">Development Setup</h2>
+        <div class="code-block"><div class="code-block-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div><pre><span class="t-prompt">$</span> <span class="t-cmd">git clone https://github.com/getmetraly/metraly.git && cd metraly</span>
+<span class="t-prompt">$</span> <span class="t-cmd">make docker-deps</span>    <span class="t-comment"># Start dependencies only</span>
+<span class="t-prompt">$</span> <span class="t-cmd">go run ./cmd/api/...</span>
+<span class="t-prompt">$</span> <span class="t-cmd">cd ui_new && npm install && npm run dev</span></pre></div>
+        <h2 class="doc-h2">PR Guidelines</h2>
+        <ul class="doc-ul">
+          <li>Follow the <strong>Handler → Biz → Repo</strong> layered architecture</li>
+          <li>Add unit tests for all Biz layer logic</li>
+          <li>Use <code class="inline-code">zerolog</code> — no <code class="inline-code">fmt.Println</code></li>
+          <li>All SQL queries use <code class="inline-code">pgx/v5</code> directly — no ORM</li>
+          <li>Keep PRs focused — one feature or fix per PR</li>
+        </ul>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#enterprise" onclick="showPage('enterprise');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Enterprise Features</div></a>
+          <a class="doc-nav-link next" href="#changelog" onclick="showPage('changelog');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">Changelog</div></a>
+        </div>
+      </div>
+
+      <!-- ── CHANGELOG ─────────────────── -->
+      <div id="page-changelog" class="doc-page" data-screen-label="Changelog">
+        <div class="doc-eyebrow">Community</div>
+        <h1 class="doc-title">Changelog</h1>
+        <p class="doc-lead">All notable changes to Metraly are documented here. Follows <a href="https://keepachangelog.com" target="_blank" rel="noopener" style="color:var(--cyan)">Keep a Changelog</a> format.</p>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">
+            <div class="changelog-ver-num">v0.1.0</div>
+            <div class="changelog-date">May 2026</div>
+            <div class="changelog-badge badge-alpha">Alpha</div>
+          </div>
+          <div class="changelog-content">
+            <h3>Initial Alpha Release</h3>
+            <ul class="changelog-items">
+              <li>Go API server with 20 REST endpoints (go-chi/chi/v5)</li>
+              <li>PostgreSQL 16 + TimescaleDB for time-series metrics storage</li>
+              <li>Redis cache with per-operation TTL</li>
+              <li>JWT RS256 authentication with 15-minute access tokens</li>
+              <li>OIDC SSO support (Okta, Azure AD, Keycloak, Google Workspace, Authentik)</li>
+              <li>RBAC with admin, editor, team-lead, and viewer roles</li>
+              <li>DORA metrics: Deployment Frequency, Lead Time, Change Failure Rate, MTTR</li>
+              <li>CI/CD tracking: GitHub Actions, GitLab CI, Jenkins (beta)</li>
+              <li>PR cycle time, review queue, and stale branch detection</li>
+              <li>Sprint velocity and burndown tracking (Jira, Linear)</li>
+              <li>Drag-and-drop dashboard builder with 20+ widget types</li>
+              <li>Metrics Explorer with custom TimescaleDB SQL and formula computation</li>
+              <li>AI Assistant with BYO-AI support (OpenAI, Anthropic, Ollama)</li>
+              <li>Alert rules for Telegram, Slack, and Discord</li>
+              <li>Plugin system for data sources (GitHub, GitLab, Jira stable; Jenkins beta)</li>
+              <li>Zero-dependency migration runner (runs on startup)</li>
+              <li>React + TypeScript + Vite frontend (feature-based structure)</li>
+              <li class="fix">Optimistic locking on dashboard updates to prevent conflicts</li>
+              <li>Deterministic demo data seed (<code style="font-family:var(--font-mono);font-size:11px">make seed</code>)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="changelog-entry">
+          <div class="changelog-version">
+            <div class="changelog-ver-num">v0.0.1</div>
+            <div class="changelog-date">Mar 2026</div>
+            <div class="changelog-badge badge-alpha">Pre-alpha</div>
+          </div>
+          <div class="changelog-content">
+            <h3>Internal prototype</h3>
+            <ul class="changelog-items">
+              <li>Basic Go API scaffolding</li>
+              <li>PostgreSQL schema with TimescaleDB hypertables</li>
+              <li>GitHub data source proof-of-concept</li>
+              <li>Initial DORA metric calculations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#contributing" onclick="showPage('contributing');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Contributing</div></a>
+          <a class="doc-nav-link next" href="#faq" onclick="showPage('faq');return false;"><div class="doc-nav-dir">Next →</div><div class="doc-nav-title">FAQ</div></a>
+        </div>
+      </div>
+
+      <!-- ── FAQ ───────────────────────── -->
+      <div id="page-faq" class="doc-page" data-screen-label="FAQ">
+        <div class="doc-eyebrow">Community</div>
+        <h1 class="doc-title">FAQ</h1>
+        <p class="doc-lead">Common questions about deploying and using Metraly.</p>
+        <h3 class="doc-h3">Is Metraly production-ready?</h3>
+        <p class="doc-p">Metraly is in Alpha. Core API, database schema, and auth are stable. Use in production with the understanding that APIs may change between minor versions.</p>
+        <h3 class="doc-h3">Does Metraly send any telemetry?</h3>
+        <p class="doc-p">No. Zero telemetry, zero callbacks home. You can verify this by auditing the source code or running it in an air-gapped environment.</p>
+        <h3 class="doc-h3">Can I run Metraly in a fully air-gapped environment?</h3>
+        <p class="doc-p">Yes. Use Option C (self-hosted LLM via Ollama) for AI features. All container images can be mirrored to a private registry.</p>
+        <h3 class="doc-h3">What does the FSL license mean for me?</h3>
+        <p class="doc-p">FSL allows free use for non-commercial and internal commercial use. After 2 years, each version's license converts to Apache 2.0 automatically. See the <a href="pricing.html" style="color:var(--cyan)">Pricing page</a> for details.</p>
+        <h3 class="doc-h3">How do I upgrade Metraly?</h3>
+        <p class="doc-p">Pull the latest image and run <code class="inline-code">make docker-up</code>. Migrations run automatically. Always back up PostgreSQL before upgrading.</p>
+        <div class="doc-nav-bottom">
+          <a class="doc-nav-link" href="#changelog" onclick="showPage('changelog');return false;"><div class="doc-nav-dir">← Previous</div><div class="doc-nav-title">Changelog</div></a>
+          <div></div>
+        </div>
+      </div>
+
+    </div><!-- /docs-content -->
+    <div class="docs-toc" id="toc" aria-label="On this page"></div>
+  </div><!-- /docs-main -->
+</div><!-- /docs-layout -->
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top" onclick="document.getElementById('docs-content').scrollTop=0;window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ─── Search index ────────────────────────────────
+var searchIndex = [
+  {page:'getting-started', title:'Getting Started', content:'prerequisites docker compose quick start clone repository seed demo data'},
+  {page:'installation', title:'Installation', content:'docker compose makefile kubernetes helm docker-up docker-down seed migrate build test'},
+  {page:'configuration', title:'Configuration', content:'environment variables DATABASE_URL REDIS_URL JWT_PRIVATE_KEY OIDC SSO AI_ENABLED AI_ENDPOINT AI_MODEL'},
+  {page:'architecture', title:'Architecture', content:'layered design handler biz repo postgresql redis timescaledb go chi zerolog pgx optimistic locking'},
+  {page:'api', title:'API Reference', content:'endpoints REST POST GET PUT auth login refresh logout oidc health me activity metrics dora dashboards widgets plugins sources ai'},
+  {page:'integrations', title:'Integrations', content:'github gitlab jenkins jira linear bitbucket data sources connect'},
+  {page:'alerts', title:'Alerts & Notifications', content:'telegram slack discord threshold rule cycle time ci success rate stale branch notifications'},
+  {page:'ai', title:'AI Configuration', content:'built-in provider BYO API key openai anthropic ollama llama mistral air-gapped self-hosted LLM'},
+  {page:'plugins', title:'Plugin Development', content:'data-source widget alert-destination ai-provider manifest plugin.json install SDK'},
+  {page:'enterprise', title:'Enterprise Features', content:'SSO OIDC okta azure ad keycloak google workspace authentik RBAC admin editor team-lead viewer audit trails'},
+  {page:'contributing', title:'Contributing', content:'development setup pull request guidelines handler biz repo tests zerolog pgx'},
+  {page:'changelog', title:'Changelog', content:'v0.1.0 alpha release initial prototype DORA CI CD PR sprint velocity'},
+  {page:'faq', title:'FAQ', content:'production ready telemetry air-gapped FSL license upgrade'},
+];
+
+var searchInput = document.getElementById('search-input');
+var searchResults = document.getElementById('search-results');
+var focusedIndex = -1;
+
+function highlight(text, query) {
+  if (!query) return text;
+  var re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+searchInput.addEventListener('input', function() {
+  var q = this.value.trim().toLowerCase();
+  focusedIndex = -1;
+  if (!q || q.length < 2) { searchResults.classList.remove('show'); searchResults.innerHTML = ''; return; }
+  var results = searchIndex.filter(function(item) {
+    return item.title.toLowerCase().includes(q) || item.content.toLowerCase().includes(q);
+  });
+  if (results.length === 0) {
+    searchResults.innerHTML = '<div class="search-no-results">No results for "' + q + '"</div>';
+  } else {
+    searchResults.innerHTML = results.map(function(item, i) {
+      return '<div class="search-result-item" role="option" data-page="' + item.page + '" tabindex="-1">' +
+        '<div><div class="search-result-page">' + highlight(item.title, q) + '</div>' +
+        '<div class="search-result-text">' + highlight(item.content.split(' ').slice(0,8).join(' ') + '…', q) + '</div></div></div>';
+    }).join('');
+    searchResults.querySelectorAll('.search-result-item').forEach(function(el) {
+      el.addEventListener('click', function() {
+        showPage(this.dataset.page);
+        searchInput.value = '';
+        searchResults.classList.remove('show');
+      });
+    });
+  }
+  searchResults.classList.add('show');
+});
+
+// Keyboard nav in search
+searchInput.addEventListener('keydown', function(e) {
+  var items = searchResults.querySelectorAll('.search-result-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    focusedIndex = Math.min(focusedIndex + 1, items.length - 1);
+    items.forEach(function(el, i) { el.classList.toggle('focused', i === focusedIndex); });
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    focusedIndex = Math.max(focusedIndex - 1, 0);
+    items.forEach(function(el, i) { el.classList.toggle('focused', i === focusedIndex); });
+  } else if (e.key === 'Enter' && focusedIndex >= 0) {
+    e.preventDefault();
+    if (items[focusedIndex]) items[focusedIndex].click();
+  } else if (e.key === 'Escape') {
+    searchResults.classList.remove('show');
+    searchInput.blur();
+  }
+});
+
+// ⌘K shortcut
+document.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+
+// Close search on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.topbar-search-wrap')) {
+    searchResults.classList.remove('show');
+  }
+});
+
+// ─── Page routing with hash ──────────────────────
+var pages = {
+  'getting-started': [{label:'Prerequisites'},{label:'Quick Start'},{label:'Next Steps'}],
+  'installation': [{label:'Docker Compose'},{label:'Makefile Targets'},{label:'Kubernetes'}],
+  'configuration': [{label:'Core Variables'},{label:'OIDC / SSO'},{label:'AI Configuration'}],
+  'architecture': [{label:'Stack'},{label:'Layered Design'},{label:'Design Decisions'}],
+  'api': [{label:'Authentication'},{label:'System'},{label:'Metrics'},{label:'Dashboards'},{label:'AI & Plugins'}],
+  'integrations': [{label:'GitHub'},{label:'GitLab'},{label:'Jenkins'},{label:'Jira'}],
+  'alerts': [{label:'Rule Syntax'},{label:'Telegram'},{label:'Slack & Discord'}],
+  'ai': [{label:'Option A: Built-in'},{label:'Option B: BYO Key'},{label:'Option C: Air-gapped'}],
+  'plugins': [{label:'Plugin Types'},{label:'Plugin Manifest'},{label:'Installing'}],
+  'enterprise': [{label:'OIDC Providers'},{label:'RBAC Roles'},{label:'Audit Trails'}],
+  'contributing': [{label:'Dev Setup'},{label:'PR Guidelines'}],
+  'changelog': [{label:'v0.1.0 Alpha'},{label:'v0.0.1 Pre-alpha'}],
+  'faq': [{label:'Production?'},{label:'Telemetry'},{label:'Air-gapped'},{label:'License'}],
+};
+
+function showPage(id) {
+  // Hide all
+  document.querySelectorAll('.doc-page').forEach(function(el) { el.classList.remove('active'); });
+  var target = document.getElementById('page-' + id);
+  if (!target) return;
+  target.classList.add('active');
+
+  // Update sidebar
+  document.querySelectorAll('.sidebar-link').forEach(function(el) {
+    el.classList.toggle('active', el.getAttribute('href') === '#' + id);
+  });
+
+  // Update TOC
+  var toc = document.getElementById('toc');
+  var pageData = pages[id];
+  if (pageData) {
+    toc.innerHTML = '<div class="toc-title">On this page</div>' +
+      pageData.map(function(item) {
+        return '<a class="toc-link' + (item.sub ? ' toc-link-sub' : '') + '" href="#">' + item.label + '</a>';
+      }).join('');
+  }
+
+  // Update URL hash without scrolling
+  history.replaceState(null, '', '#' + id);
+  document.getElementById('docs-content').scrollTop = 0;
+  window.scrollTo({ top: 0 });
+
+  // Close mobile sidebar
+  closeSidebar();
+}
+
+// ─── Hash-based navigation on load ──────────────
+function initFromHash() {
+  var hash = window.location.hash.replace('#', '') || 'getting-started';
+  if (document.getElementById('page-' + hash)) {
+    showPage(hash);
+  } else {
+    showPage('getting-started');
+  }
+}
+window.addEventListener('hashchange', function() {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) {
+    showPage(hash);
+  }
+});
+
+// ─── Copy code ───────────────────────────────────
+function copyCode(btn) {
+  var pre = btn.closest('.code-block').querySelector('pre');
+  var text = pre.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = orig; }, 2000);
+  });
+}
+
+// ─── Try it / curl copy ──────────────────────────
+function tryCurl(method, url, extra, btn) {
+  var cmd = 'curl -X ' + method + ' ' + url + (extra ? ' \\\n     ' + extra : '');
+  navigator.clipboard.writeText(cmd).then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'Copy curl'; btn.classList.remove('copied'); }, 2000);
+  }).catch(function() {
+    btn.textContent = 'Copy curl';
+  });
+}
+
+// ─── Mobile sidebar ──────────────────────────────
+var sidebar = document.getElementById('sidebar');
+var sidebarOverlay = document.getElementById('sidebar-overlay');
+var sidebarToggle = document.getElementById('sidebar-toggle');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  sidebarOverlay.classList.add('open');
+  sidebarToggle.setAttribute('aria-expanded', 'true');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('open');
+  sidebarToggle.setAttribute('aria-expanded', 'false');
+}
+sidebarToggle.addEventListener('click', function() {
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+sidebarOverlay.addEventListener('click', closeSidebar);
+
+// ─── Back to top ─────────────────────────────────
+var backToTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ─── Init ────────────────────────────────────────
+initFromHash();
+</script>
+</body>
+</html>
