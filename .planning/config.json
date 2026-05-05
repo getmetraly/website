@@ -1,0 +1,27 @@
+{
+  "mode": "yolo",
+  "granularity": "coarse",
+  "parallelization": true,
+  "commit_docs": true,
+  "model_profile": "inherit",
+  "workflow": {
+    "research": true,
+    "plan_check": true,
+    "verifier": true,
+    "nyquist_validation": false,
+    "auto_advance": false
+  },
+  "planning": {
+    "canonical_status": "../docs/STATUS.md",
+    "canonical_docs_repo": "../docs",
+    "app_repo": "../app",
+    "nearest_milestone": "Website canonicalization plus clickable demo",
+    "roadmap_scope": "Marketing website, docs surface, and demo mode",
+    "inherited_from": "../app/.planning/config.json",
+    "notes": [
+      "User requested current website project be linked to ../app and ../docs.",
+      "Use ../docs as the canonical information source for price, plans, license, positioning, legal, docs, and roadmap.",
+      "Use ../app, especially ../app/ui, as the source for the product demo experience and mock data."
+    ]
+  }
+}
