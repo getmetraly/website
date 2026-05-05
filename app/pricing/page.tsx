@@ -115,11 +115,12 @@ export default function PricingPage() {
               Free stays useful. Paid plans add scale, automation, support, and regulated deployment paths as billing and license activation mature.
             </p>
 
-            <div className={styles.grid3}>
+            <div className={styles.grid3} style={{ alignItems: "stretch" }}>
               {plans.map((plan) => (
                 <div
                   key={plan.name}
                   className={`${styles.card} ${plan.featured ? styles.cardAccent : ""}`}
+                  style={{ display: "flex", flexDirection: "column", height: "100%" }}
                 >
                   <div className={styles.cardHead}>
                     <h3 className={styles.cardTitle}>{plan.name}</h3>
@@ -135,14 +136,16 @@ export default function PricingPage() {
                       <li key={feature} className={styles.cardDesc}>→ {feature}</li>
                     ))}
                   </ul>
-                  <a
-                    href={plan.href}
-                    className={plan.featured ? "btn-primary" : "btn-ghost btn-large"}
-                    target={plan.href.startsWith("http") ? "_blank" : undefined}
-                    rel={plan.href.startsWith("http") ? "noreferrer" : undefined}
-                  >
-                    {plan.cta}
-                  </a>
+                  <div style={{ marginTop: "auto", paddingTop: 8 }}>
+                    <a
+                      href={plan.href}
+                      className={plan.featured ? "btn-primary" : "btn-ghost btn-large"}
+                      target={plan.href.startsWith("http") ? "_blank" : undefined}
+                      rel={plan.href.startsWith("http") ? "noreferrer" : undefined}
+                    >
+                      {plan.cta}
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
