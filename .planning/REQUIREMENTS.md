@@ -39,12 +39,11 @@ v1 here means the first launch-ready website baseline: canonical public content,
 - [ ] **DEMO-05**: Demo content aligns with `../docs/product/onboarding.md` and `../app/ui` mock data structures.
 
 ### Next.js And Vercel
-
-- [ ] **NEXT-01**: Website is converted from standalone HTML files into a Next.js application using App Router.
-- [ ] **NEXT-02**: Existing public routes for home, pricing, docs, demo preview, privacy, and terms continue to work after migration.
-- [ ] **NEXT-03**: Shared theme, navigation, footer, typography, and page shell are implemented as reusable Next.js/React code instead of duplicated page-local HTML.
+- [x] **NEXT-01**: Website is converted from standalone HTML files into a Next.js application using App Router.
+- [x] **NEXT-02**: Existing public routes for home, pricing, docs, demo preview, privacy, and terms continue to work after migration.
+- [x] **NEXT-03**: Shared theme, navigation, footer, typography, and page shell are implemented as reusable Next.js/React code instead of duplicated page-local HTML.
 - [ ] **NEXT-04**: The project has `package.json` scripts for local development, production build, and start/preview appropriate for Vercel.
-- [ ] **NEXT-05**: The migrated site can be built by Vercel without requiring secrets or a backend service.
+- [x] **NEXT-05**: The migrated site can be built by Vercel without requiring secrets or a backend service.
 
 ### Documentation Surface
 

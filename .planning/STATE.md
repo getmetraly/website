@@ -8,8 +8,8 @@ progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 8
-  completed_plans: 6
-  percent: 75
+  completed_plans: 7
+  percent: 87
 ---
 
 # GSD State: Metraly Website
@@ -45,7 +45,7 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 |-------|--------|------|
 | 1 | Complete | Source Truth Foundation |
 | 2 | Complete | Canonical Public Copy |
-| 3 | In Progress | Next.js Vercel Foundation |
+| 3 | In Progress | Next.js Vercel Foundation (2/3 plans) |
 | 4 | Pending | Clickable Demo Mode |
 | 5 | Pending | Documentation Surface |
 | 6 | Pending | Launch Verification |
@@ -74,4 +74,4 @@ Continue Phase 3:
 $gsd-execute-phase 3
 ```
 
-Phase 3, Plan 01 completed. Ready for Plan 02 (Migrate public pages and route compatibility).
+Phase 3, Plan 02 completed. Ready for Plan 03 (Add Vercel build/deploy baseline).

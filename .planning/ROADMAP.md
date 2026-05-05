@@ -64,7 +64,7 @@ Plans:
 
 Plans:
 - [x] 03-01: Scaffold Next.js app shell and shared primitives
-- [ ] 03-02: Migrate public pages and route compatibility
+- [x] 03-02: Migrate public pages and route compatibility
 - [ ] 03-03: Add Vercel build/deploy baseline and smoke checks
 
 ### Phase 4: Clickable Demo Mode
@@ -121,7 +121,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Source Truth Foundation | 2/2 | Complete | 2026-05-05 |
 | 2. Canonical Public Copy | 3/3 | Complete | 2026-05-05 |
-| 3. Next.js Vercel Foundation | 1/3 | In Progress | 2026-05-05 |
+| 3. Next.js Vercel Foundation | 2/3 | In Progress | 2026-05-05 |
 | 4. Clickable Demo Mode | 0/3 | Not started | - |
 | 5. Documentation Surface | 0/2 | Not started | - |
 | 6. Launch Verification | 0/3 | Not started | - |
