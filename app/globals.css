@@ -515,3 +515,24 @@ footer {
     padding: 0 16px;
   }
 }
+
+.btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+
+  font-size: 14px;
+  color: var(--text-primary);
+
+  transition: all 0.2s ease;
+}
+
+.btn-github:hover {
+  background: rgba(255,255,255,0.06);
+}
