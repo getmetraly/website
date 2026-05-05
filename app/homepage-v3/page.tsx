@@ -106,7 +106,27 @@ export default function HomepageV3() {
             <Link href="/pricing" className="btn-ghost btn-large">View pricing</Link>
           </div>
           <div className={styles.heroStats}><div>No login</div><div className={styles.heroDivider} /><div>No real company data</div><div className={styles.heroDivider} /><div>Synthetic Sandbox Inc. metrics</div><div className={styles.heroDivider} /><div className={styles.versionBadge}>v0.1.0-alpha</div></div>
-          <HeroDashboard />
+        <div className={styles.dashboardImageWrap}>
+          <img
+            src="/images/vp-dashboard.png"
+            alt="Metraly VP Engineering dashboard"
+            className={styles.dashboardImage}
+          />
+
+          <div className={styles.insightOverlay}>
+            <div className={styles.insightCard}>
+              <div className={styles.insightLabel}>
+                Synthetic insight
+              </div>
+              <div className={styles.insightTitle}>
+                Review queue increased this sprint
+              </div>
+              <div className={styles.insightDesc}>
+                Likely bottleneck: overloaded reviewers
+              </div>
+            </div>
+          </div>
+        </div>
         </section>
 
         <section className={styles.surface}><div className={styles.sectionSmall}><SectionHeader eyebrow="Build in public" title="Metraly is being built in the open." center>The interface you see is real. Dashboards are actively being developed. Data integrations and real-world workflows are the next step.</SectionHeader></div></section>
