@@ -55,7 +55,7 @@ export function SiteNav() {
             GitHub
           </a>
           <Link
-            href="/login"
+            href="/demo"
             className="btn-primary"
             aria-label="Try demo preview"
           >
