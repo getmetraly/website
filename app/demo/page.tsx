@@ -51,43 +51,21 @@ export default function DemoPage() {
             </span>
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert(
-                "Demo preview is not yet deployed. To try Metraly locally:\n\ngit clone https://github.com/getmetraly/metraly.git\ncd metraly && make docker-up && make seed\n\nThen open http://localhost:3000"
-              );
+          <div
+            style={{
+              padding: "20px",
+              background: "rgba(255,255,255,0.03)",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              fontSize: "13px",
+              color: "var(--text-secondary)",
+              lineHeight: 1.6,
             }}
-            noValidate
           >
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                defaultValue="admin@demo.metraly.io"
-                autoComplete="email"
-                placeholder="you@company.com"
-                aria-required="true"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                defaultValue="demo2026"
-                autoComplete="current-password"
-                placeholder="••••••••"
-                aria-required="true"
-              />
-            </div>
-            <button type="submit" className="btn-login" id="login-btn">
-              Open Demo Preview →
-            </button>
-          </form>
-
-          <div className="divider">or</div>
+            <strong style={{ color: "var(--orange)" }}>Note:</strong>{" "}
+            The interactive demo is coming in Phase 4. For now, you can
+            self-host Metraly to try the full experience:
+          </div>
 
           <div className="self-host-box" id="self-host">
             <div className="sh-title">
