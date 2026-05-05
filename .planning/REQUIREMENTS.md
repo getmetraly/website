@@ -16,19 +16,19 @@ v1 here means the first launch-ready website baseline: canonical public content,
 
 ### Pricing And License
 
-- [ ] **PRICE-01**: `pricing.html` no longer describes FSL/source-available licensing unless canonical docs are changed first.
-- [ ] **PRICE-02**: Pricing page presents Community, Pro, and Enterprise tiers consistent with `../docs/strategy/monetization-v2.md`.
-- [ ] **PRICE-03**: Pro pricing shows `$99/mo` for up to 10 active users plus `$15/dev/mo` above 10, unless canonical docs change.
-- [ ] **PRICE-04**: Enterprise pricing shows `$15K/year` base up to 50 dev plus `$120/dev/year` above 50, unless canonical docs change.
-- [ ] **PRICE-05**: Terms and footer license links no longer contradict AGPLv3/open-core positioning.
+- [x] **PRICE-01**: `pricing.html` no longer describes FSL/source-available licensing unless canonical docs are changed first.
+- [x] **PRICE-02**: Pricing page presents Community, Pro, and Enterprise tiers consistent with `../docs/strategy/monetization-v2.md`.
+- [x] **PRICE-03**: Pro pricing shows `$99/mo` for up to 10 active users plus `$15/dev/mo` above 10, unless canonical docs change.
+- [x] **PRICE-04**: Enterprise pricing shows `$15K/year` base up to 50 dev plus `$120/dev/year` above 50, unless canonical docs change.
+- [x] **PRICE-05**: Terms and footer license links no longer contradict AGPLv3/open-core positioning.
 
 ### Marketing Content
 
-- [ ] **MKT-01**: Home page headline and supporting copy reflect the canonical self-hosted/private Engineering Intelligence positioning.
-- [ ] **MKT-02**: Feature claims are split into shipped, preview, designed, and future where needed using `../docs/STATUS.md`.
-- [ ] **MKT-03**: Social proof/testimonials are removed, replaced, or clearly labeled if they are not backed by real customer evidence.
-- [ ] **MKT-04**: Quickstart copy matches the current Community Preview stack and does not require deferred dependencies such as ClickHouse.
-- [ ] **MKT-05**: Open-source/community copy reflects AGPLv3 and DCO/community strategy from `../docs`.
+- [x] **MKT-01**: Home page headline and supporting copy reflect the canonical self-hosted/private Engineering Intelligence positioning.
+- [x] **MKT-02**: Feature claims are split into shipped, preview, designed, and future where needed using `../docs/STATUS.md`.
+- [x] **MKT-03**: Social proof/testimonials are removed, replaced, or clearly labeled if they are not backed by real customer evidence.
+- [x] **MKT-04**: Quickstart copy matches the current Community Preview stack and does not require deferred dependencies such as ClickHouse.
+- [x] **MKT-05**: Open-source/community copy reflects AGPLv3 and DCO/community strategy from `../docs`.
 
 ### Demo Mode
 
@@ -88,16 +88,16 @@ Deferred beyond the first launch-ready baseline.
 | TRUTH-02 | Phase 1 | Complete |
 | TRUTH-03 | Phase 1 | Complete |
 | TRUTH-04 | Phase 1 | Complete |
-| PRICE-01 | Phase 2 | Pending |
-| PRICE-02 | Phase 2 | Pending |
-| PRICE-03 | Phase 2 | Pending |
-| PRICE-04 | Phase 2 | Pending |
-| PRICE-05 | Phase 2 | Pending |
-| MKT-01 | Phase 2 | Pending |
-| MKT-02 | Phase 2 | Pending |
-| MKT-03 | Phase 2 | Pending |
-| MKT-04 | Phase 2 | Pending |
-| MKT-05 | Phase 2 | Pending |
+| PRICE-01 | Phase 2 | Complete |
+| PRICE-02 | Phase 2 | Complete |
+| PRICE-03 | Phase 2 | Complete |
+| PRICE-04 | Phase 2 | Complete |
+| PRICE-05 | Phase 2 | Complete |
+| MKT-01 | Phase 2 | Complete |
+| MKT-02 | Phase 2 | Complete |
+| MKT-03 | Phase 2 | Complete |
+| MKT-04 | Phase 2 | Complete |
+| MKT-05 | Phase 2 | Complete |
 | DEMO-01 | Phase 3 | Pending |
 | DEMO-02 | Phase 3 | Pending |
 | DEMO-03 | Phase 3 | Pending |
@@ -120,4 +120,4 @@ Deferred beyond the first launch-ready baseline.
 
 ---
 *Requirements defined: 2026-05-05*
-*Last updated: 2026-05-05 after Phase 1 verification*
+*Last updated: 2026-05-05 after Phase 2 verification*

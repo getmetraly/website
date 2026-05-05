@@ -1,7 +1,7 @@
 # GSD State: Metraly Website
 
 **Initialized:** 2026-05-05
-**Current focus:** Phase 2 - Canonical Public Copy
+**Current focus:** Phase 3 - Clickable Demo Mode
 
 ## Project Reference
 
@@ -30,7 +30,7 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 | Phase | Status | Goal |
 |-------|--------|------|
 | 1 | Complete | Source Truth Foundation |
-| 2 | Pending | Canonical Public Copy |
+| 2 | Complete | Canonical Public Copy |
 | 3 | Pending | Clickable Demo Mode |
 | 4 | Pending | Documentation Surface |
 | 5 | Pending | Launch Verification |
@@ -46,14 +46,14 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 
 ## Known Risks
 
-- Current HTML files are untracked prototype files and contain stale claims.
+- `docs.html` and `theme.js` are still untracked prototype files.
 - `gsd-sdk` is unavailable in PATH, so GSD artifacts were created manually.
 - The website, app, and docs are separate git repositories; changes must not assume one commit spans all three.
 
 ## Next Action
 
-Plan Phase 2:
+Plan Phase 3:
 
 ```text
-$gsd-plan-phase 2
+$gsd-plan-phase 3
 ```

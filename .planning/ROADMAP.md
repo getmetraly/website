@@ -11,7 +11,7 @@ The website should move from a static design prototype to a trustworthy public s
 ## Phases
 
 - [x] **Phase 1: Source Truth Foundation** - Lock website source-of-truth rules and content inventory.
-- [ ] **Phase 2: Canonical Public Copy** - Rewrite pricing, license, marketing, and legal claims from `../docs`.
+- [x] **Phase 2: Canonical Public Copy** - Rewrite pricing, license, marketing, and legal claims from `../docs`.
 - [ ] **Phase 3: Clickable Demo Mode** - Replace fake demo login with a synthetic-data app experience sourced from `../app/ui`.
 - [ ] **Phase 4: Documentation Surface** - Reconcile `docs.html` with `../docs` and establish a sync path.
 - [ ] **Phase 5: Launch Verification** - Add shared site structure and checks for links, console errors, responsiveness, and privacy-sensitive dependencies.
@@ -45,9 +45,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: Rewrite pricing/license/legal copy
-- [ ] 02-02: Rewrite home-page positioning and feature readiness
-- [ ] 02-03: Clean unsupported proof points, quickstart, and footer links
+- [x] 02-01: Rewrite pricing/license/legal copy
+- [x] 02-02: Rewrite home-page positioning and feature readiness
+- [x] 02-03: Clean unsupported proof points, quickstart, and footer links
 
 ### Phase 3: Clickable Demo Mode
 **Goal**: Let visitors click through a realistic Metraly app demo with synthetic data.
@@ -102,17 +102,17 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Source Truth Foundation | 2/2 | Complete | 2026-05-05 |
-| 2. Canonical Public Copy | 0/3 | Not started | - |
+| 2. Canonical Public Copy | 3/3 | Complete | 2026-05-05 |
 | 3. Clickable Demo Mode | 0/3 | Not started | - |
 | 4. Documentation Surface | 0/2 | Not started | - |
 | 5. Launch Verification | 0/3 | Not started | - |
 
 ## Next Phase
 
-**Phase 2: Canonical Public Copy** should be planned next.
+**Phase 3: Clickable Demo Mode** should be planned next.
 
 Recommended next command:
 
 ```text
-$gsd-plan-phase 2
+$gsd-plan-phase 3
 ```
