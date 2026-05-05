@@ -43,7 +43,7 @@ export default function HomepageV3() {
           <p className={styles.heroSub}>Understand delivery, bottlenecks, and engineering health on your own infrastructure — with a platform designed for private data and evolving AI insights.</p>
 
           <div className={styles.heroActions}>
-            <Link href="/demo" className="btn-demo">Try synthetic demo →</Link>
+            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo →</Link>
             <Link href="/docs" className="btn-ghost btn-large">Self-host with Docker</Link>
             <Link href="/pricing" className="btn-ghost btn-large">View pricing</Link>
           </div>
