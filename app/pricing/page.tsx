@@ -1,338 +1,200 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
+import styles from "@/components/marketing/marketing.module.css";
+
+const plans = [
+  {
+    name: "Community",
+    status: "Always free",
+    price: "$0",
+    note: "Self-hosted · AGPLv3 core",
+    desc: "For evaluation, OSS projects, small teams, and privacy-first buyers who want to inspect the platform before paid modules exist.",
+    cta: "Get the source →",
+    href: "https://github.com/getmetraly/metraly",
+    featured: false,
+    features: [
+      "Self-hosted AGPLv3 core",
+      "DORA metrics and role dashboards",
+      "Basic widgets and dashboard templates",
+      "Up to 10 users target",
+      "1 team target",
+      "3 active connectors target",
+      "3 custom dashboards target",
+      "90-day retention target",
+      "Community support",
+    ],
+  },
+  {
+    name: "Pro",
+    status: "Planned / paid pilot",
+    price: "$99/mo",
+    note: "Includes 10 active users · +$15/dev/mo above 10",
+    desc: "For growing teams that want self-hosted engineering intelligence with more scale, longer history, private AI direction, plugins, alerts, and exports.",
+    cta: "Join Pro waitlist →",
+    href: "mailto:hello@metraly.io?subject=Metraly%20Pro%20waitlist",
+    featured: true,
+    features: [
+      "Everything in Community",
+      "Higher user and team limits",
+      "365-day retention target",
+      "Drag-and-drop dashboard builder roadmap",
+      "Private AI chat and insights roadmap",
+      "Plugin marketplace UI roadmap",
+      "Slack / Teams / PagerDuty alerts roadmap",
+      "PDF / Notion / Google Docs exports roadmap",
+      "Email support target",
+    ],
+  },
+  {
+    name: "Enterprise",
+    status: "Contact / pilot",
+    price: "From $15K/yr",
+    note: "Includes 50 active users · +$120/dev/year above 50",
+    desc: "For regulated or larger organizations that need procurement fit, deployment guidance, custom agreements, and support for sensitive engineering data.",
+    cta: "Discuss Enterprise →",
+    href: "mailto:enterprise@metraly.io?subject=Metraly%20Enterprise",
+    featured: false,
+    features: [
+      "Everything in Pro",
+      "Manual paid pilot license path",
+      "Dedicated support path",
+      "Custom agreements and procurement support",
+      "SSO / SAML / LDAP roadmap",
+      "Custom RBAC roadmap",
+      "Audit export and SIEM roadmap",
+      "Restricted-environment deployment roadmap",
+      "Compliance evidence support roadmap",
+    ],
+  },
+];
+
+const lifecycle = [
+  "Payment or contract",
+  "Signed license",
+  "App verification",
+  "Feature gates",
+  "Renewal / downgrade / recovery",
+];
 
 export const metadata = {
-  title: "Pricing & License — Metraly",
+  title: "Pricing — Metraly",
   description:
-    "Metraly pricing for the AGPLv3 open-core, self-hosted Engineering Intelligence platform: Community, Pro, and Enterprise.",
+    "Claim-safe pricing preview for Metraly Community, Pro, and Enterprise editions.",
 };
 
 export default function PricingPage() {
   return (
     <SiteShell>
-      <main id="main">
-        <div className="hero">
-          <div className="eyebrow">Pricing &amp; License</div>
-          <h1>
-            Start self-hosted.
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <div className={styles.heroGlow} />
+          <div className={styles.badge}>Pricing preview · Billing/licensing in design</div>
+          <h1 className={styles.heroTitle}>
+            Start free.
             <br />
-            <span className="gradient-text">Scale when trust matters.</span>
+            <span className={styles.gradientText}>Scale when trust matters.</span>
           </h1>
-          <p className="hero-sub">
-            Community is free and AGPLv3 open-core. Pro adds team scale,
-            longer history, exports, alerts, and private AI/plugin capabilities
-            as they become available. Enterprise is for regulated teams that
-            need procurement, deployment assurance, and dedicated support.
+          <p className={styles.heroSub}>
+            Community is the free self-hosted core. Pro and Enterprise pricing are public anchors for paid pilots and future signed-license activation.
           </p>
-        </div>
-
-        <div className="pricing-section">
-          <div className="pricing-grid">
-            {/* Community */}
-            <div className="pricing-card">
-              <div className="pricing-plan">Community</div>
-              <div className="pricing-price" style={{ color: "var(--cyan)" }}>
-                Free
-              </div>
-              <div className="pricing-price-note">
-                $0 · self-hosted · AGPLv3 core
-              </div>
-              <div className="pricing-desc">
-                For evaluation, small teams, OSS projects, and buyers who want
-                to inspect the core platform before committing to paid modules.
-              </div>
-              <ul className="pricing-features">
-                <li>Self-hosted AGPLv3 core</li>
-                <li>DORA dashboards and core delivery metrics</li>
-                <li>Git, CI/CD, PM, and metrics connectors as they ship</li>
-                <li>System dashboard templates</li>
-                <li>Local auth and built-in RBAC roles</li>
-                <li>90-day metric retention target</li>
-                <li>Up to 10 users and 1 team target</li>
-                <li>Up to 3 active connectors and 3 custom dashboards target</li>
-                <li className="limited">
-                  Community support through GitHub Issues
-                </li>
-              </ul>
-              <a
-                href="https://github.com/getmetraly/metraly"
-                className="pricing-cta ghost"
-                target="_blank"
-                rel="noopener"
-              >
-                Get the source →
-              </a>
-            </div>
-
-            {/* Pro */}
-            <div className="pricing-card featured">
-              <div className="pricing-featured-badge">For growing teams</div>
-              <div className="pricing-plan">Pro</div>
-              <div className="pricing-price" style={{ color: "var(--purple)" }}>
-                $99<sub>/mo</sub>
-              </div>
-              <div className="pricing-price-note">
-                Up to 10 active users · then +$15/dev/mo
-              </div>
-              <div className="pricing-desc">
-                For engineering teams that want self-hosted intelligence with
-                more scale, more history, exports, alerts, and advanced modules
-                without moving data into another SaaS.
-              </div>
-              <ul className="pricing-features">
-                <li>Everything in Community</li>
-                <li>Higher team and user limits</li>
-                <li>365-day metric retention target</li>
-                <li>Exports for leadership and operating reviews</li>
-                <li>Alert destinations for Slack, Teams, Telegram, and PagerDuty</li>
-                <li>Private AI assistant and AI insights roadmap</li>
-                <li>Plugin marketplace and custom widgets roadmap</li>
-                <li>Email support with 24h response target</li>
-              </ul>
-              <a
-                href="mailto:hello@metraly.io?subject=Metraly%20Pro"
-                className="pricing-cta primary"
-              >
-                Talk about Pro →
-              </a>
-            </div>
-
-            {/* Enterprise */}
-            <div className="pricing-card">
-              <div className="pricing-plan">Enterprise</div>
-              <div className="pricing-price" style={{ color: "var(--orange)" }}>
-                $15K<sub>/yr</sub>
-              </div>
-              <div className="pricing-price-note">
-                Up to 50 dev · then +$120/dev/year
-              </div>
-              <div className="pricing-desc">
-                For regulated or larger organizations that need procurement fit,
-                deployment guidance, custom integrations, and support around
-                sensitive engineering data.
-              </div>
-              <ul className="pricing-features">
-                <li>Everything in Pro</li>
-                <li>Dedicated support path</li>
-                <li>Custom plugin development options</li>
-                <li>Deployment guidance for restricted environments</li>
-                <li>SIEM and audit log integration roadmap</li>
-                <li>Custom data residency requirements review</li>
-                <li>SSO, SAML, LDAP, and advanced RBAC roadmap</li>
-                <li>Compliance evidence and security review support roadmap</li>
-                <li>NDA and custom MSA available</li>
-              </ul>
-              <a
-                href="mailto:enterprise@metraly.io?subject=Metraly%20Enterprise"
-                className="pricing-cta outline-cyan"
-              >
-                Discuss Enterprise →
-              </a>
-            </div>
+          <div className={styles.heroActions}>
+            <a href="https://github.com/getmetraly/metraly" className="btn-primary" target="_blank" rel="noreferrer">
+              Get Community →
+            </a>
+            <Link href="/demo" className="btn-ghost btn-large">
+              Try synthetic demo
+            </Link>
           </div>
+        </section>
 
-          {/* Comparison note */}
-          <div
-            style={{
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
-              borderRadius: "12px",
-              padding: "24px 28px",
-              display: "flex",
-              alignItems: "center",
-              gap: "20px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div style={{ fontSize: "28px" }} aria-hidden="true">
-              ⚖️
-            </div>
-            <div style={{ flex: 1 }}>
-              <div
-                style={{
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  marginBottom: "6px",
-                }}
-              >
-                Free core. Paid scale. No forced SaaS migration.
-              </div>
-              <div
-                style={{
-                  fontSize: "13px",
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.6,
-                }}
-              >
-                Community stays useful and auditable. Pro pays for scale,
-                automation, history, exports, and advanced modules. Enterprise
-                pays for procurement fit, deployment assurance, and regulated-team
-                support.
-              </div>
-            </div>
-          </div>
-        </div>
+        <section className={styles.surface}>
+          <div className={styles.section}>
+            <div className={styles.eyebrow}>Plans</div>
+            <h2 className={styles.title}>Open core pricing without a SaaS trap.</h2>
+            <p className={styles.sub}>
+              Free stays useful. Paid plans add scale, automation, support, and regulated deployment paths as billing and license activation mature.
+            </p>
 
-        {/* LICENSE SECTION */}
-        <div className="license-section">
-          <div className="license-inner">
-            <div className="license-grid">
-              <div>
-                <div className="section-eyebrow">The License</div>
-                <h2>AGPLv3 open-core, without hiding the boundary.</h2>
-                <p className="body-text">
-                  Metraly&apos;s core is AGPLv3. You can inspect, self-host,
-                  modify, and contribute to the core platform while keeping your
-                  engineering data inside your own infrastructure.
-                </p>
-                <p className="body-text">
-                  Commercial Pro and Enterprise modules fund long-term
-                  development: advanced AI workflows, plugin ecosystem work,
-                  exports, alerting, compliance tooling, customer operations,
-                  and enterprise deployment support.
-                </p>
-                <p className="body-text">
-                  The rule is simple: Community should remain useful. Paid plans
-                  add scale, automation, support, and regulated deployment
-                  capabilities without turning self-hosting into an upsell trap.
-                </p>
+            <div className={styles.grid3}>
+              {plans.map((plan) => (
                 <div
-                  style={{
-                    display: "flex",
-                    gap: "12px",
-                    marginTop: "24px",
-                    flexWrap: "wrap",
-                  }}
+                  key={plan.name}
+                  className={`${styles.card} ${plan.featured ? styles.cardAccent : ""}`}
                 >
+                  <div className={styles.cardHead}>
+                    <h3 className={styles.cardTitle}>{plan.name}</h3>
+                    <span className={styles.status}>{plan.status}</span>
+                  </div>
+                  <div style={{ fontSize: 38, fontWeight: 800, letterSpacing: -1.2, marginBottom: 6 }}>
+                    {plan.price}
+                  </div>
+                  <div className={styles.note} style={{ marginBottom: 18 }}>{plan.note}</div>
+                  <p className={styles.cardDesc} style={{ marginBottom: 22 }}>{plan.desc}</p>
+                  <ul style={{ display: "grid", gap: 10, listStyle: "none", marginBottom: 24 }}>
+                    {plan.features.map((feature) => (
+                      <li key={feature} className={styles.cardDesc}>→ {feature}</li>
+                    ))}
+                  </ul>
                   <a
-                    href="https://github.com/getmetraly/metraly/blob/main/LICENSE"
-                    className="btn-ghost"
-                    target="_blank"
-                    rel="noopener"
-                    style={{ fontSize: "13px" }}
+                    href={plan.href}
+                    className={plan.featured ? "btn-primary" : "btn-ghost btn-large"}
+                    target={plan.href.startsWith("http") ? "_blank" : undefined}
+                    rel={plan.href.startsWith("http") ? "noreferrer" : undefined}
                   >
-                    View our LICENSE ↗
+                    {plan.cta}
                   </a>
                 </div>
-              </div>
-              <div>
-                <div className="license-list">
-                  <div className="license-item">
-                    <div className="license-kicker">Community</div>
-                    <div className="license-title">AGPLv3 core</div>
-                    <div className="license-desc">
-                      Self-host the core platform, audit the code, and contribute
-                      improvements back to the project.
-                    </div>
-                  </div>
-                  <div className="license-item">
-                    <div className="license-kicker">Pro</div>
-                    <div className="license-title">Commercial modules</div>
-                    <div className="license-desc">
-                      Scale, retention, exports, alerts, and advanced AI/plugin
-                      capabilities as paid modules mature.
-                    </div>
-                  </div>
-                  <div className="license-item">
-                    <div className="license-kicker">Enterprise</div>
-                    <div className="license-title">
-                      Procurement and deployment assurance
-                    </div>
-                    <div className="license-desc">
-                      Support path, deployment guidance, procurement documents,
-                      custom agreements, and regulated-team roadmap capabilities.
-                    </div>
-                  </div>
-                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                <div
-                  style={{
-                    marginTop: "28px",
-                    background: "rgba(0,229,204,0.06)",
-                    border: "1px solid rgba(0,229,204,0.2)",
-                    borderRadius: "10px",
-                    padding: "16px 18px",
-                    fontSize: "13px",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  <strong style={{ color: "var(--cyan)" }}>
-                    Privacy posture:
-                  </strong>{" "}
-                  self-hosted product deployments are designed so engineering
-                  metrics, repositories, CI/CD logs, and team data stay in the
-                  customer&apos;s infrastructure.
-                  <br />
-                  <br />
-                  <strong style={{ color: "var(--orange)" }}>
-                    Roadmap boundary:
-                  </strong>{" "}
-                  AI, plugin, compliance, and restricted-environment capabilities
-                  should be labeled by implementation status until shipped.
-                </div>
+        <section>
+          <div className={`${styles.section} ${styles.split}`}>
+            <div>
+              <div className={styles.eyebrow}>License boundary</div>
+              <h2 className={styles.title}>Billing is not the license.</h2>
+              <p className={styles.sub}>
+                Billing decides whether a customer paid. The self-hosted app needs a signed license to unlock paid entitlements locally.
+              </p>
+            </div>
+            <div className={`${styles.card} ${styles.cardAccent}`}>
+              <h3 className={styles.cardTitle} style={{ marginBottom: 16 }}>Pro is not GA until this works end-to-end</h3>
+              <div style={{ display: "grid", gap: 12 }}>
+                {lifecycle.map((item, index) => (
+                  <div key={item} className={styles.cardDesc}>
+                    {index + 1}. {item}
+                  </div>
+                ))}
               </div>
+              <p className={styles.note} style={{ marginTop: 18 }}>
+                Current public wording should say pricing preview, planned Pro, paid pilots, or designed billing/license flow — not “Pro is available”.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* FAQ */}
-        <div className="faq-section">
-          <div style={{ textAlign: "center", marginBottom: "40px" }}>
-            <div className="section-eyebrow" style={{ justifyContent: "center" }}>
-              FAQ
-            </div>
-            <h2 style={{ textAlign: "center" }}>Pricing questions</h2>
-          </div>
-          <div className="faq-item">
-            <div className="faq-q">Can I start with Metraly for free?</div>
-            <div className="faq-a">
-              Yes. Community is the free self-hosted core. It is intended for
-              evaluation, OSS projects, small teams, and privacy-first buyers
-              who want to inspect the platform before upgrading.
-            </div>
-          </div>
-          <div className="faq-item">
-            <div className="faq-q">When should a team choose Pro?</div>
-            <div className="faq-a">
-              Choose Pro when the team wants more scale, longer retention,
-              exports, alert destinations, support, and access to advanced
-              paid modules such as private AI and plugin workflows as they
-              become available. Pro is $99/month for up to 10 active users,
-              then $15 per additional active developer per month.
+        <section className={styles.surface}>
+          <div className={styles.section}>
+            <div className={styles.eyebrow}>FAQ</div>
+            <h2 className={styles.title}>Pricing questions.</h2>
+            <div className={styles.grid3}>
+              {[
+                ["Can I start for free?", "Yes. Community is the free self-hosted core for evaluation, small teams, OSS, and privacy-first buyers."],
+                ["When should a team choose Pro?", "When the team needs more scale, longer retention, exports, alerts, private AI direction, plugins, and support."],
+                ["What does Enterprise add?", "Procurement support, custom agreements, dedicated support, and roadmap capabilities for regulated or restricted environments."],
+                ["Is checkout live today?", "No. Billing and license activation are being implemented in phases. Paid pilots should use manually issued signed licenses first."],
+                ["Do you offer hosted SaaS?", "Not currently. Metraly is designed around self-hosting and data sovereignty."],
+                ["Can prices change?", "The public model is Community / Pro / Enterprise. Exact pilot terms may be validated with design partners."],
+              ].map(([q, a]) => (
+                <div className={styles.card} key={q}>
+                  <h3 className={styles.cardTitle}>{q}</h3>
+                  <p className={styles.cardDesc}>{a}</p>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="faq-item">
-            <div className="faq-q">What does Enterprise add?</div>
-            <div className="faq-a">
-              Enterprise is for regulated and larger organizations that need
-              procurement terms, a dedicated support path, deployment guidance,
-              custom agreements, and roadmap capabilities such as SSO/SAML/LDAP,
-              audit integrations, restricted-environment deployment, and
-              compliance evidence support. The baseline is $15K/year up to 50
-              developers, then $120 per additional developer per year.
-            </div>
-          </div>
-          <div className="faq-item">
-            <div className="faq-q">
-              Do you offer a managed/hosted version?
-            </div>
-            <div className="faq-a">
-              Not currently. Metraly is designed around self-hosting and data
-              sovereignty. A managed tier may be offered in the future only with
-              explicit opt-in data controls.
-            </div>
-          </div>
-          <div className="faq-item">
-            <div className="faq-q">
-              Can pricing change after design-partner feedback?
-            </div>
-            <div className="faq-a">
-              The public baseline is Community / Pro / Enterprise. Details may
-              be validated with design partners, but the model keeps pricing
-              predictable and self-hosting central.
-            </div>
-          </div>
-        </div>
+        </section>
       </main>
     </SiteShell>
   );
