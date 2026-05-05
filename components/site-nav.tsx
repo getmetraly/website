@@ -24,7 +24,7 @@ export function SiteNav() {
             <a href="#ai">
               AI{" "}
               <span className="nav-badge" aria-label="New feature">
-                NEW
+                Soon
               </span>
             </a>
           </li>
