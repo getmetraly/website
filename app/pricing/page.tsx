@@ -14,14 +14,15 @@ export default function PricingPage() {
         <div className="hero">
           <div className="eyebrow">Pricing &amp; License</div>
           <h1>
-            Simple, honest
+            Start self-hosted.
             <br />
-            <span className="gradient-text">open-core pricing.</span>
+            <span className="gradient-text">Scale when trust matters.</span>
           </h1>
           <p className="hero-sub">
-            Metraly Community is free to self-host under AGPLv3. Pro adds
-            scale, private AI, plugins, alerts, and longer retention. Enterprise adds
-            compliance, air-gap, and dedicated support.
+            Community is free and AGPLv3 open-core. Pro adds team scale,
+            longer history, exports, alerts, and private AI/plugin capabilities
+            as they become available. Enterprise is for regulated teams that
+            need procurement, deployment assurance, and dedicated support.
           </p>
         </div>
 
@@ -37,10 +38,11 @@ export default function PricingPage() {
                 $0 · self-hosted · AGPLv3 core
               </div>
               <div className="pricing-desc">
-                Run Metraly on your own infrastructure for evaluation, startups,
-                internal teams, and OSS projects.
+                For evaluation, small teams, OSS projects, and buyers who want
+                to inspect the core platform before committing to paid modules.
               </div>
               <ul className="pricing-features">
+                <li>Self-hosted AGPLv3 core</li>
                 <li>DORA dashboards and core delivery metrics</li>
                 <li>Git, CI/CD, PM, and metrics connectors as they ship</li>
                 <li>System dashboard templates</li>
@@ -64,7 +66,7 @@ export default function PricingPage() {
 
             {/* Pro */}
             <div className="pricing-card featured">
-              <div className="pricing-featured-badge">Most Popular</div>
+              <div className="pricing-featured-badge">For growing teams</div>
               <div className="pricing-plan">Pro</div>
               <div className="pricing-price" style={{ color: "var(--purple)" }}>
                 $99<sub>/mo</sub>
@@ -73,24 +75,25 @@ export default function PricingPage() {
                 Up to 10 active users · then +$15/dev/mo
               </div>
               <div className="pricing-desc">
-                For growing teams that need private AI, plugins, alerting, exports,
-                and more history without giving up self-hosting.
+                For engineering teams that want self-hosted intelligence with
+                more scale, more history, exports, alerts, and advanced modules
+                without moving data into another SaaS.
               </div>
               <ul className="pricing-features">
                 <li>Everything in Community</li>
-                <li>Private AI assistant and AI insights</li>
-                <li>Plugin marketplace and custom widgets</li>
-                <li>Slack, Teams, Telegram, PagerDuty alert targets</li>
-                <li>Unlimited users and up to 10 teams target</li>
+                <li>Higher team and user limits</li>
                 <li>365-day metric retention target</li>
-                <li>PDF, CSV, Notion, and Google Docs exports</li>
+                <li>Exports for leadership and operating reviews</li>
+                <li>Alert destinations for Slack, Teams, Telegram, and PagerDuty</li>
+                <li>Private AI assistant and AI insights roadmap</li>
+                <li>Plugin marketplace and custom widgets roadmap</li>
                 <li>Email support with 24h response target</li>
               </ul>
               <a
-                href="mailto:hello@metraly.io"
+                href="mailto:hello@metraly.io?subject=Metraly%20Pro"
                 className="pricing-cta primary"
               >
-                Contact us →
+                Talk about Pro →
               </a>
             </div>
 
@@ -104,24 +107,26 @@ export default function PricingPage() {
                 Up to 50 dev · then +$120/dev/year
               </div>
               <div className="pricing-desc">
-                For large organisations with compliance requirements, custom
-                integrations, and dedicated infra needs.
+                For regulated or larger organizations that need procurement fit,
+                deployment guidance, custom integrations, and support around
+                sensitive engineering data.
               </div>
               <ul className="pricing-features">
                 <li>Everything in Pro</li>
-                <li>Dedicated support engineer</li>
+                <li>Dedicated support path</li>
                 <li>Custom plugin development options</li>
-                <li>Air-gapped deployment support</li>
-                <li>SIEM &amp; audit log integration</li>
-                <li>Custom data residency requirements</li>
+                <li>Deployment guidance for restricted environments</li>
+                <li>SIEM and audit log integration roadmap</li>
+                <li>Custom data residency requirements review</li>
                 <li>SSO, SAML, LDAP, and advanced RBAC roadmap</li>
-                <li>NDA &amp; custom MSA available</li>
+                <li>Compliance evidence and security review support roadmap</li>
+                <li>NDA and custom MSA available</li>
               </ul>
               <a
-                href="mailto:enterprise@metraly.io"
+                href="mailto:enterprise@metraly.io?subject=Metraly%20Enterprise"
                 className="pricing-cta outline-cyan"
               >
-                Talk to us →
+                Discuss Enterprise →
               </a>
             </div>
           </div>
@@ -150,7 +155,7 @@ export default function PricingPage() {
                   marginBottom: "6px",
                 }}
               >
-                Free core. Paid scale and commercial modules.
+                Free core. Paid scale. No forced SaaS migration.
               </div>
               <div
                 style={{
@@ -159,9 +164,10 @@ export default function PricingPage() {
                   lineHeight: 1.6,
                 }}
               >
-                Community stays useful and auditable. Pro buys time-saving AI,
-                plugins, retention, exports, and team scale. Enterprise buys
-                compliance, procurement fit, and deployment assurance.
+                Community stays useful and auditable. Pro pays for scale,
+                automation, history, exports, and advanced modules. Enterprise
+                pays for procurement fit, deployment assurance, and regulated-team
+                support.
               </div>
             </div>
           </div>
@@ -173,7 +179,7 @@ export default function PricingPage() {
             <div className="license-grid">
               <div>
                 <div className="section-eyebrow">The License</div>
-                <h2>AGPLv3 open-core</h2>
+                <h2>AGPLv3 open-core, without hiding the boundary.</h2>
                 <p className="body-text">
                   Metraly&apos;s core is AGPLv3. You can inspect, self-host,
                   modify, and contribute to the core platform while keeping your
@@ -181,14 +187,14 @@ export default function PricingPage() {
                 </p>
                 <p className="body-text">
                   Commercial Pro and Enterprise modules fund long-term
-                  development: private AI, plugin marketplace workflows,
-                  compliance tooling, Enterprise deployment support, and customer
-                  operations.
+                  development: advanced AI workflows, plugin ecosystem work,
+                  exports, alerting, compliance tooling, customer operations,
+                  and enterprise deployment support.
                 </p>
                 <p className="body-text">
-                  The guiding rule is simple: the Community core should remain
-                  useful. Paid plans add scale, automation, support, and
-                  regulated deployment capabilities.
+                  The rule is simple: Community should remain useful. Paid plans
+                  add scale, automation, support, and regulated deployment
+                  capabilities without turning self-hosting into an upsell trap.
                 </p>
                 <div
                   style={{
@@ -223,18 +229,18 @@ export default function PricingPage() {
                     <div className="license-kicker">Pro</div>
                     <div className="license-title">Commercial modules</div>
                     <div className="license-desc">
-                      Private AI, plugins, exports, alerts, and higher limits
-                      for teams that need more scale.
+                      Scale, retention, exports, alerts, and advanced AI/plugin
+                      capabilities as paid modules mature.
                     </div>
                   </div>
                   <div className="license-item">
                     <div className="license-kicker">Enterprise</div>
                     <div className="license-title">
-                      Compliance and deployment assurance
+                      Procurement and deployment assurance
                     </div>
                     <div className="license-desc">
-                      Air-gapped support, audit integrations, procurement
-                      documents, and deployment guidance for regulated teams.
+                      Support path, deployment guidance, procurement documents,
+                      custom agreements, and regulated-team roadmap capabilities.
                     </div>
                   </div>
                 </div>
@@ -253,15 +259,16 @@ export default function PricingPage() {
                   <strong style={{ color: "var(--cyan)" }}>
                     Privacy posture:
                   </strong>{" "}
-                  self-hosted deployments do not need to send engineering metrics,
-                  repositories, or team data to Metraly.
+                  self-hosted product deployments are designed so engineering
+                  metrics, repositories, CI/CD logs, and team data stay in the
+                  customer&apos;s infrastructure.
                   <br />
                   <br />
                   <strong style={{ color: "var(--orange)" }}>
-                    Commercial boundary:
+                    Roadmap boundary:
                   </strong>{" "}
-                  paid plans unlock proprietary Pro and Enterprise modules,
-                  support, and higher operating limits.
+                  AI, plugin, compliance, and restricted-environment capabilities
+                  should be labeled by implementation status until shipped.
                 </div>
               </div>
             </div>
@@ -287,20 +294,22 @@ export default function PricingPage() {
           <div className="faq-item">
             <div className="faq-q">When should a team choose Pro?</div>
             <div className="faq-a">
-              Choose Pro when the team needs private AI insights, plugin
-              workflows, more history, exports, alert destinations, and higher
-              team limits. Pro is $99/month for up to 10 active users, then $15
-              per additional active developer per month.
+              Choose Pro when the team wants more scale, longer retention,
+              exports, alert destinations, support, and access to advanced
+              paid modules such as private AI and plugin workflows as they
+              become available. Pro is $99/month for up to 10 active users,
+              then $15 per additional active developer per month.
             </div>
           </div>
           <div className="faq-item">
             <div className="faq-q">What does Enterprise add?</div>
             <div className="faq-a">
-              Enterprise is for regulated and large organizations that need
-              SSO/SAML/LDAP paths, audit evidence, air-gapped deployment
-              support, SIEM integration, procurement terms, and dedicated
-              support. The baseline is $15K/year up to 50 developers, then
-              $120 per additional developer per year.
+              Enterprise is for regulated and larger organizations that need
+              procurement terms, a dedicated support path, deployment guidance,
+              custom agreements, and roadmap capabilities such as SSO/SAML/LDAP,
+              audit integrations, restricted-environment deployment, and
+              compliance evidence support. The baseline is $15K/year up to 50
+              developers, then $120 per additional developer per year.
             </div>
           </div>
           <div className="faq-item">
@@ -308,10 +317,9 @@ export default function PricingPage() {
               Do you offer a managed/hosted version?
             </div>
             <div className="faq-a">
-              Not currently. Metraly is designed to be self-hosted. We
-              believe data sovereignty is a feature, not an obstacle. A
-              managed tier may be offered in the future with explicit opt-in
-              data controls.
+              Not currently. Metraly is designed around self-hosting and data
+              sovereignty. A managed tier may be offered in the future only with
+              explicit opt-in data controls.
             </div>
           </div>
           <div className="faq-item">
@@ -319,9 +327,9 @@ export default function PricingPage() {
               Can pricing change after design-partner feedback?
             </div>
             <div className="faq-a">
-              The public baseline is Community / Pro / Enterprise. We will
-              validate details with design partners, but the current published
-              model keeps pricing predictable and self-hosting central.
+              The public baseline is Community / Pro / Enterprise. Details may
+              be validated with design partners, but the model keeps pricing
+              predictable and self-hosting central.
             </div>
           </div>
         </div>
