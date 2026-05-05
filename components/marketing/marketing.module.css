@@ -1,0 +1,240 @@
+.page {
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+.hero {
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroGlow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 820px;
+  height: 520px;
+  background: radial-gradient(ellipse at center, rgba(168,85,247,0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.28);
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  font-weight: 800;
+  max-width: 980px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSub {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin-bottom: 34px;
+  position: relative;
+  z-index: 1;
+}
+
+.heroActions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.surface {
+  background: var(--bg-surface);
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+
+.sectionSmall {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 90px 32px;
+}
+
+.center {
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: var(--cyan);
+}
+
+.title {
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  line-height: 1.65;
+  margin-bottom: 56px;
+}
+
+.center .sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 56px;
+  align-items: center;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.cardAccent {
+  border-color: rgba(168,85,247,0.28);
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+  background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.2);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardDesc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.28);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 110px 20px 70px;
+  }
+
+  .section,
+  .sectionSmall {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cardHead {
+    align-items: flex-start;
+  }
+}
