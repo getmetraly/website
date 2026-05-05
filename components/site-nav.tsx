@@ -15,18 +15,12 @@ export function SiteNav() {
         </Link>
         <ul className="nav-links" role="list">
           <li>
-            <a href="#features">Features</a>
-          </li>
-          <li>
-            <a href="#roles">Who it's for</a>
-          </li>
-          <li>
-            <a href="#ai">
+            <Link href="/ai">
               AI{" "}
-              <span className="nav-badge" aria-label="New feature">
+              <span className="nav-badge" aria-label="AI coming soon">
                 Soon
               </span>
-            </a>
+            </Link>
           </li>
           <li>
             <Link href="/pricing">Pricing</Link>
