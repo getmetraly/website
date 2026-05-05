@@ -4,7 +4,7 @@
 
 Metraly Website is the public website for Metraly: a marketing, pricing, documentation, legal, and demo entry surface for the self-hosted Engineering Intelligence platform. The site must use `../docs` as the canonical source for product truth and `../app` as the source for the real app/demo experience.
 
-The current codebase is a static HTML prototype from a Claude design pass. The next work is to turn it into an honest, synchronized site that can explain Metraly clearly and let visitors click through a mock-data demo.
+The current codebase is moving from a static HTML prototype from a Claude design pass into a Next.js application that can be deployed on Vercel. The next work is to make the site deployable, then add the mock-data demo.
 
 ## Core Value
 
@@ -27,6 +27,7 @@ The website must make Metraly's privacy-first self-hosted value credible by show
 - [ ] All stale FSL/source-available claims are replaced with the current AGPLv3 open-core positioning unless the founder explicitly changes the canonical docs.
 - [ ] Pricing page presents Community, Pro, and Enterprise consistently with `../docs/strategy/monetization-v2.md` and the later published-docs rule in `../docs/PROGRESS.md`.
 - [ ] Demo entry opens a clickable Metraly app experience with synthetic/mock data instead of a fake login redirect.
+- [ ] Website is a Next.js application deployable on Vercel.
 - [ ] Demo mode clearly labels synthetic Sandbox Inc. data and avoids implying production readiness that `../docs/STATUS.md` does not support.
 - [ ] Documentation page is synchronized with or explicitly sourced from `../docs`.
 - [ ] Website has enough build/test/verification structure to prevent broken links, console errors, stale content, and mobile layout regressions.
@@ -44,6 +45,7 @@ The website must make Metraly's privacy-first self-hosted value credible by show
 - User requested `$gsd-new-project` for the website and explicitly said the project must be linked to `../app` and `../docs`.
 - User confirmed codebase mapping should happen first because the site needs more than a business-card page: it needs a demo mode where visitors can open the app with mock data and click around.
 - User confirmed GSD settings should be taken from `../app`.
+- User requested a new phase before demo mode to convert the website to a Next.js app deployable on Vercel.
 - `gsd-sdk` is unavailable in PATH, so GSD artifacts are maintained manually in this session.
 - Current `website` files are untracked design-export/prototype files. Planning commits should not accidentally stage or modify them unless implementation explicitly starts.
 - `../docs/STATUS.md` is the canonical maturity/status source for what is real, designed, strategic, or missing.
@@ -68,6 +70,7 @@ The website must make Metraly's privacy-first self-hosted value credible by show
 | Use `../app` GSD defaults | User explicitly requested "take from ../app" | Pending |
 | Treat `../docs` as canonical for public content | User requested pricing/plans/info be updated from docs | Pending |
 | Treat current website as prototype, not product truth | Multiple pages conflict with docs on license/pricing/readiness | Pending |
+| Convert to Next.js before demo implementation | Vercel deployment needs an application structure and build path before app-like demo work | Good |
 | Build demo from `../app`/mock data rather than fake login | User explicitly wants visitors to click through app with mock data | Pending |
 
 ## Evolution
@@ -88,4 +91,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-05 after initialization*
+*Last updated: 2026-05-05 after inserting Next.js/Vercel phase*

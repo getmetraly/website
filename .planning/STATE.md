@@ -1,7 +1,7 @@
 # GSD State: Metraly Website
 
 **Initialized:** 2026-05-05
-**Current focus:** Phase 3 - Clickable Demo Mode
+**Current focus:** Phase 3 - Next.js Vercel Foundation
 
 ## Project Reference
 
@@ -31,9 +31,10 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 |-------|--------|------|
 | 1 | Complete | Source Truth Foundation |
 | 2 | Complete | Canonical Public Copy |
-| 3 | Pending | Clickable Demo Mode |
-| 4 | Pending | Documentation Surface |
-| 5 | Pending | Launch Verification |
+| 3 | Planned | Next.js Vercel Foundation |
+| 4 | Pending | Clickable Demo Mode |
+| 5 | Pending | Documentation Surface |
+| 6 | Pending | Launch Verification |
 
 ## Decisions To Preserve
 
@@ -41,19 +42,20 @@ See: `.planning/PROJECT.md` (updated 2026-05-05)
 - Use `../docs` as source-of-truth for pricing, plans, legal/license, product positioning, documentation, and public claims.
 - Use `../app` and `../app/ui` as source-of-truth for app/demo behavior.
 - Replace current FSL/source-available copy unless canonical docs are changed first.
+- Convert the website to a Next.js app deployable on Vercel before building the clickable demo mode.
 - Build a real synthetic-data demo mode instead of a fake login redirect.
 - Use `../app` GSD settings for this project.
 
 ## Known Risks
 
-- `docs.html` and `theme.js` are still untracked prototype files.
+- `docs.html` and `theme.js` are still untracked prototype files until the Next.js migration absorbs or replaces them.
 - `gsd-sdk` is unavailable in PATH, so GSD artifacts were created manually.
 - The website, app, and docs are separate git repositories; changes must not assume one commit spans all three.
 
 ## Next Action
 
-Plan Phase 3:
+Execute Phase 3:
 
 ```text
-$gsd-plan-phase 3
+$gsd-execute-phase 3
 ```

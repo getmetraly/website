@@ -38,6 +38,14 @@ v1 here means the first launch-ready website baseline: canonical public content,
 - [ ] **DEMO-04**: Demo state cannot collect real credentials, real company data, or personal information.
 - [ ] **DEMO-05**: Demo content aligns with `../docs/product/onboarding.md` and `../app/ui` mock data structures.
 
+### Next.js And Vercel
+
+- [ ] **NEXT-01**: Website is converted from standalone HTML files into a Next.js application using App Router.
+- [ ] **NEXT-02**: Existing public routes for home, pricing, docs, demo preview, privacy, and terms continue to work after migration.
+- [ ] **NEXT-03**: Shared theme, navigation, footer, typography, and page shell are implemented as reusable Next.js/React code instead of duplicated page-local HTML.
+- [ ] **NEXT-04**: The project has `package.json` scripts for local development, production build, and start/preview appropriate for Vercel.
+- [ ] **NEXT-05**: The migrated site can be built by Vercel without requiring secrets or a backend service.
+
 ### Documentation Surface
 
 - [ ] **DOCS-01**: `docs.html` is reconciled with canonical `../docs` content.
@@ -98,26 +106,31 @@ Deferred beyond the first launch-ready baseline.
 | MKT-03 | Phase 2 | Complete |
 | MKT-04 | Phase 2 | Complete |
 | MKT-05 | Phase 2 | Complete |
-| DEMO-01 | Phase 3 | Pending |
-| DEMO-02 | Phase 3 | Pending |
-| DEMO-03 | Phase 3 | Pending |
-| DEMO-04 | Phase 3 | Pending |
-| DEMO-05 | Phase 3 | Pending |
-| DOCS-01 | Phase 4 | Pending |
-| DOCS-02 | Phase 4 | Pending |
-| DOCS-03 | Phase 4 | Pending |
-| DOCS-04 | Phase 4 | Pending |
-| SITE-01 | Phase 5 | Pending |
-| SITE-02 | Phase 5 | Pending |
-| SITE-03 | Phase 5 | Pending |
-| SITE-04 | Phase 5 | Pending |
-| SITE-05 | Phase 5 | Pending |
+| NEXT-01 | Phase 3 | Pending |
+| NEXT-02 | Phase 3 | Pending |
+| NEXT-03 | Phase 3 | Pending |
+| NEXT-04 | Phase 3 | Pending |
+| NEXT-05 | Phase 3 | Pending |
+| DEMO-01 | Phase 4 | Pending |
+| DEMO-02 | Phase 4 | Pending |
+| DEMO-03 | Phase 4 | Pending |
+| DEMO-04 | Phase 4 | Pending |
+| DEMO-05 | Phase 4 | Pending |
+| DOCS-01 | Phase 5 | Pending |
+| DOCS-02 | Phase 5 | Pending |
+| DOCS-03 | Phase 5 | Pending |
+| DOCS-04 | Phase 5 | Pending |
+| SITE-01 | Phase 6 | Pending |
+| SITE-02 | Phase 6 | Pending |
+| SITE-03 | Phase 6 | Pending |
+| SITE-04 | Phase 6 | Pending |
+| SITE-05 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 28 total
-- Mapped to phases: 28
+- v1 requirements: 33 total
+- Mapped to phases: 33
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-05*
-*Last updated: 2026-05-05 after Phase 2 verification*
+*Last updated: 2026-05-05 after inserting and planning Phase 3*
