@@ -45,3 +45,7 @@ logs
 
 # Next.js auto-generated
 next-env.d.ts
+
+# Generated demo bundle
+public/demo-app/*
+!public/demo-app/README.md
