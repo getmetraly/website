@@ -157,38 +157,40 @@ export default function DocsPage() {
             </div>
 
             <div id="quick-start" className={styles.docsPanel}>
-              <SectionHeader
-                eyebrow="Quick start"
-                title="Run the local preview path."
-                description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
-              />
+              <div className={styles.docsPanelInner}>
+                <SectionHeader
+                  eyebrow="Quick start"
+                  title="Run the local preview path."
+                  description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
+                />
 
-              <Grid columns={2}>
-                <Card>
-                  <CardHeader title="Current local baseline" />
-                  <Stack>
-                    <PulseCardText>Start locally with <code>make up</code></PulseCardText>
-                    <PulseCardText>App preview: <code>http://localhost:3000</code></PulseCardText>
-                    <PulseCardText>Login: <code>admin@metraly.local</code> / <code>admin123</code></PulseCardText>
-                    <PulseCardText><code>make docker-up</code> remains a legacy compatibility alias</PulseCardText>
-                  </Stack>
-                  <div style={quickStartActionsStyle}>
-                    <ButtonLink href="https://github.com/getmetraly/metraly" external>
-                      View source <Icon name="arrowRight" />
-                    </ButtonLink>
-                    <ButtonLink href="/demo" variant="ghost">Open synthetic demo</ButtonLink>
-                  </div>
-                </Card>
+                <Grid columns={2}>
+                  <Card>
+                    <CardHeader title="Current local baseline" />
+                    <Stack>
+                      <PulseCardText>Start locally with <code>make up</code></PulseCardText>
+                      <PulseCardText>App preview: <code>http://localhost:3000</code></PulseCardText>
+                      <PulseCardText>Login: <code>admin@metraly.local</code> / <code>admin123</code></PulseCardText>
+                      <PulseCardText><code>make docker-up</code> remains a legacy compatibility alias</PulseCardText>
+                    </Stack>
+                    <div style={quickStartActionsStyle}>
+                      <ButtonLink href="https://github.com/getmetraly/metraly" external>
+                        View source <Icon name="arrowRight" />
+                      </ButtonLink>
+                      <ButtonLink href="/demo" variant="ghost">Open synthetic demo</ButtonLink>
+                    </div>
+                  </Card>
 
-                <Card accent>
-                  <CardHeader title="Validate locally" status="Recommended" />
-                  <Stack>
-                    <PulseCardText>Use <code>npm ci</code> for website dependencies.</PulseCardText>
-                    <PulseCardText>Use <code>npm run ci</code> before publishing copy or UI changes.</PulseCardText>
-                    <PulseCardText>Keep public website claims status-labeled.</PulseCardText>
-                  </Stack>
-                </Card>
-              </Grid>
+                  <Card accent>
+                    <CardHeader title="Validate locally" status="Recommended" />
+                    <Stack>
+                      <PulseCardText>Use <code>npm ci</code> for website dependencies.</PulseCardText>
+                      <PulseCardText>Use <code>npm run ci</code> before publishing copy or UI changes.</PulseCardText>
+                      <PulseCardText>Keep public website claims status-labeled.</PulseCardText>
+                    </Stack>
+                  </Card>
+                </Grid>
+              </div>
             </div>
 
             <div id="self-hosting" className={styles.docsPanelSurface}>
@@ -217,20 +219,22 @@ export default function DocsPage() {
             </div>
 
             <div id="status" className={styles.docsPanel}>
-              <SectionHeader
-                eyebrow="Product status"
-                title="What exists. What is next."
-                description="Public docs use status labels so the website does not overclaim implementation readiness."
-              />
+              <div className={styles.docsPanelInner}>
+                <SectionHeader
+                  eyebrow="Product status"
+                  title="What exists. What is next."
+                  description="Public docs use status labels so the website does not overclaim implementation readiness."
+                />
 
-              <Grid columns={3}>
-                {statusRows.map(([area, status, note]) => (
-                  <Card key={area}>
-                    <CardHeader title={area} status={status} />
-                    <CardText>{note}</CardText>
-                  </Card>
-                ))}
-              </Grid>
+                <Grid columns={3}>
+                  {statusRows.map(([area, status, note]) => (
+                    <Card key={area}>
+                      <CardHeader title={area} status={status} />
+                      <CardText>{note}</CardText>
+                    </Card>
+                  ))}
+                </Grid>
+              </div>
             </div>
 
             <div id="claims" className={styles.docsPanelSurface}>
