@@ -55,8 +55,13 @@ export default function BlogPage() {
     <SiteShell>
       <Page>
         <Section hero center>
+          <Stack>
+            <div>
+              <StatusPill>Blog</StatusPill>
+            </div>
+          </Stack>
+
           <SectionHeader
-            eyebrow="Blog"
             title={
               <>
                 Build trust before asking teams
