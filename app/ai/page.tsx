@@ -2,6 +2,12 @@ import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
 
+export const metadata = {
+  title: "AI — Metraly",
+  description:
+    "Metraly's AI direction for private engineering data: designed, synthetic-first, benchmark-gated, and not shipped as a production AI assistant yet.",
+};
+
 const cards = [
   {
     icon: "🔒",
@@ -61,6 +67,9 @@ export default function AIPage() {
             <h2 className={styles.title}>Designed to explain, not expose.</h2>
             <p className={styles.sub}>
               The AI layer is a product direction. Until connectors, live data pipelines, and evaluation are ready, all examples should stay synthetic and status-labeled.
+            </p>
+            <p className={styles.sub}>
+              Public AI quality and safety claims require recorded evaluation results for correctness, grounding, usefulness, privacy leakage and prompt-injection resistance.
             </p>
 
             <div className={styles.grid3}>

@@ -17,15 +17,15 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Metraly — Engineering Metrics, On Your Infrastructure",
+  title: "Metraly — Engineering Intelligence That Doesn't Leak",
   description:
-    "Metraly is an AGPLv3 open-core engineering metrics platform where Git, CI/CD, and project data stays on your own infrastructure.",
+    "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.",
   openGraph: {
-    title: "Metraly — Engineering Metrics, On Your Infrastructure",
+    title: "Metraly — Engineering Intelligence That Doesn't Leak",
     description:
-      "Track DORA metrics, CI/CD performance, and team velocity without sending a single byte to someone else's cloud.",
-    images: ["https://placeholder.metraly.io/og-image.png"],
+      "Explore Metraly with synthetic engineering data and status-labeled roadmap capabilities.",
     type: "website",
+    url: "https://metraly.io",
   },
   twitter: {
     card: "summary_large_image",

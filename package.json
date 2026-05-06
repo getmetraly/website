@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "typecheck": "tsc --noEmit",
+    "lint": "npm run lint:claims",
+    "lint:claims": "node scripts/check-forbidden-claims.mjs",
+    "ci": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "next": "^15.5.15",

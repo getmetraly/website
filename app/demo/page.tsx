@@ -57,7 +57,7 @@ const advancedAreas = [
 export const metadata = {
   title: "Synthetic Demo — Metraly",
   description:
-    "Explore Metraly using synthetic engineering dashboards and sandbox preview environments.",
+    "Explore Metraly using synthetic engineering dashboards and sandbox preview environments. No login, credentials, or real company data required.",
 };
 
 export default function DemoPage() {
@@ -78,7 +78,7 @@ export default function DemoPage() {
           </h1>
 
           <p className={styles.heroSub}>
-            Role-based dashboards and engineering insights powered by synthetic data. No login required.
+            Role-based dashboards and preview engineering insights built on synthetic data. No login, credentials, or real company data required.
           </p>
 
           <div className={styles.heroActions}>
@@ -144,7 +144,7 @@ export default function DemoPage() {
         <section className={`${styles.sectionSmall} ${styles.center}`}>
           <h2 className={styles.title}>Synthetic demo environment.</h2>
           <p className={styles.sub}>
-            This environment uses mock engineering data and preview functionality to demonstrate product direction before live integrations are connected.
+            This environment uses mock engineering data and preview functionality to demonstrate product direction before live integrations are connected. Do not enter real credentials, source tokens, repository names, customer data, secrets, or personal information.
           </p>
           <a href="/demo-app/" className="btn-primary">
             Launch sandbox →

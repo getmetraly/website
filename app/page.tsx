@@ -4,12 +4,12 @@ import { StatusTag } from "@/components/status-tag";
 import styles from "./homepage.module.css";
 
 const features = [
-  ["📊", "DORA metrics", "Track deployment frequency, lead time, change failure rate, and MTTR across teams.", "Preview", "iconCyan"],
-  ["⚡", "CI/CD insights", "Understand build health, pipeline friction, recovery patterns, and delivery risk.", "Preview", "iconGreen"],
-  ["🔀", "Team bottlenecks", "See where work slows down across PRs, reviews, CI, and handoffs.", "Preview", "iconPurple"],
+  ["📊", "DORA metrics", "Preview DORA-style metrics such as deployment frequency, lead time, change failure rate, and MTTR across synthetic team data.", "Preview", "iconCyan"],
+  ["⚡", "CI/CD insights", "Preview build health, pipeline friction, recovery patterns, and delivery risk before live CI/CD integrations are connected.", "Preview", "iconGreen"],
+  ["🔀", "Team bottlenecks", "Preview where work slows down across synthetic PR, review, CI, and handoff patterns.", "Preview", "iconPurple"],
   ["🧩", "Dashboard editor", "Drag-and-drop dashboard editing and real rendering are actively being developed.", "In progress", "iconIndigo"],
   ["✦", "Private AI insights", "Designed for local models, BYO providers, and controlled data exposure.", "Designed", "iconPurple"],
-  ["🔌", "Plugin ecosystem", "A future extensibility layer for connectors and custom engineering workflows.", "Planned", "iconOrange"],
+  ["🔌", "Plugin ecosystem", "A planned extensibility layer for connectors and custom workflows, gated by plugin review, signing, and revocation controls.", "Planned", "iconOrange"],
 ];
 
 const roadmap = [
@@ -40,12 +40,12 @@ export default function HomePage() {
 
           <div className={styles.badge} role="status"><div className={styles.badgeDot} />Alpha · AGPLv3 Open Core · Self-Hosted</div>
           <h1 className={styles.heroTitle}>Engineering intelligence<br /><span className={styles.gradientText}>that doesn&apos;t leak.</span></h1>
-          <p className={styles.heroSub}>Understand delivery, bottlenecks, and engineering health on your own infrastructure — with a platform designed for private data and evolving AI insights.</p>
+          <p className={styles.heroSub}>Understand delivery flow, bottlenecks, and engineering health without making another SaaS your default data boundary — starting with real UI, synthetic data, and status-labeled roadmap capabilities.</p>
 
           <div className={styles.heroActions}>
             <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo →</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Self-host with Docker</Link>
-            <Link href="/pricing" className="btn-ghost btn-large">View pricing</Link>
+            <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
+            <Link href="/pricing" className="btn-ghost btn-large">View pricing preview</Link>
           </div>
 
           <div className={styles.heroStats}>
@@ -126,7 +126,7 @@ export default function HomePage() {
             <div className={styles.split}>
               <div>
                 <SectionHeader eyebrow="Private AI Direction" title="AI insights designed for private engineering data.">
-                  Metraly is built to support local models, BYO providers, and controlled data exposure. The AI layer is part of the product direction and should stay status-labeled as it evolves.
+                  Metraly is designed to support local models, BYO providers, and controlled data exposure. The AI layer is part of the product direction and should stay status-labeled as it evolves.
                 </SectionHeader>
                 <div className={styles.tags}><StatusTag>Designed</StatusTag><StatusTag>Pro roadmap</StatusTag><StatusTag>Synthetic examples</StatusTag></div>
               </div>
@@ -147,7 +147,7 @@ export default function HomePage() {
               Connectors and live data pipelines are the next major product step after the dashboard editor and rendering work are complete.
             </SectionHeader>
             <div className={styles.grid3}>
-              {[["Git providers", "GitHub and GitLab connectors are planned for real repository and PR workflows.", "Then"], ["CI/CD systems", "Pipeline and build data integrations are planned for delivery health and operational insight.", "Then"], ["Plugin ecosystem", "A marketplace-style extension layer is part of the long-term platform direction.", "Later"]].map(([title, desc, status]) => (
+              {[["Git providers", "GitHub and GitLab connectors are planned for real repository and PR workflows.", "Then"], ["CI/CD systems", "Pipeline and build data integrations are planned for delivery health and operational insight.", "Then"], ["Plugin ecosystem", "A marketplace-style extension layer is part of the long-term platform direction and requires review, signing, and revocation controls before public launch.", "Later"]].map(([title, desc, status]) => (
                 <div className={styles.card} key={title}><div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusTag>{status}</StatusTag></div><div className={styles.cardDesc}>{desc}</div></div>
               ))}
             </div>
