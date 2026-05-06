@@ -57,13 +57,9 @@ export default function TrustPage() {
     <SiteShell>
       <ContentPage>
         <Prose className="content-hero-centered">
-          <Stack>
-            <div>
-              <StatusPill>Trust</StatusPill>
-              <StatusPill>Self-hosted by design</StatusPill>
-              <StatusPill>Claim-safe roadmap</StatusPill>
-            </div>
-          </Stack>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+            <StatusPill>Trust · Self-hosted by design · Claim-safe roadmap</StatusPill>
+          </div>
 
           <h1>Trust starts with keeping engineering data under your control.</h1>
           <p>
