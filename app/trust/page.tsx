@@ -44,8 +44,12 @@ const eyebrowStyle = {
   fontSize: 12,
   fontWeight: 700,
   letterSpacing: 1,
-  marginBottom: 16,
+  marginBottom: 0,
   textTransform: "uppercase" as const,
+};
+
+const headingStyle = {
+  marginTop: 14,
 };
 
 function Eyebrow({ children }: { children: string }) {
@@ -117,7 +121,7 @@ export default function TrustPage() {
         <Section tone="surface">
           <Prose>
             <Eyebrow>Principles</Eyebrow>
-            <h2>Trust principles</h2>
+            <h2 style={headingStyle}>Trust principles</h2>
           </Prose>
 
           <Grid columns={3}>
@@ -133,7 +137,7 @@ export default function TrustPage() {
         <Section>
           <Prose>
             <Eyebrow>Data control</Eyebrow>
-            <h2>What stays under your control</h2>
+            <h2 style={headingStyle}>What stays under your control</h2>
             <p>
               Engineering data can expose architecture, customers, roadmap,
               incidents and security work. Metraly is designed so sensitive
@@ -159,7 +163,7 @@ export default function TrustPage() {
         <Section tone="surface">
           <Prose>
             <Eyebrow>Private AI</Eyebrow>
-            <h2>AI should explain engineering data without becoming a data leak.</h2>
+            <h2 style={headingStyle}>AI should explain engineering data without becoming a data leak.</h2>
             <p>
               Metraly is designed around privacy-first AI patterns such as local
               models, bring-your-own providers and controlled data exposure. AI
@@ -179,7 +183,7 @@ export default function TrustPage() {
         <Section>
           <Prose>
             <Eyebrow>Plugin trust</Eyebrow>
-            <h2>Plugin trust needs more than a marketplace page.</h2>
+            <h2 style={headingStyle}>Plugin trust needs more than a marketplace page.</h2>
             <p>
               Metraly has a designed plugin architecture and a plugin review policy
               for future marketplace trust. A public plugin marketplace should not be
@@ -199,7 +203,7 @@ export default function TrustPage() {
         <Section tone="surface">
           <Prose>
             <Eyebrow>Telemetry</Eyebrow>
-            <h2>No hidden telemetry is a product requirement, not a slogan.</h2>
+            <h2 style={headingStyle}>No hidden telemetry is a product requirement, not a slogan.</h2>
             <p>
               Metraly documentation defines a no-hidden-telemetry policy. Outbound
               product telemetry, if introduced, must be opt-in/default-off,
@@ -219,7 +223,7 @@ export default function TrustPage() {
         <Section>
           <Prose>
             <Eyebrow>Compliance</Eyebrow>
-            <h2>Compliance wording</h2>
+            <h2 style={headingStyle}>Compliance wording</h2>
             <p>
               Metraly is designed for privacy-conscious and regulated teams, and the
               project has early trust artefacts: threat model, telemetry policy,
@@ -237,7 +241,7 @@ export default function TrustPage() {
         <Section tone="surface">
           <Prose>
             <Eyebrow>Resources</Eyebrow>
-            <h2>Useful links</h2>
+            <h2 style={headingStyle}>Useful links</h2>
             <ul>
               <li><Link href="/privacy">Privacy Policy</Link></li>
               <li><Link href="/terms">Terms of Service</Link></li>
