@@ -1,0 +1,142 @@
+.articleLayout {
+  display: grid;
+  gap: 28px;
+}
+
+.articleJsonLd {
+  display: none;
+}
+
+.articleMeta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.articleBody {
+  position: relative;
+}
+
+.articleBody :global(p) {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.articleBody :global(strong) {
+  color: var(--text-primary);
+}
+
+.articleSection {
+  scroll-margin-top: 110px;
+  margin-top: 34px;
+}
+
+.articleSection:first-of-type {
+  margin-top: 24px;
+}
+
+.articleHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.articleAnchor {
+  opacity: 0;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: opacity 150ms ease, color 150ms ease;
+}
+
+.articleAnchor svg {
+  width: 17px;
+  height: 17px;
+}
+
+.articleHeading:hover .articleAnchor,
+.articleAnchor:focus-visible {
+  opacity: 1;
+}
+
+.articleAnchor:hover,
+.articleAnchor:focus-visible {
+  color: var(--text-primary);
+  outline: none;
+}
+
+.articleToc {
+  position: sticky;
+  top: 88px;
+  z-index: 2;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  background: color-mix(in srgb, var(--bg-card) 86%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.articleTocTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.articleTocLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.articleTocLinks a,
+.articleToc :global(a) {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.articleTocLinks a:hover,
+.articleToc :global(a:hover),
+.articleToc :global(a[aria-current="true"]) {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--bg-card-hover) 72%, transparent);
+  border-color: color-mix(in srgb, var(--cyan) 30%, var(--border));
+}
+
+.articleToc :global(a[aria-current="true"]) {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--cyan) 10%, transparent);
+}
+
+@media (max-width: 760px) {
+  .articleToc {
+    position: static;
+  }
+
+  .articleHeading {
+    align-items: flex-start;
+  }
+
+  .articleAnchor {
+    opacity: 1;
+    padding-top: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .articleAnchor,
+  .articleTocLinks a,
+  .articleToc :global(a) {
+    transition: none;
+  }
+}
