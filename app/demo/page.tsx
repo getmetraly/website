@@ -38,18 +38,26 @@ const roleCards = [
 const advancedAreas = [
   {
     title: "Metric Explorer",
+    desc: "Inspect synthetic DORA, review, throughput, and delivery-risk signals.",
+    status: "Preview",
     href: "/demo-app/#/metrics",
   },
   {
     title: "AI Workspace",
+    desc: "Explore claim-safe synthetic insight workflows before private AI ships.",
+    status: "Designed",
     href: "/demo-app/#/ai",
   },
   {
     title: "Plugins",
+    desc: "Preview the planned extension model for connectors and custom workflows.",
+    status: "Planned",
     href: "/demo-app/#/plugins",
   },
   {
     title: "Connector Wizard",
+    desc: "Walk through a synthetic setup flow for future Git and CI/CD connectors.",
+    status: "Roadmap",
     href: "/demo-app/#/wizard",
   },
 ];
@@ -131,10 +139,14 @@ export default function DemoPage() {
                 <a
                   key={item.title}
                   href={item.href}
-                  className={styles.card}
+                  className={`${styles.card} ${styles.demoAreaCard}`}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
+                  <div className={styles.cardHead}>
+                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <span className={styles.status}>{item.status}</span>
+                  </div>
+                  <p className={styles.cardDesc}>{item.desc}</p>
                 </a>
               ))}
             </div>
