@@ -28,6 +28,9 @@ export function SiteNav() {
           <li>
             <Link href="/docs">Docs</Link>
           </li>
+          <li>
+            <Link href="/blog">Blog</Link>
+          </li>
         </ul>
         <div className="nav-right">
           <ThemeToggle />
