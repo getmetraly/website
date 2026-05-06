@@ -19,6 +19,23 @@ export const metadata = {
     "Trust principles for Metraly: self-hosted engineering intelligence, synthetic demo data, no-hidden-telemetry policy, benchmark-gated AI claims, and plugin marketplace review gates.",
 };
 
+const heroBadgeStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  padding: "6px 14px",
+  borderRadius: 20,
+  background: "color-mix(in srgb, var(--purple) 12%, transparent)",
+  border: "1px solid color-mix(in srgb, var(--purple) 24%, transparent)",
+  color: "var(--purple)",
+  fontSize: 12,
+  fontWeight: 700,
+  letterSpacing: 0.3,
+  marginBottom: 28,
+  position: "relative" as const,
+  zIndex: 1,
+};
+
 const principles = [
   [
     "Self-hosted first",
@@ -57,9 +74,7 @@ export default function TrustPage() {
     <SiteShell>
       <ContentPage>
         <Prose className="content-hero-centered">
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-            <StatusPill>Trust · Self-hosted by design · Claim-safe roadmap</StatusPill>
-          </div>
+          <div style={heroBadgeStyle}>Trust · Self-hosted by design · Claim-safe roadmap</div>
 
           <h1>Trust starts with keeping engineering data under your control.</h1>
           <p>
