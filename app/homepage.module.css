@@ -212,7 +212,8 @@
   font-size: 12px;
   color: var(--text-secondary);
   line-height: 1.5;
-}\n
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -232,6 +233,10 @@
   background: var(--cyan);
 }
 
+.center .eyebrow::before {
+  display: inline-block;
+}
+
 .sectionTitle {
   font-size: clamp(30px, 4vw, 48px);
   font-weight: 800;
@@ -246,6 +251,13 @@
   max-width: 560px;
   line-height: 1.65;
   margin-bottom: 56px;
+}
+
+.sectionSubCentered {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
 }
 
 .center {
@@ -456,38 +468,6 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-@media (max-width: 900px) {
-  .grid3,
-  .grid4,
-  .split {
-    grid-template-columns: 1fr;
-  }
-
-  .insightOverlay {
-    position: static;
-    margin: 12px;
-    max-width: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero {
-    padding: 100px 16px 60px;
-  }
-
-  .section,
-  .sectionSmall {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
-.heroPrimaryCta svg,
-.demoCtaLink svg {
-  width: 16px;
-  height: 16px;
-}
-
 .demoCtaLink {
   margin-top: 8px;
 }
@@ -497,7 +477,6 @@
   transform: translateY(-1px);
   box-shadow: 0 14px 36px rgba(99, 102, 241, 0.38);
 }
-
 
 .roadmapCard {
   position: relative;
@@ -569,4 +548,30 @@
   margin-top: 7px;
   flex: 0 0 auto;
   background: color-mix(in srgb, var(--cyan) 78%, white);
+}
+
+@media (max-width: 900px) {
+  .grid3,
+  .grid4,
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .insightOverlay {
+    position: static;
+    margin: 12px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 100px 16px 60px;
+  }
+
+  .section,
+  .sectionSmall {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
