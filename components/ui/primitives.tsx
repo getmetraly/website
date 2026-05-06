@@ -67,6 +67,34 @@ export function Section({
   );
 }
 
+export function DocsLayout({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cx(styles.docsLayout, className)}>{children}</div>;
+}
+
+export function DocsNav({
+  links,
+  className,
+}: {
+  links: Array<{ href: string; label: string }>;
+  className?: string;
+}) {
+  return (
+    <nav className={cx(styles.docsNav, className)} aria-label="Documentation sections">
+      {links.map((link) => (
+        <a key={link.href} href={link.href}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
 export function SectionHeader({
   eyebrow,
   title,
