@@ -48,6 +48,16 @@ const eyebrowStyle = {
   textTransform: "uppercase" as const,
 };
 
+const pulseStyle = {
+  width: 24,
+  height: 12,
+  flex: "0 0 24px",
+  marginTop: -1,
+  background: "linear-gradient(90deg, var(--cyan), var(--purple))",
+  clipPath: "polygon(0 48%, 22% 48%, 28% 24%, 38% 82%, 48% 8%, 58% 48%, 100% 48%, 100% 62%, 54% 62%, 49% 44%, 39% 100%, 29% 56%, 25% 62%, 0 62%)",
+  filter: "drop-shadow(0 0 6px color-mix(in srgb, var(--cyan) 24%, transparent))",
+};
+
 const headingStyle = {
   marginTop: 14,
 };
@@ -55,7 +65,7 @@ const headingStyle = {
 function Eyebrow({ children }: { children: string }) {
   return (
     <div style={eyebrowStyle}>
-      <span style={{ width: 20, height: 2, borderRadius: 999, background: "linear-gradient(90deg, var(--cyan), var(--purple))" }} />
+      <span style={pulseStyle} />
       {children}
     </div>
   );
