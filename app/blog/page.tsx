@@ -13,36 +13,7 @@ import {
   Stack,
   StatusPill,
 } from "@/components/ui/primitives";
-
-const posts = [
-  {
-    title: "Why engineering intelligence should be self-hosted",
-    teaser:
-      "A practical argument for keeping repository, CI/CD, incident, and team signals inside the customer's infrastructure boundary.",
-    status: "Draft idea",
-    date: "May 2026",
-    href: "/blog/self-hosted-engineering-intelligence",
-    tags: ["Self-hosted", "Trust", "Engineering intelligence"],
-  },
-  {
-    title: "DORA metrics are useful, but they are not enough",
-    teaser:
-      "How delivery metrics become more actionable when connected with bottlenecks, review flow, CI health, and role-specific dashboards.",
-    status: "Draft idea",
-    date: "May 2026",
-    href: "/blog/dora-metrics-not-enough",
-    tags: ["DORA", "Delivery", "Metrics"],
-  },
-  {
-    title: "Building Metraly in public: from synthetic demo to real connectors",
-    teaser:
-      "A transparent product-progress post about what exists now, what is synthetic, and what needs to become real before production claims.",
-    status: "Planned",
-    date: "May 2026",
-    href: "/blog/building-metraly-in-public",
-    tags: ["Build in public", "Roadmap", "Open core"],
-  },
-];
+import { blogPosts } from "@/content/blog/posts";
 
 const ideas = [
   [
@@ -108,12 +79,12 @@ export default function BlogPage() {
           />
 
           <Grid columns={3}>
-            {posts.map((post) => (
-              <CardLink key={post.title} href={post.href}>
+            {blogPosts.map((post) => (
+              <CardLink key={post.slug} href={post.canonicalPath}>
                 <CardHeader title={post.title} status={post.status} />
-                <CardText>{post.teaser}</CardText>
+                <CardText>{post.excerpt}</CardText>
                 <Stack>
-                  <CardText>{post.date}</CardText>
+                  <CardText>{post.date} · {post.readingTime}</CardText>
                   <div>
                     {post.tags.map((tag) => (
                       <StatusPill key={tag}>{tag}</StatusPill>
@@ -162,7 +133,7 @@ export default function BlogPage() {
         <Section width="small" center>
           <SectionHeader
             title="Next: turn ideas into a two-week publishing plan."
-            description="The next layer can add a status file, planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
+            description="The next layer can add planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
           />
           <ButtonLink href="/docs" variant="ghost">
             Review claim-safe docs
