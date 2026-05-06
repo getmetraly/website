@@ -11,6 +11,8 @@
     "lint:claims": "node scripts/check-forbidden-claims.mjs",
     "lint:code": "node scripts/run-eslint.mjs",
     "smoke:routes": "node scripts/smoke-routes.mjs",
+    "smoke:e2e": "npx --yes --package=@playwright/test@1.57.0 playwright test",
+    "audit:deps": "npm audit --omit=dev --audit-level=high",
     "ci": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
