@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
+import { ArticleToc } from "@/components/blog/article-toc";
 import { Icon, Prose, SectionHeader, Stack, StatusPill } from "@/components/ui/primitives";
 import type { BlogPost } from "@/content/blog/posts";
 import styles from "./article-shell.module.css";
+
+type ArticlePost = BlogPost & { readingTime: string };
 
 export function ArticleShell({ children }: { children: ReactNode }) {
   return <Stack className={styles.articleLayout}>{children}</Stack>;
@@ -17,7 +20,7 @@ export function ArticleJsonLd({ value }: { value: object }) {
   );
 }
 
-export function ArticleHeader({ post }: { post: BlogPost & { readingTime: string } }) {
+export function ArticleHeader({ post }: { post: ArticlePost }) {
   return (
     <>
       <div>
@@ -39,11 +42,15 @@ export function ArticleHeader({ post }: { post: BlogPost & { readingTime: string
   );
 }
 
+export function ArticleContents({ post }: { post: BlogPost }) {
+  return <ArticleToc sections={post.sections.map(({ id, title }) => ({ id, title }))} />;
+}
+
 export function ArticleBody({ post }: { post: BlogPost }) {
   return (
     <Prose className={styles.articleBody}>
       <div id="article-body">
-        <p>
+        <p className={styles.articleAudience}>
           <strong>Audience:</strong> {post.audience}
         </p>
 
