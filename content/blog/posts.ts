@@ -14,12 +14,27 @@ export type BlogPost = {
   date: string;
   updated?: string;
   author: string;
-  readingTime: string;
   tags: string[];
   canonicalPath: string;
   audience: string;
   sections: BlogPostSection[];
 };
+
+const WORDS_PER_MINUTE = 220;
+
+export function estimateReadingTime(post: Pick<BlogPost, "title" | "excerpt" | "audience" | "sections">) {
+  const text = [
+    post.title,
+    post.excerpt,
+    post.audience,
+    ...post.sections.flatMap((section) => [section.title, ...section.paragraphs]),
+  ].join(" ");
+
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+
+  return `${minutes} min read`;
+}
 
 export const blogPosts: BlogPost[] = [
   {
@@ -30,7 +45,6 @@ export const blogPosts: BlogPost[] = [
     status: "Draft idea",
     date: "May 2026",
     author: "Metraly team",
-    readingTime: "5 min read",
     tags: ["Self-hosted", "Trust", "Engineering intelligence"],
     canonicalPath: "/blog/self-hosted-engineering-intelligence",
     audience: "CTOs, VPs Engineering, platform leaders, and privacy-conscious engineering teams.",
@@ -69,7 +83,6 @@ export const blogPosts: BlogPost[] = [
     status: "Draft idea",
     date: "May 2026",
     author: "Metraly team",
-    readingTime: "6 min read",
     tags: ["DORA", "Delivery", "Metrics"],
     canonicalPath: "/blog/dora-metrics-not-enough",
     audience: "Engineering leaders and teams that want metrics to drive better execution conversations.",
@@ -108,7 +121,6 @@ export const blogPosts: BlogPost[] = [
     status: "Planned",
     date: "May 2026",
     author: "Metraly team",
-    readingTime: "4 min read",
     tags: ["Build in public", "Roadmap", "Open core"],
     canonicalPath: "/blog/building-metraly-in-public",
     audience: "Early users, contributors, design partners, and community members following product progress.",
@@ -141,6 +153,11 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+export const blogPostsWithReadingTime = blogPosts.map((post) => ({
+  ...post,
+  readingTime: estimateReadingTime(post),
+}));
+
 export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+  return blogPostsWithReadingTime.find((post) => post.slug === slug);
 }
