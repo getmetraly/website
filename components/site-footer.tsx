@@ -1,57 +1,86 @@
 import Link from "next/link";
 
+const footerGroups = [
+  {
+    title: "Product",
+    links: [
+      { href: "/#features", label: "Platform overview" },
+      { href: "/#roles", label: "Role dashboards" },
+      { href: "/ai", label: "AI direction" },
+      { href: "/pricing", label: "Pricing preview" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      { href: "/docs", label: "Documentation" },
+      { href: "/demo", label: "Synthetic demo" },
+      { href: "/demo-app/", label: "Open sandbox" },
+      { href: "/trust", label: "Trust center" },
+    ],
+  },
+  {
+    title: "Open source",
+    links: [
+      { href: "https://github.com/getmetraly/metraly", label: "App repository ↗", external: true },
+      { href: "https://github.com/getmetraly/docs", label: "Docs repository ↗", external: true },
+      { href: "https://github.com/getmetraly/website", label: "Website repository ↗", external: true },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "/privacy", label: "Privacy policy" },
+      { href: "/terms", label: "Terms of service" },
+    ],
+  },
+];
+
 export function SiteFooter() {
   return (
     <footer>
       <div className="footer-inner">
-        <div className="footer-grid">
+        <div className="footer-topline">
           <div>
             <Link className="nav-logo" href="/" aria-label="Metraly home">
               <div className="nav-logo-icon" aria-hidden="true">M</div>
               Metraly
             </Link>
             <p className="footer-brand-desc">
-              Self-hosted Engineering Intelligence with a privacy-first architecture.
-              AGPLv3 open-core. Designed for customer-controlled infrastructure.
+              Self-hosted Engineering Intelligence for teams that want visibility without moving engineering data into another SaaS by default.
             </p>
           </div>
-
-          <div>
-            <div className="footer-col-title">Product</div>
-            <ul className="footer-links">
-              <li><Link href="/#features">Features</Link></li>
-              <li><Link href="/#roles">Who it's for</Link></li>
-              <li><Link href="/ai">AI direction</Link></li>
-              <li><Link href="/pricing">Pricing</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="footer-col-title">Resources</div>
-            <ul className="footer-links">
-              <li><Link href="/docs">Documentation</Link></li>
-              <li><Link href="/demo">Synthetic demo</Link></li>
-              <li><Link href="/trust">Trust</Link></li>
-              <li><a href="https://github.com/getmetraly/metraly" target="_blank" rel="noopener">GitHub</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="footer-col-title">Legal</div>
-            <ul className="footer-links">
-              <li><Link href="/privacy">Privacy</Link></li>
-              <li><Link href="/terms">Terms</Link></li>
-            </ul>
+          <div className="footer-status-card">
+            <span className="footer-fsl">AGPLv3 core</span>
+            <p>Community core is free. Pro and Enterprise are pricing previews for pilots and future signed-license activation.</p>
           </div>
         </div>
 
+        <div className="footer-grid">
+          {footerGroups.map((group) => (
+            <div key={group.title}>
+              <div className="footer-col-title">{group.title}</div>
+              <ul className="footer-links">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    {link.external ? (
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+                    ) : (
+                      <Link href={link.href}>{link.label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         <div className="footer-bottom">
+          <span>© 2026 Metraly. Public preview documentation and synthetic demo surfaces.</span>
           <div className="footer-bottom-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
-            <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noopener">
-              <span className="footer-fsl">AGPLv3</span>
-            </a>
+            <a href="https://github.com/getmetraly" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </div>
       </div>
