@@ -87,6 +87,15 @@
   justify-items: center;
 }
 
+.center .header + .stack {
+  justify-content: center;
+  justify-items: center;
+}
+
+.center .header + .stack > div {
+  justify-content: center;
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
