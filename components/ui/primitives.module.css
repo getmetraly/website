@@ -355,7 +355,7 @@
 .prose li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   line-height: 1.65;
   padding-left: 0;
   position: relative;
@@ -363,13 +363,14 @@
 
 .prose li::before {
   content: "";
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  margin-top: 4px;
+  width: 26px;
+  height: 14px;
+  flex: 0 0 26px;
+  margin-top: 6px;
   color: color-mix(in srgb, var(--cyan) 82%, white);
   background-color: currentColor;
-  clip-path: path("M4 11H13.6L10 7.4L11.4 6L17.4 12L11.4 18L10 16.6L13.6 13H4Z");
+  clip-path: polygon(0 52%, 20% 52%, 26% 25%, 36% 82%, 47% 8%, 58% 52%, 100% 52%, 100% 66%, 52% 66%, 47% 48%, 37% 100%, 27% 55%, 23% 66%, 0 66%);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--cyan) 24%, transparent));
 }
 
 .prose a {
