@@ -605,19 +605,19 @@ a.card:hover {
 }
 
 .roadmapItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
   color: var(--text-secondary);
   font-size: 13px;
   line-height: 1.5;
 }
 
 .roadmapItem span {
-  width: 26px;
-  height: 14px;
-  margin-top: 4px;
-  flex: 0 0 26px;
+  width: 22px;
+  height: 12px;
+  flex: 0 0 22px;
   color: color-mix(in srgb, var(--cyan) 82%, white);
   background-color: currentColor;
   clip-path: polygon(0 52%, 20% 52%, 26% 25%, 36% 82%, 47% 8%, 58% 52%, 100% 52%, 100% 66%, 52% 66%, 47% 48%, 37% 100%, 27% 55%, 23% 66%, 0 66%);
