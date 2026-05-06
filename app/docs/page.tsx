@@ -6,6 +6,8 @@ import {
   CardHeader,
   CardLink,
   CardText,
+  DocsLayout,
+  DocsNav,
   Grid,
   Page,
   Section,
@@ -58,6 +60,14 @@ const docSections = [
   },
 ];
 
+const docsNavLinks = [
+  { href: "#documentation-map", label: "Documentation map" },
+  { href: "#quick-start", label: "Quick start" },
+  { href: "#self-hosting", label: "Self-hosting" },
+  { href: "#status", label: "Product status" },
+  { href: "#claims", label: "Claim policy" },
+];
+
 const statusRows = [
   ["Real product UI", "Preview", "Role dashboards and UI direction are visible using synthetic and backend-backed preview data."],
   ["Local preview auth", "Implemented", "Seeded local preview credentials exist for evaluation and onboarding flows."],
@@ -107,103 +117,119 @@ export default function DocsPage() {
         </section>
 
         <Section tone="surface">
-          <SectionHeader
-            eyebrow="Documentation map"
-            title="Start with the public docs."
-            description="These sections are copied and maintained in the website so readers do not need access to the private planning repository."
-          />
+          <DocsLayout>
+            <DocsNav links={docsNavLinks} />
 
-          <Grid columns={3}>
-            {docSections.map((doc) => (
-              <CardLink key={doc.title} href={doc.href}>
-                <CardHeader title={doc.title} status={doc.label} />
-                <CardText>{doc.desc}</CardText>
-              </CardLink>
-            ))}
-          </Grid>
-        </Section>
-
-        <Section id="quick-start" split>
-          <div>
-            <SectionHeader
-              eyebrow="Quick start"
-              title="Run the local preview path."
-              description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
-            />
-            <div className={styles.heroActions}>
-              <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source</a>
-              <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
-            </div>
-          </div>
-
-          <Card>
-            <CardHeader title="Current local baseline" />
             <Stack>
-              <CardText>→ Start locally with <code>make up</code></CardText>
-              <CardText>→ App preview: <code>http://localhost:3000</code></CardText>
-              <CardText>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></CardText>
-              <CardText>→ <code>make docker-up</code> remains a legacy compatibility alias</CardText>
+              <div id="documentation-map">
+                <SectionHeader
+                  eyebrow="Documentation map"
+                  title="Start with the public docs."
+                  description="These sections are copied and maintained in the website so readers do not need access to the private planning repository."
+                />
+
+                <Grid columns={3}>
+                  {docSections.map((doc) => (
+                    <CardLink key={doc.title} href={doc.href}>
+                      <CardHeader title={doc.title} status={doc.label} />
+                      <CardText>{doc.desc}</CardText>
+                    </CardLink>
+                  ))}
+                </Grid>
+              </div>
+
+              <div id="quick-start">
+                <SectionHeader
+                  eyebrow="Quick start"
+                  title="Run the local preview path."
+                  description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
+                />
+
+                <Grid columns={2}>
+                  <Card>
+                    <CardHeader title="Current local baseline" />
+                    <Stack>
+                      <CardText>→ Start locally with <code>make up</code></CardText>
+                      <CardText>→ App preview: <code>http://localhost:3000</code></CardText>
+                      <CardText>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></CardText>
+                      <CardText>→ <code>make docker-up</code> remains a legacy compatibility alias</CardText>
+                    </Stack>
+                  </Card>
+
+                  <Card accent>
+                    <CardHeader title="Validate locally" status="Recommended" />
+                    <Stack>
+                      <CardText>→ Use <code>npm ci</code> for website dependencies.</CardText>
+                      <CardText>→ Use <code>npm run ci</code> before publishing copy or UI changes.</CardText>
+                      <CardText>→ Keep public website claims status-labeled.</CardText>
+                    </Stack>
+                  </Card>
+                </Grid>
+
+                <div className={styles.heroActions}>
+                  <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source ↗</a>
+                  <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
+                </div>
+              </div>
+
+              <div id="self-hosting">
+                <SectionHeader
+                  eyebrow="Self-hosting"
+                  title="Your engineering data stays under your control."
+                  description="Metraly is designed around self-hosted deployment so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform."
+                />
+
+                <Grid columns={3}>
+                  <Card>
+                    <CardHeader title="Community core" />
+                    <CardText>The core product is AGPLv3 open core. Community remains useful and auditable.</CardText>
+                  </Card>
+                  <Card>
+                    <CardHeader title="Seeded local preview" />
+                    <CardText>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</CardText>
+                  </Card>
+                  <Card>
+                    <CardHeader title="Connectors next" />
+                    <CardText>Live Git and CI/CD data integrations are the next product step after dashboard rendering and editor work.</CardText>
+                  </Card>
+                </Grid>
+              </div>
+
+              <div id="status">
+                <SectionHeader
+                  eyebrow="Product status"
+                  title="What exists. What is next."
+                  description="Public docs use status labels so the website does not overclaim implementation readiness."
+                />
+
+                <Grid columns={3}>
+                  {statusRows.map(([area, status, note]) => (
+                    <Card key={area}>
+                      <CardHeader title={area} status={status} />
+                      <CardText>{note}</CardText>
+                    </Card>
+                  ))}
+                </Grid>
+              </div>
+
+              <div id="claims">
+                <SectionHeader
+                  eyebrow="Claim policy"
+                  title="Docs describe direction. Code proves claims."
+                  description="Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code."
+                />
+
+                <Card accent>
+                  <CardHeader title="Safe public wording" />
+                  <Stack>
+                    {safeWording.map((item) => (
+                      <CardText key={item}>→ {item}</CardText>
+                    ))}
+                  </Stack>
+                </Card>
+              </div>
             </Stack>
-          </Card>
-        </Section>
-
-        <Section id="self-hosting" tone="surface">
-          <SectionHeader
-            eyebrow="Self-hosting"
-            title="Your engineering data stays under your control."
-            description="Metraly is designed around self-hosted deployment so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform."
-          />
-
-          <Grid columns={3}>
-            <Card>
-              <CardHeader title="Community core" />
-              <CardText>The core product is AGPLv3 open core. Community remains useful and auditable.</CardText>
-            </Card>
-            <Card>
-              <CardHeader title="Seeded local preview" />
-              <CardText>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</CardText>
-            </Card>
-            <Card>
-              <CardHeader title="Connectors next" />
-              <CardText>Live Git and CI/CD data integrations are the next product step after dashboard rendering and editor work.</CardText>
-            </Card>
-          </Grid>
-        </Section>
-
-        <Section id="status">
-          <SectionHeader
-            eyebrow="Product status"
-            title="What exists. What is next."
-            description="Public docs use status labels so the website does not overclaim implementation readiness."
-          />
-
-          <Grid columns={3}>
-            {statusRows.map(([area, status, note]) => (
-              <Card key={area}>
-                <CardHeader title={area} status={status} />
-                <CardText>{note}</CardText>
-              </Card>
-            ))}
-          </Grid>
-        </Section>
-
-        <Section id="claims" tone="surface" split>
-          <div>
-            <SectionHeader
-              eyebrow="Claim policy"
-              title="Docs describe direction. Code proves claims."
-              description="Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code."
-            />
-          </div>
-
-          <Card accent>
-            <CardHeader title="Safe public wording" />
-            <Stack>
-              {safeWording.map((item) => (
-                <CardText key={item}>→ {item}</CardText>
-              ))}
-            </Stack>
-          </Card>
+          </DocsLayout>
         </Section>
       </Page>
     </SiteShell>
