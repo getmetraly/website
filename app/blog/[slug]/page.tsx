@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ReadingProgress } from "@/components/blog/reading-progress";
 import { SiteShell } from "@/components/site-shell";
 import {
   ContentPage,
@@ -71,6 +72,7 @@ export default async function BlogArticlePage({
 
   return (
     <SiteShell>
+      <ReadingProgress />
       <ContentPage>
         <Section width="small">
           <Stack className={styles.articleLayout}>
