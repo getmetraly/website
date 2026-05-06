@@ -9,12 +9,14 @@
 
 .sidebarWrap {
   align-self: start;
+  width: 280px;
 }
 
 .sidebar {
   position: fixed;
   top: 100px;
   width: 280px;
+  box-sizing: border-box;
   display: grid;
   gap: 28px;
   max-height: calc(100vh - 124px);
@@ -68,12 +70,17 @@
 
 .content {
   min-width: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 960px) {
   .shell {
     grid-template-columns: 1fr;
     padding: 100px 20px 70px;
+  }
+
+  .sidebarWrap {
+    width: auto;
   }
 
   .sidebar {
