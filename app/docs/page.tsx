@@ -99,6 +99,14 @@ const pulseIconStyle = {
   color: "color-mix(in srgb, var(--cyan) 82%, white)",
 };
 
+const quickStartActionsStyle = {
+  display: "flex",
+  gap: 12,
+  flexWrap: "wrap" as const,
+  alignItems: "center",
+  marginTop: 20,
+};
+
 function PulseCardText({ children }: { children: React.ReactNode }) {
   return (
     <CardText style={pulseTextStyle}>
@@ -177,6 +185,10 @@ export default function DocsPage() {
                       <PulseCardText>Login: <code>admin@metraly.local</code> / <code>admin123</code></PulseCardText>
                       <PulseCardText><code>make docker-up</code> remains a legacy compatibility alias</PulseCardText>
                     </Stack>
+                    <div style={quickStartActionsStyle}>
+                      <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source <Icon name="arrowRight" /></a>
+                      <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
+                    </div>
                   </Card>
 
                   <Card accent>
@@ -188,11 +200,6 @@ export default function DocsPage() {
                     </Stack>
                   </Card>
                 </Grid>
-
-                <div className={styles.heroActions}>
-                  <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source ↗</a>
-                  <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
-                </div>
               </div>
 
               <div id="self-hosting">
