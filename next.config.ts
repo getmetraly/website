@@ -1,11 +1,12 @@
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
 
   async redirects() {
     return [
-      // Legacy .html routes → new App Router paths
       {
         source: "/index.html",
         destination: "/",
@@ -53,4 +54,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
