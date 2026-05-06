@@ -4,12 +4,12 @@
   gap: 32px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 120px 24px 80px;
+  padding: 100px 24px 80px;
 }
 
 .sidebar {
   position: sticky;
-  top: 100px;
+  top: 88px;
   align-self: start;
   display: grid;
   gap: 28px;
@@ -20,6 +20,8 @@
   background: color-mix(in srgb, var(--bg-card) 84%, transparent);
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(20px);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .title {
@@ -73,5 +75,7 @@
 
   .sidebar {
     position: static;
+    transform: none;
+    will-change: auto;
   }
 }
