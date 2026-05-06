@@ -1,0 +1,279 @@
+/* Shell polish layer: nav, footer, CTA, theme, icon and skeleton systems. */
+
+:root {
+  --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 20px 70px rgba(0, 0, 0, 0.16);
+  --motion-fast: 150ms ease;
+  --motion-med: 240ms ease;
+}
+
+[data-theme="dark"] {
+  --text-secondary: #a6b3c8;
+  --text-muted: #6f7c91;
+  --nav-bg: rgba(8, 11, 16, 0.72);
+  --bg-card-hover: #202a3a;
+  --border-bright: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="light"] {
+  --text-secondary: #344054;
+  --text-muted: #667085;
+  --nav-bg: rgba(255, 255, 255, 0.78);
+  --bg-base: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card-hover: #eef2f7;
+  --border-bright: rgba(15, 23, 42, 0.18);
+}
+
+.nav {
+  height: 64px;
+  background:
+    linear-gradient(180deg, var(--nav-bg), color-mix(in srgb, var(--nav-bg) 86%, transparent));
+  backdrop-filter: blur(22px) saturate(1.18);
+  -webkit-backdrop-filter: blur(22px) saturate(1.18);
+  box-shadow: 0 1px 0 var(--border), 0 18px 60px rgba(0, 0, 0, 0.08);
+}
+
+.nav-logo {
+  transition: transform var(--motion-fast), color var(--motion-fast);
+}
+
+.nav-logo:hover {
+  transform: translateY(-1px);
+}
+
+.nav-logo-icon {
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--purple) 32%, transparent);
+}
+
+.nav-links a,
+.mobile-nav a {
+  position: relative;
+}
+
+.nav-links a[aria-current="page"],
+.mobile-nav a[aria-current="page"] {
+  color: var(--text-primary);
+  background: color-mix(in srgb, var(--purple) 12%, transparent);
+  border-color: color-mix(in srgb, var(--purple) 18%, transparent);
+}
+
+.nav-links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -13px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+}
+
+.nav-github .icon,
+.icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  line-height: 1;
+  color: currentColor;
+}
+
+.btn-primary,
+.btn-ghost {
+  min-height: 36px;
+  justify-content: center;
+  white-space: nowrap;
+  transition:
+    transform var(--motion-fast),
+    box-shadow var(--motion-med),
+    background var(--motion-fast),
+    border-color var(--motion-fast),
+    color var(--motion-fast);
+}
+
+.btn-primary {
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+}
+
+.btn-primary:active,
+.btn-ghost:active {
+  transform: translateY(0);
+}
+
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, var(--cyan) 28%, var(--border-bright));
+}
+
+.mobile-nav {
+  top: 64px;
+  background:
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--purple) 14%, transparent), transparent 24rem),
+    color-mix(in srgb, var(--bg-base) 96%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transform: translate3d(0, -10px, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-med), transform var(--motion-med);
+}
+
+.mobile-nav.open {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav .btn-primary,
+.mobile-nav .btn-ghost {
+  width: 100%;
+  margin-top: 8px;
+}
+
+footer {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--purple) 12%, transparent), transparent 28rem),
+    radial-gradient(circle at 82% 10%, color-mix(in srgb, var(--cyan) 8%, transparent), transparent 24rem),
+    color-mix(in srgb, var(--bg-base) 96%, #000);
+  padding-top: 72px;
+}
+
+.footer-topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 44px;
+}
+
+.footer-status-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.footer-status-card p {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+
+.footer-brand-desc {
+  max-width: 520px;
+  color: var(--text-secondary);
+}
+
+.footer-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+}
+
+.footer-links a:hover,
+.footer-bottom-links a:hover {
+  color: color-mix(in srgb, var(--cyan) 76%, white);
+}
+
+.footer-bottom {
+  align-items: center;
+}
+
+.skeleton {
+  display: block;
+  min-height: 1rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--bg-card-hover) 70%, transparent),
+      color-mix(in srgb, var(--border-bright) 60%, transparent),
+      color-mix(in srgb, var(--bg-card-hover) 70%, transparent));
+  background-size: 220% 100%;
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+.skeleton-card {
+  min-height: 180px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+  padding: 24px;
+}
+
+.skeleton-card::before,
+.skeleton-card::after {
+  content: "";
+  display: block;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border-bright) 55%, transparent);
+}
+
+.skeleton-card::before {
+  width: 46%;
+  height: 14px;
+  margin-bottom: 20px;
+}
+
+.skeleton-card::after {
+  width: 82%;
+  height: 10px;
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 220% 0; }
+  100% { background-position: -220% 0; }
+}
+
+@media (max-width: 900px) {
+  .nav-cta,
+  .nav-github {
+    display: none;
+  }
+
+  .footer-topline,
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    height: 60px;
+    padding-inline: 16px;
+  }
+
+  .mobile-nav {
+    top: 60px;
+  }
+
+  .footer-topline,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+
+  .mobile-nav,
+  .btn-primary,
+  .btn-ghost,
+  .nav-logo {
+    transition: none;
+  }
+}
