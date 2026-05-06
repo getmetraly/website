@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Icon } from "@/components/ui/primitives";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
@@ -59,8 +60,8 @@ export function SiteNav() {
               rel="noreferrer"
               className="btn-ghost nav-github"
             >
-              <span className="icon" aria-hidden="true">◇</span>
-              GitHub ↗
+              <Icon name="github" />
+              GitHub <Icon name="external" />
             </a>
             <Link
               href="/demo"
@@ -68,7 +69,7 @@ export function SiteNav() {
               aria-label="Try synthetic demo preview"
               onClick={closeMenu}
             >
-              Try Demo →
+              Try Demo <Icon name="arrowRight" />
             </Link>
             <button
               className={`hamburger ${isOpen ? "open" : ""}`}
@@ -100,10 +101,10 @@ export function SiteNav() {
         ))}
         <div className="mobile-nav-divider" />
         <Link href="/demo" className="btn-primary" onClick={closeMenu}>
-          Try Demo →
+          Try Demo <Icon name="arrowRight" />
         </Link>
         <a href="https://github.com/getmetraly" target="_blank" rel="noreferrer" className="btn-ghost">
-          GitHub ↗
+          <Icon name="github" /> GitHub <Icon name="external" />
         </a>
       </div>
     </>
