@@ -13,11 +13,11 @@ const features = [
 ];
 
 const roadmap = [
-  ["Now", ["Multi-role dashboards", "Metrics explorer", "UI system", "Synthetic workflows", "Early insight patterns"]],
-  ["Next", ["Dashboard editor", "Drag & drop layout", "Real dashboard rendering", "Demo environment", "Data modeling layer"]],
-  ["Then", ["GitHub / GitLab connectors", "CI/CD integrations", "Real data pipelines", "First production use cases"]],
-  ["Later", ["AI insights layer", "Plugin ecosystem", "Enterprise deployment patterns"]],
-];
+  ["Available today", "Real UI and synthetic workflows", ["Role dashboards", "Metrics explorer", "Workflow simulation", "Engineering trend signals"]],
+  ["In progress", "Dashboard editing and rendering", ["Dashboard editor", "Drag-and-drop layouts", "Real dashboard rendering", "Demo environment alignment"]],
+  ["Validation phase", "Real integrations and use cases", ["GitHub / GitLab connectors", "CI/CD integrations", "Real data pipelines", "First production pilots"]],
+  ["Future direction", "Enterprise and AI expansion", ["Private AI insights", "Plugin ecosystem", "Enterprise deployment patterns"]],
+] as const;
 
 function SectionHeader({ eyebrow, title, children, center = false }: { eyebrow: string; title: string; children: React.ReactNode; center?: boolean }) {
   return (
@@ -43,7 +43,7 @@ export default function HomePage() {
           <p className={styles.heroSub}>Understand delivery flow, bottlenecks, and engineering health without making another SaaS your default data boundary — starting with real UI, synthetic data, and status-labeled roadmap capabilities.</p>
 
           <div className={styles.heroActions}>
-            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo →</Link>
+            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic Demo <Icon name="arrowRight" /></Link>
             <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
             <Link href="/pricing" className="btn-ghost btn-large">View pricing preview</Link>
           </div>
@@ -154,24 +154,28 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="roadmap" className={styles.surface}>
-          <div className={styles.section}>
-            <SectionHeader eyebrow="Roadmap" title="What exists. What’s next. What we’re validating.">
-              The website should make the current maturity visible: real UI and synthetic workflows now, dashboard editing next, connectors and real user cases after that.
-            </SectionHeader>
-            <div className={styles.grid4}>
-              {roadmap.map(([stage, items]) => (
-                <div className={styles.card} key={stage as string}><div className={styles.cardTitle}>{stage}</div><ul style={{ display: "grid", gap: 10, listStyle: "none", marginTop: 14 }}>{(items as string[]).map((item) => (<li key={item} className={styles.cardDesc}>→ {item}</li>))}</ul></div>
-              ))}
+        <div className={styles.grid4}>
+          {roadmap.map(([stage, summary, items], index) => (
+            <div className={styles.roadmapCard} key={stage}>
+              <div className={styles.roadmapStep}>0{index + 1}</div>
+              <div className={styles.roadmapStage}>{stage}</div>
+              <p className={styles.roadmapSummary}>{summary}</p>
+              <ul className={styles.roadmapList}>
+                {items.map((item) => (
+                  <li key={item} className={styles.roadmapItem}>
+                    <span />{item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
 
         <section id="demo-cta">
           <div className={`${styles.sectionSmall} ${styles.cta}`}>
             <h2 className={styles.sectionTitle}>Explore Metraly with synthetic data.</h2>
             <p className={styles.sectionSub} style={{ marginLeft: "auto", marginRight: "auto" }}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
-            <Link href="/demo" className={styles.demoCtaLink}>Open synthetic demo →</Link>
+            <Link href="/demo" className={styles.demoCtaLink}>Open Demo <Icon name="arrowRight" /></Link>
           </div>
         </section>
       </div>

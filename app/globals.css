@@ -536,3 +536,16 @@ footer {
 .btn-github:hover {
   background: rgba(255,255,255,0.06);
 }
+
+.btn-large {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+}
+
+.hero-actions,
+.footer-bottom-links,
+.nav-right {
+  column-gap: 12px;
+  row-gap: 10px;
+}

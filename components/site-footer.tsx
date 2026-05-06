@@ -49,9 +49,7 @@ export function SiteFooter() {
           <div className="footer-bottom-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
-            <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noopener">
-              <span className="footer-fsl">AGPLv3</span>
-            </a>
+            <a href="https://github.com/getmetraly" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </div>
       </div>

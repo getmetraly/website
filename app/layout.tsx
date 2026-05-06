@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  weight: ["300", "400", "500", "600", "700", "800"],
+const geistSans = Geist({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
 });
 
-const jetBrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
   display: "swap",
@@ -38,23 +39,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" className={`${plusJakarta.variable} ${jetBrainsMono.variable}`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+    <html lang="en" data-theme="dark" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <Script
+        id="metraly-theme-init"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
 (function() {
   var STORAGE_KEY = 'metraly-theme';
+
   function getPreferred() {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') return stored;
+    try {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'light' || stored === 'dark') return stored;
+    } catch (e) {}
+
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
+
   function apply(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch (e) {}
   }
+
   apply(getPreferred());
+
   window.MetralyTheme = {
     apply: apply,
     toggle: function() {
@@ -66,10 +77,9 @@ export default function RootLayout({
     }
   };
 })();
-            `,
-          }}
-        />
-      </head>
+          `,
+        }}
+      />
       <body>{children}</body>
     </html>
   );
