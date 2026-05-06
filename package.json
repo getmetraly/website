@@ -10,13 +10,14 @@
     "lint": "npm run lint:claims && npm run lint:code",
     "lint:claims": "node scripts/check-forbidden-claims.mjs",
     "lint:code": "eslint .",
+    "lint:blog": "node scripts/validate-blog-content.mjs",
     "smoke:routes": "node scripts/smoke-routes.mjs",
     "smoke:e2e": "npx --yes --package=@playwright/test@1.57.0 playwright test",
     "audit:deps": "npm audit --omit=dev --audit-level=high",
     "audit:lighthouse": "node scripts/audit-lighthouse.mjs",
     "audit:a11y": "node scripts/audit-a11y.mjs",
     "audit:site": "npm run audit:deps && npm run audit:lighthouse && npm run audit:a11y",
-    "ci": "npm run lint && npm run typecheck && npm run build"
+    "ci": "npm run lint && npm run lint:blog && npm run typecheck && npm run build"
   },
   "dependencies": {
     "next": "^16.2.4",
