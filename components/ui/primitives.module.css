@@ -213,6 +213,13 @@
   gap: 12px;
 }
 
+.stack > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
 .statusPill {
   display: inline-flex;
   align-items: center;
