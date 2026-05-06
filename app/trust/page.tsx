@@ -10,6 +10,7 @@ import {
   Note,
   Prose,
   Stack,
+  StatusPill,
 } from "@/components/ui/primitives";
 
 export const metadata = {
@@ -56,7 +57,14 @@ export default function TrustPage() {
     <SiteShell>
       <ContentPage>
         <Prose className="content-hero-centered">
-          <div className="page-label">Trust · Self-hosted by design · Claim-safe roadmap</div>
+          <Stack>
+            <div>
+              <StatusPill>Trust</StatusPill>
+              <StatusPill>Self-hosted by design</StatusPill>
+              <StatusPill>Claim-safe roadmap</StatusPill>
+            </div>
+          </Stack>
+
           <h1>Trust starts with keeping engineering data under your control.</h1>
           <p>
             Metraly is being built as a self-hosted Engineering Intelligence
