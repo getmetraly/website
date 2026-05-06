@@ -1,0 +1,51 @@
+.articleMeta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.articleLayout {
+  display: grid;
+  gap: 28px;
+}
+
+.articleToc {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  background: color-mix(in srgb, var(--bg-card) 86%, transparent);
+}
+
+.articleTocTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.articleTocLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.articleTocLinks a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.articleTocLinks a:hover {
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--cyan) 30%, var(--border));
+}
+
+.articleJsonLd {
+  display: none;
+}
