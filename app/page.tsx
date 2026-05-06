@@ -1,23 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiteShell } from "@/components/site-shell";
 import { StatusTag } from "@/components/status-tag";
+import { Icon } from "@/components/ui/primitives";
 import styles from "./homepage.module.css";
 
 const features = [
-  ["📊", "DORA metrics", "Preview DORA-style metrics such as deployment frequency, lead time, change failure rate, and MTTR across synthetic team data.", "Preview", "iconCyan"],
-  ["⚡", "CI/CD insights", "Preview build health, pipeline friction, recovery patterns, and delivery risk before live CI/CD integrations are connected.", "Preview", "iconGreen"],
-  ["🔀", "Team bottlenecks", "Preview where work slows down across synthetic PR, review, CI, and handoff patterns.", "Preview", "iconPurple"],
-  ["🧩", "Dashboard editor", "Drag-and-drop dashboard editing and real rendering are actively being developed.", "In progress", "iconIndigo"],
-  ["✦", "Private AI insights", "Designed for local models, BYO providers, and controlled data exposure.", "Designed", "iconPurple"],
-  ["🔌", "Plugin ecosystem", "A planned extensibility layer for connectors and custom workflows, gated by plugin review, signing, and revocation controls.", "Planned", "iconOrange"],
-];
+  ["spark", "DORA metrics", "Preview DORA-style metrics such as deployment frequency, lead time, change failure rate, and MTTR across synthetic team data.", "Preview", "iconCyan"],
+  ["check", "CI/CD insights", "Preview build health, pipeline friction, recovery patterns, and delivery risk before live CI/CD integrations are connected.", "Preview", "iconGreen"],
+  ["arrowRight", "Team bottlenecks", "Preview where work slows down across synthetic PR, review, CI, and handoff patterns.", "Preview", "iconPurple"],
+  ["spark", "Dashboard editor", "Drag-and-drop dashboard editing and real rendering are actively being developed.", "In progress", "iconIndigo"],
+  ["spark", "Private AI insights", "Designed for local models, BYO providers, and controlled data exposure.", "Designed", "iconPurple"],
+  ["external", "Plugin ecosystem", "A planned extensibility layer for connectors and custom workflows, gated by plugin review, signing, and revocation controls.", "Planned", "iconOrange"],
+] as const;
 
 const roadmap = [
   ["Now", ["Multi-role dashboards", "Metrics explorer", "UI system", "Synthetic workflows", "Early insight patterns"]],
   ["Next", ["Dashboard editor", "Drag & drop layout", "Real dashboard rendering", "Demo environment", "Data modeling layer"]],
   ["Then", ["GitHub / GitLab connectors", "CI/CD integrations", "Real data pipelines", "First production use cases"]],
   ["Later", ["AI insights layer", "Plugin ecosystem", "Enterprise deployment patterns"]],
-];
+] as const;
 
 function SectionHeader({ eyebrow, title, children, center = false }: { eyebrow: string; title: string; children: React.ReactNode; center?: boolean }) {
   return (
@@ -43,7 +45,7 @@ export default function HomePage() {
           <p className={styles.heroSub}>Understand delivery flow, bottlenecks, and engineering health without making another SaaS your default data boundary — starting with real UI, synthetic data, and status-labeled roadmap capabilities.</p>
 
           <div className={styles.heroActions}>
-            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo →</Link>
+            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo <Icon name="arrowRight" /></Link>
             <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
             <Link href="/pricing" className="btn-ghost btn-large">View pricing preview</Link>
           </div>
@@ -53,7 +55,7 @@ export default function HomePage() {
           </div>
 
           <div className={styles.dashboardImageWrap}>
-            <img src="/images/vp-dashboard.png" alt="Metraly VP Engineering dashboard using synthetic data" className={styles.dashboardImage} />
+            <Image src="/images/vp-dashboard.png" alt="Metraly VP Engineering dashboard using synthetic data" className={styles.dashboardImage} width={2240} height={1260} priority sizes="(max-width: 1200px) 100vw, 1120px" />
             <div className={styles.insightOverlay}>
               <div className={styles.insightCard}>
                 <div className={styles.insightLabel}>Synthetic insight</div>
@@ -80,7 +82,7 @@ export default function HomePage() {
             <div className={styles.grid3}>
               {features.map(([icon, title, desc, status, color]) => (
                 <div className={styles.card} key={title}>
-                  <div className={`${styles.icon} ${styles[color as keyof typeof styles]}`} aria-hidden="true">{icon}</div>
+                  <div className={`${styles.icon} ${styles[color]}`} aria-hidden="true"><Icon name={icon} /></div>
                   <div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusTag>{status}</StatusTag></div>
                   <div className={styles.cardDesc}>{desc}</div>
                 </div>
@@ -99,8 +101,8 @@ export default function HomePage() {
               </div>
               <div className={styles.card}>
                 <div className={styles.bullets}>
-                  <div className={styles.bullet}><div className={styles.bulletIcon}>🏛️</div><div><div className={styles.cardTitle}>Deploy where your team works</div><div className={styles.cardDesc}>Start locally or in your own VPC. Enterprise deployment patterns are being designed for regulated and restricted environments.</div></div></div>
-                  <div className={styles.bullet}><div className={styles.bulletIcon}>🔍</div><div><div className={styles.cardTitle}>Open-core auditability</div><div className={styles.cardDesc}>The core platform is AGPLv3 open-core, so the code path that handles engineering metrics can be reviewed and audited.</div></div></div>
+                  <div className={styles.bullet}><div className={styles.bulletIcon}><Icon name="check" /></div><div><div className={styles.cardTitle}>Deploy where your team works</div><div className={styles.cardDesc}>Start locally or in your own VPC. Enterprise deployment patterns are being designed for regulated and restricted environments.</div></div></div>
+                  <div className={styles.bullet}><div className={styles.bulletIcon}><Icon name="spark" /></div><div><div className={styles.cardTitle}>Open-core auditability</div><div className={styles.cardDesc}>The core platform is AGPLv3 open-core, so the code path that handles engineering metrics can be reviewed and audited.</div></div></div>
                 </div>
                 <div className={styles.tags}><StatusTag>Audit-friendly</StatusTag><StatusTag>GDPR-aware design</StatusTag><StatusTag>Restricted-environment roadmap</StatusTag></div>
               </div>
@@ -133,7 +135,7 @@ export default function HomePage() {
               <div className={styles.aiMock}>
                 <div className={styles.aiHeader}><div>Synthetic insight preview</div><StatusTag>Designed</StatusTag></div>
                 <div className={styles.aiBody}>
-                  <div className={styles.aiMsg}><div className={styles.aiAvatar}>✦</div><div className={styles.aiBubble}>Review queue time increased this sprint. The likely bottleneck is overloaded reviewers on a critical service.</div></div>
+                  <div className={styles.aiMsg}><div className={styles.aiAvatar}><Icon name="spark" /></div><div className={styles.aiBubble}>Review queue time increased this sprint. The likely bottleneck is overloaded reviewers on a critical service.</div></div>
                   <div className={styles.aiMsg}><div className={styles.aiAvatar}>i</div><div className={styles.aiBubble}>Example output only. AI features should be labeled by implementation status before launch.</div></div>
                 </div>
               </div>
@@ -161,7 +163,7 @@ export default function HomePage() {
             </SectionHeader>
             <div className={styles.grid4}>
               {roadmap.map(([stage, items]) => (
-                <div className={styles.card} key={stage as string}><div className={styles.cardTitle}>{stage}</div><ul style={{ display: "grid", gap: 10, listStyle: "none", marginTop: 14 }}>{(items as string[]).map((item) => (<li key={item} className={styles.cardDesc}>→ {item}</li>))}</ul></div>
+                <div className={styles.card} key={stage}><div className={styles.cardTitle}>{stage}</div><ul className={styles.roadmapList}>{items.map((item) => (<li key={item} className={`${styles.cardDesc} ${styles.roadmapItem}`}><Icon name="arrowRight" /> {item}</li>))}</ul></div>
               ))}
             </div>
           </div>
@@ -170,8 +172,8 @@ export default function HomePage() {
         <section id="demo-cta">
           <div className={`${styles.sectionSmall} ${styles.cta}`}>
             <h2 className={styles.sectionTitle}>Explore Metraly with synthetic data.</h2>
-            <p className={styles.sectionSub} style={{ marginLeft: "auto", marginRight: "auto" }}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
-            <Link href="/demo" className={styles.demoCtaLink}>Open synthetic demo →</Link>
+            <p className={`${styles.sectionSub} ${styles.sectionSubCentered}`}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
+            <Link href="/demo" className={styles.demoCtaLink}>Open synthetic demo <Icon name="arrowRight" /></Link>
           </div>
         </section>
       </div>
