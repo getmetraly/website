@@ -14,7 +14,6 @@ import {
   StatusPill,
 } from "@/components/ui/primitives";
 import { blogPosts } from "@/content/blog/posts";
-import styles from "@/components/marketing/marketing.module.css";
 
 const ideas = [
   [
@@ -61,6 +60,37 @@ const channels = [
   ],
 ];
 
+const heroEyebrowStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  color: "var(--cyan)",
+  fontSize: 12,
+  fontWeight: 700,
+  letterSpacing: 1,
+  marginBottom: 16,
+  textTransform: "uppercase" as const,
+};
+
+const heroPulseStyle = {
+  width: 24,
+  height: 12,
+  flex: "0 0 24px",
+  marginTop: -1,
+  background: "linear-gradient(90deg, var(--cyan), var(--purple))",
+  clipPath: "polygon(0 48%, 22% 48%, 28% 24%, 38% 82%, 48% 8%, 58% 48%, 100% 48%, 100% 62%, 54% 62%, 49% 44%, 39% 100%, 29% 56%, 25% 62%, 0 62%)",
+  filter: "drop-shadow(0 0 6px color-mix(in srgb, var(--cyan) 24%, transparent))",
+};
+
+function HeroEyebrow() {
+  return (
+    <div style={heroEyebrowStyle}>
+      <span style={heroPulseStyle} />
+      Blog · Build in public
+    </div>
+  );
+}
+
 export const metadata = {
   title: "Blog — Metraly",
   description:
@@ -74,7 +104,7 @@ export default function BlogPage() {
     <SiteShell>
       <Page>
         <Section hero center>
-          <div className={styles.badge}>Blog · Build in public</div>
+          <HeroEyebrow />
 
           <SectionHeader
             title={
