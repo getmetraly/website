@@ -9,6 +9,7 @@ import {
   DocsLayout,
   DocsNav,
   Grid,
+  Icon,
   Page,
   Section,
   SectionHeader,
@@ -85,6 +86,28 @@ const safeWording = [
   "Pro and Enterprise pricing are preview anchors until license activation works.",
 ];
 
+const pulseTextStyle = {
+  display: "grid",
+  gridTemplateColumns: "24px minmax(0, 1fr)",
+  alignItems: "center",
+  columnGap: 8,
+};
+
+const pulseIconStyle = {
+  width: 22,
+  height: 22,
+  color: "color-mix(in srgb, var(--cyan) 82%, white)",
+};
+
+function PulseCardText({ children }: { children: React.ReactNode }) {
+  return (
+    <CardText style={pulseTextStyle}>
+      <Icon name="arrowRight" style={pulseIconStyle} />
+      <span>{children}</span>
+    </CardText>
+  );
+}
+
 export const metadata = {
   title: "Documentation — Metraly",
   description:
@@ -108,7 +131,7 @@ export default function DocsPage() {
           </p>
           <div className={styles.heroActions}>
             <a href="#quick-start" className="btn-primary">
-              Start reading →
+              Start reading <Icon name="arrowRight" />
             </a>
             <Link href="/demo" className="btn-ghost btn-large">
               Try synthetic demo
@@ -149,19 +172,19 @@ export default function DocsPage() {
                   <Card>
                     <CardHeader title="Current local baseline" />
                     <Stack>
-                      <CardText>→ Start locally with <code>make up</code></CardText>
-                      <CardText>→ App preview: <code>http://localhost:3000</code></CardText>
-                      <CardText>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></CardText>
-                      <CardText>→ <code>make docker-up</code> remains a legacy compatibility alias</CardText>
+                      <PulseCardText>Start locally with <code>make up</code></PulseCardText>
+                      <PulseCardText>App preview: <code>http://localhost:3000</code></PulseCardText>
+                      <PulseCardText>Login: <code>admin@metraly.local</code> / <code>admin123</code></PulseCardText>
+                      <PulseCardText><code>make docker-up</code> remains a legacy compatibility alias</PulseCardText>
                     </Stack>
                   </Card>
 
                   <Card accent>
                     <CardHeader title="Validate locally" status="Recommended" />
                     <Stack>
-                      <CardText>→ Use <code>npm ci</code> for website dependencies.</CardText>
-                      <CardText>→ Use <code>npm run ci</code> before publishing copy or UI changes.</CardText>
-                      <CardText>→ Keep public website claims status-labeled.</CardText>
+                      <PulseCardText>Use <code>npm ci</code> for website dependencies.</PulseCardText>
+                      <PulseCardText>Use <code>npm run ci</code> before publishing copy or UI changes.</PulseCardText>
+                      <PulseCardText>Keep public website claims status-labeled.</PulseCardText>
                     </Stack>
                   </Card>
                 </Grid>
@@ -223,7 +246,7 @@ export default function DocsPage() {
                   <CardHeader title="Safe public wording" />
                   <Stack>
                     {safeWording.map((item) => (
-                      <CardText key={item}>→ {item}</CardText>
+                      <PulseCardText key={item}>{item}</PulseCardText>
                     ))}
                   </Stack>
                 </Card>
