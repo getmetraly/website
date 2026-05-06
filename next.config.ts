@@ -38,6 +38,19 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/demo-app",
+        destination: "/demo-app/index.html",
+      },
+      {
+        source: "/demo-app/",
+        destination: "/demo-app/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
