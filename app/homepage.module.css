@@ -377,7 +377,12 @@ a.card:hover {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 18px;
+}
+
+.cardHead > .cardTitle {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .cardHead > span,
