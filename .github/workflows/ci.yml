@@ -1,0 +1,76 @@
+name: Website CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-smoke:
+    name: Build and smoke test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run local preflight
+        run: npm run ci
+
+      - name: Start production server
+        run: |
+          npm start > /tmp/metraly-website.log 2>&1 &
+          echo $! > /tmp/metraly-website.pid
+
+      - name: Wait for server
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://localhost:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/metraly-website.log
+          exit 1
+
+      - name: Smoke test public routes
+        run: |
+          set -euo pipefail
+          routes=(
+            "/"
+            "/pricing"
+            "/docs"
+            "/demo"
+            "/ai"
+            "/trust"
+            "/privacy"
+            "/terms"
+            "/demo-app"
+            "/demo-app/"
+          )
+
+          for route in "${routes[@]}"; do
+            echo "Checking ${route}"
+            curl -fsS "http://localhost:3000${route}" >/dev/null
+          done
+
+      - name: Show server logs on failure
+        if: failure()
+        run: cat /tmp/metraly-website.log || true
+
+      - name: Stop production server
+        if: always()
+        run: |
+          if [ -f /tmp/metraly-website.pid ]; then
+            kill "$(cat /tmp/metraly-website.pid)" || true
+          fi
