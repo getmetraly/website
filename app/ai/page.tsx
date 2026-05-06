@@ -133,7 +133,7 @@ export default function AIPage() {
           </div>
         </section>
 
-        <section className={`${styles.sectionSmall} ${styles.center}`}>
+        <section className={`${styles.sectionSmall} ${styles.center} ${styles.finalCta}`}>
           <h2 className={styles.title}>AI is coming after the foundation is real.</h2>
           <p className={styles.sub}>
             Follow the build-in-public roadmap from synthetic dashboards to real integrations and validated insights.
