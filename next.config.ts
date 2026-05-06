@@ -1,5 +1,6 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+import { remarkCodeBlocks } from "./mdx/remark-code-blocks.mjs";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -54,6 +55,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkCodeBlocks],
+  },
+});
 
 export default withMDX(nextConfig);
