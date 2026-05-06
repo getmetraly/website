@@ -33,7 +33,32 @@ The `npm run build` command:
 - Compiles TypeScript
 - Bundles all pages and components
 - Generates static optimization where possible
-- Does **not** require backend services, secrets, or the `../app` repository
+- Does **not** require backend services, secrets, or the `../metraly` app repository
+
+## App Preview Baseline
+
+The website is a static/public marketing and documentation surface. The current canonical local app preview lives in `getmetraly/metraly`:
+
+```bash
+git clone https://github.com/getmetraly/metraly.git
+cd metraly
+make up
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+Preview login:
+
+```text
+Email: admin@metraly.local
+Password: admin123
+```
+
+`make docker-up` may remain available as a legacy compatibility alias, but public docs and website copy should prefer `make up`.
 
 ## Deployment to Vercel
 
@@ -70,33 +95,33 @@ vercel --prod
 
 ```
 app/
-  layout.tsx        # Root layout with navigation/footer
-  page.tsx          # Home page (/)
-  pricing/page.tsx   # Pricing page (/pricing)
-  docs/page.tsx      # Documentation page (/docs)
-  demo/page.tsx      # Demo preview page (/demo)
-  privacy/page.tsx   # Privacy policy (/privacy)
-  terms/page.tsx     # Terms of service (/terms)
-  globals.css        # Global styles
-components/         # Reusable React components
-next.config.ts      # Next.js configuration with redirects
+  layout.tsx          # Root layout with navigation/footer
+  page.tsx            # Home page (/)
+  pricing/page.tsx    # Pricing page (/pricing)
+  docs/page.tsx       # Documentation page (/docs)
+  demo/page.tsx       # Demo preview page (/demo)
+  privacy/page.tsx    # Privacy policy (/privacy)
+  terms/page.tsx      # Terms of service (/terms)
+  globals.css         # Global styles
+components/           # Reusable React components
+next.config.ts        # Next.js configuration with redirects
 ```
 
 ## Scripts
 
-| Script        | Description                        |
-|---------------|------------------------------------|
-| `npm run dev` | Start development server           |
-| `npm run build` | Create production build          |
-| `npm start`   | Start production server            |
-| `npm run lint` | Run Next.js linter                |
+| Script | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm start` | Start production server |
+| `npm run lint` | Run Next.js linter |
 
 ## License
 
-This website source code is available under the AGPLv3 license. See `../docs` for full licensing details.
+This website source code is available under the AGPLv3 license. See `getmetraly/docs` for full licensing details.
 
 ## Canonical Sources
 
-- Product truth: [`../docs`](https://github.com/metraly/docs)
-- App/demo source: [`../app`](https://github.com/metraly/app)
-- Website repo: this repository
+- Product/docs truth: [`getmetraly/docs`](https://github.com/getmetraly/docs)
+- App/demo implementation truth: [`getmetraly/metraly`](https://github.com/getmetraly/metraly)
+- Website implementation: this repository
