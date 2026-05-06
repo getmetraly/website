@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
-import styles from "@/components/marketing/marketing.module.css";
+import heroStyles from "@/components/marketing/marketing.module.css";
+import {
+  CardHeader,
+  CardLink,
+  CardText,
+  Grid,
+  Page,
+  Section,
+  SectionHeader,
+} from "@/components/ui/primitives";
 
 const roleCards = [
   {
@@ -71,25 +80,25 @@ export const metadata = {
 export default function DemoPage() {
   return (
     <SiteShell>
-      <main className={styles.page}>
-        <section className={styles.hero}>
-          <div className={styles.heroGlow} />
+      <Page>
+        <section className={heroStyles.hero}>
+          <div className={heroStyles.heroGlow} />
 
-          <div className={styles.badge}>
+          <div className={heroStyles.badge}>
             SYNTHETIC DEMO · No real company data
           </div>
 
-          <h1 className={styles.heroTitle}>
+          <h1 className={heroStyles.heroTitle}>
             Explore the Metraly
             <br />
-            <span className={styles.gradientText}>engineering sandbox.</span>
+            <span className={heroStyles.gradientText}>engineering sandbox.</span>
           </h1>
 
-          <p className={styles.heroSub}>
+          <p className={heroStyles.heroSub}>
             Role-based dashboards and preview engineering insights built on synthetic data. No login, credentials, or real company data required.
           </p>
 
-          <div className={styles.heroActions}>
+          <div className={heroStyles.heroActions}>
             <a href="/demo-app/" className="btn-primary">
               Open sandbox →
             </a>
@@ -99,71 +108,53 @@ export default function DemoPage() {
           </div>
         </section>
 
-        <section className={styles.surface}>
-          <div className={styles.section}>
-            <div className={styles.eyebrow}>Role dashboards</div>
-            <h2 className={styles.title}>Explore engineering perspectives.</h2>
-            <p className={styles.sub}>
-              Each dashboard is built on synthetic engineering data to demonstrate how different roles could interact with Metraly.
-            </p>
+        <Section tone="surface">
+          <SectionHeader
+            eyebrow="Role dashboards"
+            title="Explore engineering perspectives."
+            description="Each dashboard is built on synthetic engineering data to demonstrate how different roles could interact with Metraly."
+          />
 
-            <div className={styles.grid3}>
-              {roleCards.map((card) => (
-                <a
-                  key={card.title}
-                  href={card.href}
-                  className={styles.card}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <div className={styles.cardHead}>
-                    <h3 className={styles.cardTitle}>{card.title}</h3>
-                    <span className={styles.status}>Demo</span>
-                  </div>
-                  <p className={styles.cardDesc}>{card.desc}</p>
-                </a>
-              ))}
-            </div>
+          <Grid columns={3}>
+            {roleCards.map((card) => (
+              <CardLink key={card.title} href={card.href}>
+                <CardHeader title={card.title} status="Demo" />
+                <CardText>{card.desc}</CardText>
+              </CardLink>
+            ))}
+          </Grid>
+        </Section>
+
+        <Section>
+          <SectionHeader
+            eyebrow="Advanced areas"
+            title="Beyond dashboards."
+            description="Explore additional synthetic product areas including metrics, AI workflows, plugins, and connector setup experiences."
+          />
+
+          <Grid columns={4}>
+            {advancedAreas.map((item) => (
+              <CardLink key={item.title} href={item.href} accent>
+                <CardHeader title={item.title} status={item.status} />
+                <CardText>{item.desc}</CardText>
+              </CardLink>
+            ))}
+          </Grid>
+        </Section>
+
+        <Section width="small" center>
+          <SectionHeader
+            title="Synthetic demo environment."
+            description="This environment uses mock engineering data and preview functionality to demonstrate product direction before live integrations are connected. Do not enter real credentials, source tokens, repository names, customer data, secrets, or personal information."
+          />
+
+          <div>
+            <a href="/demo-app/" className="btn-primary">
+              Launch sandbox →
+            </a>
           </div>
-        </section>
-
-        <section>
-          <div className={styles.section}>
-            <div className={styles.eyebrow}>Advanced areas</div>
-            <h2 className={styles.title}>Beyond dashboards.</h2>
-            <p className={styles.sub}>
-              Explore additional synthetic product areas including metrics, AI workflows, plugins, and connector setup experiences.
-            </p>
-
-            <div className={styles.grid4}>
-              {advancedAreas.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  className={styles.card}
-                  style={{ textDecoration: "none", color: "inherit", minHeight: 210 }}
-                >
-                  <div className={styles.cardHead}>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                    <span className={styles.status}>{item.status}</span>
-                  </div>
-
-                  <p className={styles.cardDesc}>{item.desc}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.sectionSmall} ${styles.center}`}>
-          <h2 className={styles.title}>Synthetic demo environment.</h2>
-          <p className={styles.sub}>
-            This environment uses mock engineering data and preview functionality to demonstrate product direction before live integrations are connected. Do not enter real credentials, source tokens, repository names, customer data, secrets, or personal information.
-          </p>
-          <a href="/demo-app/" className="btn-primary">
-            Launch sandbox →
-          </a>
-        </section>
-      </main>
+        </Section>
+      </Page>
     </SiteShell>
   );
 }
