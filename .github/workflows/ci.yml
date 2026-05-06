@@ -44,25 +44,7 @@ jobs:
           exit 1
 
       - name: Smoke test public routes
-        run: |
-          set -euo pipefail
-          routes=(
-            "/"
-            "/pricing"
-            "/docs"
-            "/demo"
-            "/ai"
-            "/trust"
-            "/privacy"
-            "/terms"
-            "/demo-app"
-            "/demo-app/"
-          )
-
-          for route in "${routes[@]}"; do
-            echo "Checking ${route}"
-            curl -fsS "http://localhost:3000${route}" >/dev/null
-          done
+        run: npm run smoke:routes
 
       - name: Show server logs on failure
         if: failure()
