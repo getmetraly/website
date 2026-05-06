@@ -259,6 +259,27 @@
   margin-left: 8px;
 }
 
+.tags,
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.card :global(.tag),
+.card :global(.badge),
+.card :global(.chip) {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.card :global(.tag):last-child,
+.card :global(.badge):last-child,
+.card :global(.chip):last-child {
+  margin-right: 0;
+}
+
 @media (max-width: 700px) {
   .hero {
     padding: 110px 20px 70px;
