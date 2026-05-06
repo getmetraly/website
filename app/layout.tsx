@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -40,46 +39,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <Script
-        id="metraly-theme-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-(function() {
-  var STORAGE_KEY = 'metraly-theme';
-
-  function getPreferred() {
-    try {
-      var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === 'light' || stored === 'dark') return stored;
-    } catch (e) {}
-
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-
-  function apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch (e) {}
-  }
-
-  apply(getPreferred());
-
-  window.MetralyTheme = {
-    apply: apply,
-    toggle: function() {
-      var current = document.documentElement.getAttribute('data-theme') || 'dark';
-      apply(current === 'dark' ? 'light' : 'dark');
-    },
-    get: function() {
-      return document.documentElement.getAttribute('data-theme') || 'dark';
-    }
-  };
-})();
-          `,
-        }}
-      />
       <body>{children}</body>
     </html>
   );

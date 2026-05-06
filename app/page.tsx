@@ -43,7 +43,7 @@ export default function HomePage() {
           <p className={styles.heroSub}>Understand delivery flow, bottlenecks, and engineering health without making another SaaS your default data boundary — starting with real UI, synthetic data, and status-labeled roadmap capabilities.</p>
 
           <div className={styles.heroActions}>
-            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic Demo <Icon name="arrowRight" /></Link>
+            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo <span aria-hidden="true">→</span></Link>
             <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
             <Link href="/pricing" className="btn-ghost btn-large">View pricing preview</Link>
           </div>
@@ -175,7 +175,7 @@ export default function HomePage() {
           <div className={`${styles.sectionSmall} ${styles.cta}`}>
             <h2 className={styles.sectionTitle}>Explore Metraly with synthetic data.</h2>
             <p className={styles.sectionSub} style={{ marginLeft: "auto", marginRight: "auto" }}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
-            <Link href="/demo" className={styles.demoCtaLink}>Open Demo <Icon name="arrowRight" /></Link>
+            <Link href="/demo" className={styles.demoCtaLink}>Open demo <span aria-hidden="true">→</span></Link>
           </div>
         </section>
       </div>
