@@ -61,8 +61,8 @@ export function Page({ children, className, ...props }: HTMLAttributes<HTMLEleme
   return <main className={cx(styles.page, className)} {...props}>{children}</main>;
 }
 
-export function Section({ children, className, tone = "default", width = "default", center = false, split = false, ...props }: HTMLAttributes<HTMLElement> & { tone?: Tone; width?: Width; center?: boolean; split?: boolean }) {
-  const body = <div className={cx(width === "small" ? styles.sectionSmall : styles.section, center && styles.center, split && styles.split, className)}>{children}</div>;
+export function Section({ children, className, tone = "default", width = "default", center = false, split = false, hero = false, ...props }: HTMLAttributes<HTMLElement> & { tone?: Tone; width?: Width; center?: boolean; split?: boolean; hero?: boolean }) {
+  const body = <div className={cx(hero ? styles.heroSection : width === "small" ? styles.sectionSmall : styles.section, center && styles.center, split && styles.split, className)}>{children}</div>;
   return <section className={tone === "surface" ? styles.surface : undefined} {...props}>{body}</section>;
 }
 
@@ -87,8 +87,8 @@ export function Card({ children, className, accent = false, ...props }: HTMLAttr
   return <div className={cx(styles.card, accent && styles.cardAccent, className)} {...props}>{children}</div>;
 }
 
-export function CardLink({ children, className, accent = false, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { accent?: boolean }) {
-  return <a className={cx(styles.card, styles.cardLink, accent && styles.cardAccent, className)} {...props}>{children}</a>;
+export function CardLink({ children, className, accent = false, featured = false, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { accent?: boolean; featured?: boolean }) {
+  return <a className={cx(styles.card, styles.cardLink, accent && styles.cardAccent, featured && styles.cardFeatured, className)} {...props}>{children}</a>;
 }
 
 export function CardHeader({ title, status, className }: { title: ReactNode; status?: ReactNode; className?: string }) {
