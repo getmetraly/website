@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
+import { Icon } from "@/components/ui/primitives";
 import styles from "@/components/marketing/marketing.module.css";
 
 const plans = [
@@ -9,7 +10,7 @@ const plans = [
     price: "$0",
     note: "Self-hosted · AGPLv3 core",
     desc: "For evaluation, OSS projects, small teams, and privacy-first buyers who want to inspect the platform before paid modules exist.",
-    cta: "Get the source →",
+    cta: "Get the source",
     href: "https://github.com/getmetraly/metraly",
     featured: false,
     features: [
@@ -30,7 +31,7 @@ const plans = [
     price: "$99/mo",
     note: "Includes 10 active users · +$15/dev/mo above 10",
     desc: "For growing teams that want self-hosted engineering intelligence with more scale, longer history, private AI direction, plugins, alerts, and exports.",
-    cta: "Join Pro waitlist →",
+    cta: "Join Pro waitlist",
     href: "mailto:hello@metraly.io?subject=Metraly%20Pro%20waitlist",
     featured: true,
     features: [
@@ -51,7 +52,7 @@ const plans = [
     price: "From $15K/yr",
     note: "Includes 50 active users · +$120/dev/year above 50",
     desc: "For regulated or larger organizations that need procurement fit, deployment guidance, custom agreements, and support for sensitive engineering data.",
-    cta: "Discuss Enterprise →",
+    cta: "Discuss Enterprise",
     href: "mailto:enterprise@metraly.io?subject=Metraly%20Enterprise",
     featured: false,
     features: [
@@ -99,7 +100,7 @@ export default function PricingPage() {
           </p>
           <div className={styles.heroActions}>
             <a href="https://github.com/getmetraly/metraly" className="btn-primary" target="_blank" rel="noreferrer">
-              Get Community →
+              Get Community <Icon name="arrowRight" />
             </a>
             <Link href="/demo" className="btn-ghost btn-large">
               Try synthetic demo
@@ -137,7 +138,7 @@ export default function PricingPage() {
                   <p className={styles.cardDesc} style={{ marginBottom: 22 }}>{plan.desc}</p>
                   <ul style={{ display: "grid", gap: 10, listStyle: "none", marginBottom: 24 }}>
                     {plan.features.map((feature) => (
-                      <li key={feature} className={styles.cardDesc}>→ {feature}</li>
+                      <li key={feature} className={styles.cardDesc}><Icon name="arrowRight" /> {feature}</li>
                     ))}
                   </ul>
                   <div style={{ marginTop: "auto", paddingTop: 8 }}>
@@ -147,7 +148,7 @@ export default function PricingPage() {
                       target={plan.href.startsWith("http") ? "_blank" : undefined}
                       rel={plan.href.startsWith("http") ? "noreferrer" : undefined}
                     >
-                      {plan.cta}
+                      {plan.cta} <Icon name="arrowRight" />
                     </a>
                   </div>
                 </div>
