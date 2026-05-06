@@ -5,13 +5,13 @@ The public website for Metraly: a privacy-first, self-hosted Engineering Intelli
 ## Prerequisites
 
 - Node.js 18.x or later
-- npm 9.x or later (or pnpm/yarn equivalent)
+- npm 9.x or later
 
 ## Local Development
 
 ```bash
-# Install dependencies
-npm install
+# Install dependencies from the lockfile
+npm ci
 
 # Start development server with hot reload
 npm run dev
@@ -19,13 +19,35 @@ npm run dev
 
 The development server will be available at [http://localhost:3000](http://localhost:3000).
 
-## Build
+## Build and Preflight
+
+Run the full local preflight before opening a PR or deploying changes:
 
 ```bash
+npm run ci
+```
+
+The `npm run ci` command runs:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+For individual checks:
+
+```bash
+# Check website copy for forbidden product claims
+npm run lint
+
+# Run TypeScript without emitting files
+npm run typecheck
+
 # Create production build
 npm run build
 
-# Start production server (after build)
+# Start production server after build
 npm start
 ```
 
@@ -112,9 +134,11 @@ next.config.ts        # Next.js configuration with redirects
 | Script | Description |
 |---|---|
 | `npm run dev` | Start development server |
+| `npm run lint` | Check website copy for forbidden product claims |
+| `npm run typecheck` | Run TypeScript without emitting files |
 | `npm run build` | Create production build |
-| `npm start` | Start production server |
-| `npm run lint` | Run Next.js linter |
+| `npm start` | Start production server after build |
+| `npm run ci` | Run claims lint, TypeScript check, and production build |
 
 ## License
 
