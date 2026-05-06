@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import {
+  ButtonLink,
   Card,
   CardHeader,
   CardText,
@@ -8,6 +9,7 @@ import {
   Grid,
   Note,
   Prose,
+  Stack,
 } from "@/components/ui/primitives";
 
 export const metadata = {
@@ -53,7 +55,7 @@ export default function TrustPage() {
   return (
     <SiteShell>
       <ContentPage>
-        <Prose>
+        <Prose className="content-hero-centered">
           <div className="page-label">Trust · Self-hosted by design · Claim-safe roadmap</div>
           <h1>Trust starts with keeping engineering data under your control.</h1>
           <p>
@@ -62,11 +64,15 @@ export default function TrustPage() {
             the default boundary for repository, CI/CD, project and team signals.
           </p>
 
-          <div className="hero-actions">
-            <Link href="/privacy" className="btn-primary btn-large">Read the privacy policy</Link>
-            <Link href="/demo" className="btn-ghost btn-large">Explore the synthetic demo</Link>
-          </div>
+          <Stack>
+            <div>
+              <ButtonLink href="/privacy">Read the privacy policy</ButtonLink>
+              <ButtonLink href="/demo" variant="ghost">Explore the synthetic demo</ButtonLink>
+            </div>
+          </Stack>
+        </Prose>
 
+        <Prose>
           <h2>Trust principles</h2>
         </Prose>
 
