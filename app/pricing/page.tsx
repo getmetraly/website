@@ -83,6 +83,27 @@ export const metadata = {
     "Claim-safe pricing preview for Metraly Community, Pro, and Enterprise editions.",
 };
 
+const featureListStyle = {
+  display: "grid",
+  gap: 10,
+  listStyle: "none",
+  margin: "0 0 24px",
+  padding: 0,
+};
+
+const featureItemStyle = {
+  display: "grid",
+  gridTemplateColumns: "24px minmax(0, 1fr)",
+  alignItems: "center",
+  columnGap: 8,
+};
+
+const featureIconStyle = {
+  width: 22,
+  height: 22,
+  color: "color-mix(in srgb, var(--cyan) 82%, white)",
+};
+
 export default function PricingPage() {
   return (
     <SiteShell>
@@ -136,9 +157,12 @@ export default function PricingPage() {
                   </div>
                   <div className={styles.note} style={{ marginBottom: 18 }}>{plan.note}</div>
                   <p className={styles.cardDesc} style={{ marginBottom: 22 }}>{plan.desc}</p>
-                  <ul style={{ display: "grid", gap: 10, listStyle: "none", marginBottom: 24 }}>
+                  <ul style={featureListStyle}>
                     {plan.features.map((feature) => (
-                      <li key={feature} className={styles.cardDesc}><Icon name="arrowRight" /> {feature}</li>
+                      <li key={feature} className={styles.cardDesc} style={featureItemStyle}>
+                        <Icon name="arrowRight" style={featureIconStyle} />
+                        <span>{feature}</span>
+                      </li>
                     ))}
                   </ul>
                   <div style={{ marginTop: "auto", paddingTop: 8 }}>
