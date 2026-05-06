@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink, Icon } from "@/components/ui/primitives";
 
 export const metadata = {
   title: "Quick Start — Metraly Docs",
@@ -15,8 +15,8 @@ export default function QuickStartDocsPage() {
         <h1 className={styles.heroTitle}>Start with the<br /><span className={styles.gradientText}>synthetic sandbox.</span></h1>
         <p className={styles.heroSub}>Explore the product direction with synthetic data before connecting real repositories, CI/CD systems, or team workflows.</p>
         <div className={styles.heroActions}>
-          <Link href="/demo" className="btn-primary">Open demo →</Link>
-          <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+          <ButtonLink href="/demo">Open demo <Icon name="arrowRight" /></ButtonLink>
+          <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
         </div>
       </section>
 

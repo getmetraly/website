@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const aiAreas = [
   "Synthetic insight generation",
@@ -26,8 +26,8 @@ export default function AiDocsPage() {
           <h1 className={styles.heroTitle}>AI for engineering.<br /><span className={styles.gradientText}>Without losing control.</span></h1>
           <p className={styles.heroSub}>Metraly explores AI-assisted engineering visibility with synthetic examples and conservative public wording while implementation evolves.</p>
           <div className={styles.heroActions}>
-            <Link href="/ai" className="btn-primary">Open AI page</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/ai">Open AI page</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

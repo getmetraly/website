@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const roles = [
   "CTO",
@@ -25,8 +25,8 @@ export default function DemoDocsPage() {
           <h1 className={styles.heroTitle}>Real UI direction.<br /><span className={styles.gradientText}>Synthetic engineering data.</span></h1>
           <p className={styles.heroSub}>The public sandbox demonstrates product direction, role dashboards, and workflow ideas without requiring real repositories or CI/CD credentials.</p>
           <div className={styles.heroActions}>
-            <Link href="/demo" className="btn-primary">Open sandbox</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/demo">Open sandbox</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

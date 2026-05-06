@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const statusItems = [
   ["Role dashboards", "Preview", "Synthetic role dashboards and product UI are visible publicly."],
@@ -26,8 +26,8 @@ export default function ProductStatusDocsPage() {
           <h1 className={styles.heroTitle}>What exists.<br /><span className={styles.gradientText}>What is next.</span></h1>
           <p className={styles.heroSub}>Metraly uses public status markers so the website can show product direction without overclaiming implementation maturity.</p>
           <div className={styles.heroActions}>
-            <Link href="/pricing" className="btn-primary">View pricing</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/pricing">View pricing</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

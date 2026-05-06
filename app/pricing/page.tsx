@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
-import { Icon } from "@/components/ui/primitives";
+import { ButtonLink, Icon } from "@/components/ui/primitives";
 import styles from "@/components/marketing/marketing.module.css";
 
 const plans = [
@@ -120,12 +119,12 @@ export default function PricingPage() {
             Community is the free self-hosted core. Pro and Enterprise pricing are public anchors for paid pilots and future signed-license activation, not a self-service checkout launch.
           </p>
           <div className={styles.heroActions}>
-            <a href="https://github.com/getmetraly/metraly" className="btn-primary" target="_blank" rel="noreferrer">
+            <ButtonLink href="https://github.com/getmetraly/metraly" external>
               Get Community <Icon name="arrowRight" />
-            </a>
-            <Link href="/demo" className="btn-ghost btn-large">
+            </ButtonLink>
+            <ButtonLink href="/demo" variant="ghost">
               Try synthetic demo
-            </Link>
+            </ButtonLink>
           </div>
         </section>
 
@@ -166,14 +165,9 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   <div style={{ marginTop: "auto", paddingTop: 8 }}>
-                    <a
-                      href={plan.href}
-                      className={plan.featured ? "btn-primary" : "btn-ghost btn-large"}
-                      target={plan.href.startsWith("http") ? "_blank" : undefined}
-                      rel={plan.href.startsWith("http") ? "noreferrer" : undefined}
-                    >
+                    <ButtonLink href={plan.href} variant={plan.featured ? "primary" : "ghost"} external={plan.href.startsWith("http")}>
                       {plan.cta} <Icon name="arrowRight" />
-                    </a>
+                    </ButtonLink>
                   </div>
                 </div>
               ))}
@@ -190,7 +184,7 @@ export default function PricingPage() {
                 Billing decides whether a customer paid. The self-hosted app needs a signed license to unlock paid entitlements locally.
               </p>
             </div>
-            <div className={`${styles.card} ${styles.cardAccent}`}>
+            <div className={`${styles.card} ${styles.cardAccent}`} style={{ paddingRight: 40 }}>
               <h3 className={styles.cardTitle} style={{ marginBottom: 16 }}>Pro is not GA until this works end-to-end</h3>
               <div style={{ display: "grid", gap: 12 }}>
                 {lifecycle.map((item, index) => (

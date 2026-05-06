@@ -214,29 +214,6 @@
   line-height: 1.5;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 16px;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 24px;
-  height: 12px;
-  flex: 0 0 24px;
-  margin-top: -1px;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
-  clip-path: polygon(0 48%, 22% 48%, 28% 24%, 38% 82%, 48% 8%, 58% 48%, 100% 48%, 100% 62%, 54% 62%, 49% 44%, 39% 100%, 29% 56%, 25% 62%, 0 62%);
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--cyan) 24%, transparent));
-}
-
 .sectionTitle {
   font-size: clamp(30px, 4vw, 48px);
   font-weight: 800;
@@ -258,15 +235,6 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 24px;
-}
-
-.center {
-  text-align: center;
-}
-
-.center .sectionSub {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .finalCta {
@@ -547,7 +515,6 @@ a.card:hover {
 
 .demoCtaLink:hover,
 .heroPrimaryCta:hover {
-  transform: translateY(-1px);
   box-shadow: 0 14px 36px rgba(99, 102, 241, 0.38);
 }
 

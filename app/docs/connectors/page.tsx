@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const connectorAreas = [
   "Git repositories",
@@ -26,8 +26,8 @@ export default function ConnectorsDocsPage() {
           <h1 className={styles.heroTitle}>Engineering signals.<br /><span className={styles.gradientText}>Connected responsibly.</span></h1>
           <p className={styles.heroSub}>Connectors are the next major milestone after dashboard rendering and editor work. Public docs intentionally describe direction without claiming shipped integrations.</p>
           <div className={styles.heroActions}>
-            <Link href="/docs/product-status" className="btn-primary">View status</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/docs/product-status">View status</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

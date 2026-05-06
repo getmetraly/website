@@ -1,4 +1,4 @@
-/* Shell polish layer: nav, footer, CTA, theme, icon and skeleton systems. */
+/* Shell polish layer: nav, CTA, theme, icon and skeleton systems. */
 
 :root {
   --shadow-soft: 0 14px 44px rgba(0, 0, 0, 0.16);
@@ -28,12 +28,40 @@
 }
 
 .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
   height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
   background:
     linear-gradient(180deg, var(--nav-bg), color-mix(in srgb, var(--nav-bg) 86%, transparent));
   backdrop-filter: blur(22px) saturate(1.18);
   -webkit-backdrop-filter: blur(22px) saturate(1.18);
   box-shadow: 0 1px 0 var(--border), 0 14px 48px rgba(0, 0, 0, 0.08);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  margin-right: auto;
 }
 
 .nav-logo {
@@ -48,16 +76,124 @@
   box-shadow: 0 8px 28px color-mix(in srgb, var(--purple) 28%, transparent);
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin-right: 20px;
+}
+
 .nav-links a,
 .mobile-nav a {
   position: relative;
 }
 
+.nav-links a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+
+.nav-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--purple);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  line-height: 1;
+  display: block;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: block;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-bright);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  width: 16px;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  transition: all 0.2s;
+  display: block;
+}
+
 .nav-links a[aria-current="page"],
 .mobile-nav a[aria-current="page"] {
   color: var(--text-primary);
-  background: color-mix(in srgb, var(--purple) 12%, transparent);
-  border-color: color-mix(in srgb, var(--purple) 18%, transparent);
 }
 
 .nav-links a[aria-current="page"]::after {
@@ -69,6 +205,11 @@
   height: 2px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--cyan), var(--purple));
+}
+
+.mobile-nav a[aria-current="page"] {
+  background: color-mix(in srgb, var(--purple) 12%, transparent);
+  border-color: color-mix(in srgb, var(--purple) 18%, transparent);
 }
 
 .nav-github .icon,
@@ -85,27 +226,50 @@
 }
 
 .btn-primary,
+.btn-ghost {
+  padding: 7px 16px;
+  font-family: var(--font-sans);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-primary,
 .btn-ghost,
 .heroPrimaryCta,
 .demoCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   min-height: var(--button-h);
   justify-content: center;
   white-space: nowrap;
   border-radius: var(--button-radius);
   line-height: 1;
   transition:
-    transform var(--motion-fast),
     box-shadow var(--motion-med),
     background var(--motion-fast),
     border-color var(--motion-fast),
     color var(--motion-fast);
-  will-change: transform;
 }
 
 .btn-primary,
 .heroPrimaryCta,
 .demoCtaLink {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #fff;
   border: 1px solid color-mix(in srgb, white 12%, transparent);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-ghost {
+  border: 1px solid var(--border-bright);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-large {
+  padding-inline: 18px;
 }
 
 .btn-primary svg,
@@ -121,22 +285,25 @@
 .btn-ghost:hover,
 .heroPrimaryCta:hover,
 .demoCtaLink:hover {
-  transform: translateY(-1px);
-}
-
-.btn-primary:active,
-.btn-ghost:active,
-.heroPrimaryCta:active,
-.demoCtaLink:active {
-  transform: translateY(0);
 }
 
 .btn-ghost:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface);
   border-color: color-mix(in srgb, var(--cyan) 24%, var(--border-bright));
 }
 
 .mobile-nav {
+  position: fixed;
   top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 150;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   background:
     radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--purple) 12%, transparent), transparent 24rem),
     color-mix(in srgb, var(--bg-base) 96%, transparent);
@@ -152,6 +319,30 @@
   transform: translate3d(0, 0, 0);
   opacity: 1;
   pointer-events: auto;
+}
+
+.mobile-nav a {
+  padding: 14px 16px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  display: block;
+}
+
+.mobile-nav a:hover {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+.mobile-nav-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
 }
 
 .mobile-nav .btn-primary,

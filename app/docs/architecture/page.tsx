@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const layers = [
   ["Website", "Public positioning, pricing preview, documentation, AI direction, and demo gateway."],
@@ -26,8 +26,8 @@ export default function ArchitectureDocsPage() {
           <h1 className={styles.heroTitle}>Self-hosted core.<br /><span className={styles.gradientText}>Public proof surfaces.</span></h1>
           <p className={styles.heroSub}>A public architecture map for how the website, demo sandbox, self-hosted app, connectors, licensing, and AI direction relate.</p>
           <div className={styles.heroActions}>
-            <Link href="/docs/self-hosting" className="btn-primary">Self-hosting docs</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/docs/self-hosting">Self-hosting docs</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

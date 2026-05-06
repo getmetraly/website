@@ -1,4 +1,4 @@
-import type { MDXComponents } from "mdx/types";
+import type { ComponentPropsWithoutRef, ComponentType, ReactNode } from "react";
 import {
   ArchitectureDiagram,
   Callout,
@@ -10,19 +10,21 @@ import {
 } from "@/components/mdx/mdx-components";
 import { Prose } from "@/components/ui/primitives";
 
+type MDXComponents = Record<string, ComponentType<any> | string>;
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    wrapper: ({ children }) => <Prose>{children}</Prose>,
-    h1: (props) => <h1 {...props} />,
-    h2: (props) => <h2 {...props} />,
-    h3: (props) => <h3 {...props} />,
-    p: (props) => <p {...props} />,
-    ul: (props) => <ul {...props} />,
-    ol: (props) => <ol {...props} />,
-    li: (props) => <li {...props} />,
-    blockquote: (props) => <blockquote {...props} />,
-    code: (props) => <code {...props} />,
-    pre: (props) => <pre {...props} />,
+    wrapper: ({ children }: { children?: ReactNode }) => <Prose>{children}</Prose>,
+    h1: (props: ComponentPropsWithoutRef<"h1">) => <h1 {...props} />,
+    h2: (props: ComponentPropsWithoutRef<"h2">) => <h2 {...props} />,
+    h3: (props: ComponentPropsWithoutRef<"h3">) => <h3 {...props} />,
+    p: (props: ComponentPropsWithoutRef<"p">) => <p {...props} />,
+    ul: (props: ComponentPropsWithoutRef<"ul">) => <ul {...props} />,
+    ol: (props: ComponentPropsWithoutRef<"ol">) => <ol {...props} />,
+    li: (props: ComponentPropsWithoutRef<"li">) => <li {...props} />,
+    blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => <blockquote {...props} />,
+    code: (props: ComponentPropsWithoutRef<"code">) => <code {...props} />,
+    pre: (props: ComponentPropsWithoutRef<"pre">) => <pre {...props} />,
     Callout,
     ArchitectureDiagram,
     Tabs,

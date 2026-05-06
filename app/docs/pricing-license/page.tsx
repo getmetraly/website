@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const steps = [
   "Payment or contract",
@@ -25,8 +25,8 @@ export default function PricingLicenseDocsPage() {
           <h1 className={styles.heroTitle}>Pricing is public.<br /><span className={styles.gradientText}>Activation is phased.</span></h1>
           <p className={styles.heroSub}>Community is free. Pro and Enterprise pricing are public anchors while paid licensing moves through signed-license pilots and implementation proof.</p>
           <div className={styles.heroActions}>
-            <Link href="/pricing" className="btn-primary">View pricing</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/pricing">View pricing</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

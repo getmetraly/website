@@ -1,8 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
 import { SiteShell } from "@/components/site-shell";
-import { StatusTag } from "@/components/status-tag";
-import { Icon } from "@/components/ui/primitives";
+import { ButtonLink, Icon, SectionHeader, StatusPill } from "@/components/ui/primitives";
 import styles from "./homepage.module.css";
 
 const features = [
@@ -21,16 +19,6 @@ const roadmap = [
   ["Future direction", "Enterprise and AI expansion", ["Private AI insights", "Plugin ecosystem", "Enterprise deployment patterns"]],
 ] as const;
 
-function SectionHeader({ eyebrow, title, children, center = false }: { eyebrow: string; title: string; children: React.ReactNode; center?: boolean }) {
-  return (
-    <div className={center ? styles.center : undefined}>
-      <div className={styles.eyebrow}>{eyebrow}</div>
-      <h2 className={styles.sectionTitle}>{title}</h2>
-      <p className={styles.sectionSub}>{children}</p>
-    </div>
-  );
-}
-
 export default function HomePage() {
   return (
     <SiteShell>
@@ -45,9 +33,9 @@ export default function HomePage() {
           <p className={styles.heroSub}>Understand delivery flow, bottlenecks, and engineering health without making another SaaS your default data boundary — starting with real UI, synthetic data, and status-labeled roadmap capabilities.</p>
 
           <div className={styles.heroActions}>
-            <Link href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo <Icon name="arrowRight" /></Link>
-            <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
-            <Link href="/pricing" className="btn-ghost btn-large">View pricing preview</Link>
+            <ButtonLink href="/demo" className={styles.heroPrimaryCta}>Try synthetic demo <Icon name="arrowRight" /></ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Read docs</ButtonLink>
+            <ButtonLink href="/pricing" variant="ghost">View pricing preview</ButtonLink>
           </div>
 
           <div className={styles.heroStats}>
@@ -68,22 +56,26 @@ export default function HomePage() {
 
         <section className={styles.surface}>
           <div className={styles.sectionSmall}>
-            <SectionHeader eyebrow="Build in public" title="Metraly is being built in the open.">
-              The interface you see is real. Dashboards are actively being developed. Data integrations and real-world workflows are the next step.
-            </SectionHeader>
+            <SectionHeader
+              eyebrow="Build in public"
+              title="Metraly is being built in the open."
+              description="The interface you see is real. Dashboards are actively being developed. Data integrations and real-world workflows are the next step."
+            />
           </div>
         </section>
 
         <section id="features">
           <div className={styles.section}>
-            <SectionHeader eyebrow="Product" title="Understand how engineering actually delivers.">
-              A focused engineering intelligence surface for delivery health, bottlenecks, dashboards, and privacy-first AI direction.
-            </SectionHeader>
+            <SectionHeader
+              eyebrow="Product"
+              title="Understand how engineering actually delivers."
+              description="A focused engineering intelligence surface for delivery health, bottlenecks, dashboards, and privacy-first AI direction."
+            />
             <div className={styles.grid3}>
               {features.map(([icon, title, desc, status, color]) => (
                 <div className={styles.card} key={title}>
                   <div className={`${styles.icon} ${styles[color]}`} aria-hidden="true"><Icon name={icon} /></div>
-                  <div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusTag>{status}</StatusTag></div>
+                  <div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusPill>{status}</StatusPill></div>
                   <div className={styles.cardDesc}>{desc}</div>
                 </div>
               ))}
@@ -95,16 +87,18 @@ export default function HomePage() {
           <div className={styles.section}>
             <div className={styles.split}>
               <div>
-                <SectionHeader eyebrow="Data Sovereignty" title="Your engineering data stays under your control.">
-                  Metraly is designed to run on your infrastructure, so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform.
-                </SectionHeader>
+                <SectionHeader
+                  eyebrow="Data Sovereignty"
+                  title="Your engineering data stays under your control."
+                  description="Metraly is designed to run on your infrastructure, so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform."
+                />
               </div>
               <div className={styles.card}>
                 <div className={styles.bullets}>
                   <div className={styles.bullet}><div className={styles.bulletIcon}><Icon name="check" /></div><div><div className={styles.cardTitle}>Deploy where your team works</div><div className={styles.cardDesc}>Start locally or in your own VPC. Enterprise deployment patterns are being designed for regulated and restricted environments.</div></div></div>
                   <div className={styles.bullet}><div className={styles.bulletIcon}><Icon name="spark" /></div><div><div className={styles.cardTitle}>Open-core auditability</div><div className={styles.cardDesc}>The core platform is AGPLv3 open-core, so the code path that handles engineering metrics can be reviewed and audited.</div></div></div>
                 </div>
-                <div className={styles.tags}><StatusTag>Audit-friendly</StatusTag><StatusTag>GDPR-aware design</StatusTag><StatusTag>Restricted-environment roadmap</StatusTag></div>
+                <div className={styles.tags}><StatusPill>Audit-friendly</StatusPill><StatusPill>GDPR-aware design</StatusPill><StatusPill>Restricted-environment roadmap</StatusPill></div>
               </div>
             </div>
           </div>
@@ -112,9 +106,11 @@ export default function HomePage() {
 
         <section id="roles">
           <div className={styles.section}>
-            <SectionHeader eyebrow="Role-based views" title="Different teams need different signal.">
-              Metraly is structured around the way engineering organizations actually operate: leadership, team execution, platform health, and delivery risk.
-            </SectionHeader>
+            <SectionHeader
+              eyebrow="Role-based views"
+              title="Different teams need different signal."
+              description="Metraly is structured around the way engineering organizations actually operate: leadership, team execution, platform health, and delivery risk."
+            />
             <div className={styles.grid4}>
               {[["VP Engineering", "Track delivery health, risk, sprint predictability, and cross-team bottlenecks."], ["CTO", "Understand strategic engineering health without asking every team for manual updates."], ["Tech Lead", "See PR queues, review latency, flaky tests, and blocked work before they become incidents."], ["DevOps / Platform", "Watch CI/CD health, MTTR, operational friction, and recovery patterns."]].map(([title, desc]) => (
                 <div className={styles.card} key={title}><div className={styles.cardTitle}>{title}</div><p className={styles.cardDesc}>{desc}</p></div>
@@ -127,13 +123,15 @@ export default function HomePage() {
           <div className={styles.section}>
             <div className={styles.split}>
               <div>
-                <SectionHeader eyebrow="Private AI Direction" title="AI insights designed for private engineering data.">
-                  Metraly is designed to support local models, BYO providers, and controlled data exposure. The AI layer is part of the product direction and should stay status-labeled as it evolves.
-                </SectionHeader>
-                <div className={styles.tags}><StatusTag>Designed</StatusTag><StatusTag>Pro roadmap</StatusTag><StatusTag>Synthetic examples</StatusTag></div>
+                <SectionHeader
+                  eyebrow="Private AI Direction"
+                  title="AI insights designed for private engineering data."
+                  description="Metraly is designed to support local models, BYO providers, and controlled data exposure. The AI layer is part of the product direction and should stay status-labeled as it evolves."
+                />
+                <div className={styles.tags}><StatusPill>Designed</StatusPill><StatusPill>Pro roadmap</StatusPill><StatusPill>Synthetic examples</StatusPill></div>
               </div>
               <div className={styles.aiMock}>
-                <div className={styles.aiHeader}><div>Synthetic insight preview</div><StatusTag>Designed</StatusTag></div>
+                <div className={styles.aiHeader}><div>Synthetic insight preview</div><StatusPill>Designed</StatusPill></div>
                 <div className={styles.aiBody}>
                   <div className={styles.aiMsg}><div className={styles.aiAvatar}><Icon name="spark" /></div><div className={styles.aiBubble}>Review queue time increased this sprint. The likely bottleneck is overloaded reviewers on a critical service.</div></div>
                   <div className={styles.aiMsg}><div className={styles.aiAvatar}>i</div><div className={styles.aiBubble}>Example output only. AI features should be labeled by implementation status before launch.</div></div>
@@ -145,12 +143,14 @@ export default function HomePage() {
 
         <section id="integrations">
           <div className={styles.section}>
-            <SectionHeader eyebrow="Integrations" title="Designed to connect with your engineering stack.">
-              Connectors and live data pipelines are the next major product step after the dashboard editor and rendering work are complete.
-            </SectionHeader>
+            <SectionHeader
+              eyebrow="Integrations"
+              title="Designed to connect with your engineering stack."
+              description="Connectors and live data pipelines are the next major product step after the dashboard editor and rendering work are complete."
+            />
             <div className={styles.grid3}>
               {[["Git providers", "GitHub and GitLab connectors are planned for real repository and PR workflows.", "Then"], ["CI/CD systems", "Pipeline and build data integrations are planned for delivery health and operational insight.", "Then"], ["Plugin ecosystem", "A marketplace-style extension layer is part of the long-term platform direction and requires review, signing, and revocation controls before public launch.", "Later"]].map(([title, desc, status]) => (
-                <div className={styles.card} key={title}><div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusTag>{status}</StatusTag></div><div className={styles.cardDesc}>{desc}</div></div>
+                <div className={styles.card} key={title}><div className={styles.cardHead}><div className={styles.cardTitle}>{title}</div><StatusPill>{status}</StatusPill></div><div className={styles.cardDesc}>{desc}</div></div>
               ))}
             </div>
           </div>
@@ -158,9 +158,11 @@ export default function HomePage() {
 
         <section id="roadmap" className={styles.surface}>
           <div className={styles.section}>
-            <SectionHeader eyebrow="Roadmap" title="What exists. What’s next. What we’re validating.">
-              The website should make the current maturity visible: real UI and synthetic workflows now, dashboard editing next, connectors and real user cases after that.
-            </SectionHeader>
+            <SectionHeader
+              eyebrow="Roadmap"
+              title="What exists. What’s next. What we’re validating."
+              description="The website should make the current maturity visible: real UI and synthetic workflows now, dashboard editing next, connectors and real user cases after that."
+            />
             <div className={styles.grid4}>
               {roadmap.map(([stage, summary, items], index) => (
                 <div className={styles.roadmapCard} key={stage}>
@@ -184,7 +186,7 @@ export default function HomePage() {
           <div className={`${styles.sectionSmall} ${styles.cta} ${styles.finalCta}`}>
             <h2 className={styles.sectionTitle}>Explore Metraly with synthetic data.</h2>
             <p className={`${styles.sectionSub} ${styles.sectionSubCentered}`}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
-            <Link href="/demo" className={styles.demoCtaLink}>Open synthetic demo <Icon name="arrowRight" /></Link>
+            <ButtonLink href="/demo" className={styles.demoCtaLink}>Open synthetic demo <Icon name="arrowRight" /></ButtonLink>
           </div>
         </section>
       </div>

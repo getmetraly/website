@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 const safeClaims = [
   "Real UI with synthetic data",
@@ -35,8 +35,8 @@ export default function ClaimPolicyDocsPage() {
           <h1 className={styles.heroTitle}>Direction is public.<br /><span className={styles.gradientText}>Proof is required.</span></h1>
           <p className={styles.heroSub}>Metraly intentionally uses conservative public wording to avoid claiming capabilities that are not yet implemented and verified in the application.</p>
           <div className={styles.heroActions}>
-            <Link href="/pricing" className="btn-primary">View pricing boundaries</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+            <ButtonLink href="/pricing">View pricing boundaries</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
           </div>
         </section>
 

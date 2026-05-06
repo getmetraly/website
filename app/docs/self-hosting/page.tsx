@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink, Icon } from "@/components/ui/primitives";
 
 export const metadata = {
   title: "Self-hosting — Metraly Docs",
@@ -15,8 +15,10 @@ export default function SelfHostingDocsPage() {
         <h1 className={styles.heroTitle}>Keep engineering data<br /><span className={styles.gradientText}>under your control.</span></h1>
         <p className={styles.heroSub}>Metraly is designed around self-hosting for organizations that cannot route repository, CI/CD, or operational telemetry through another SaaS layer.</p>
         <div className={styles.heroActions}>
-          <a href="https://github.com/getmetraly/metraly" className="btn-primary" target="_blank" rel="noreferrer">View source →</a>
-          <Link href="/docs" className="btn-ghost btn-large">Back to docs</Link>
+          <ButtonLink href="https://github.com/getmetraly/metraly" external>
+            View source <Icon name="arrowRight" />
+          </ButtonLink>
+          <ButtonLink href="/docs" variant="ghost">Back to docs</ButtonLink>
         </div>
       </section>
 

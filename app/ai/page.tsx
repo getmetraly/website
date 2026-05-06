@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import { ButtonLink } from "@/components/ui/primitives";
 
 export const metadata = {
   title: "AI — Metraly",
@@ -56,8 +56,8 @@ export default function AIPage() {
           </p>
 
           <div className={styles.heroActions}>
-            <Link href="/" className="btn-primary">Back to homepage</Link>
-            <Link href="/docs" className="btn-ghost btn-large">Read docs</Link>
+            <ButtonLink href="/">Back to homepage</ButtonLink>
+            <ButtonLink href="/docs" variant="ghost">Read docs</ButtonLink>
           </div>
         </section>
 
@@ -75,9 +75,11 @@ export default function AIPage() {
             <div className={styles.grid3}>
               {cards.map((item) => (
                 <div key={item.title} className={styles.card}>
-                  <div className={styles.icon}>{item.icon}</div>
                   <div className={styles.cardHead}>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <div className={styles.principleLead}>
+                      <div className={styles.icon}>{item.icon}</div>
+                      <h3 className={styles.cardTitle}>{item.title}</h3>
+                    </div>
                     <span className={styles.status}>{item.label}</span>
                   </div>
                   <p className={styles.cardDesc}>{item.text}</p>
@@ -101,7 +103,7 @@ export default function AIPage() {
               <div style={{ color: "var(--purple)", fontSize: 12, fontWeight: 700, marginBottom: 10 }}>
                 Synthetic insight example
               </div>
-              <h3 style={{ fontSize: 22, marginBottom: 12 }}>
+              <h3 className={styles.insightTitle}>
                 Review queue increased this sprint
               </h3>
               <p className={styles.cardDesc} style={{ marginBottom: 16 }}>
@@ -138,7 +140,7 @@ export default function AIPage() {
           <p className={styles.sub}>
             Follow the build-in-public roadmap from synthetic dashboards to real integrations and validated insights.
           </p>
-          <Link href="/" className="btn-primary">View homepage →</Link>
+          <ButtonLink href="/">View homepage</ButtonLink>
         </section>
       </main>
     </SiteShell>

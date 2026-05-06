@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import heroStyles from "@/components/marketing/marketing.module.css";
+import { ButtonLink, Icon } from "@/components/ui/primitives";
 import {
   CardHeader,
   CardLink,
@@ -99,12 +99,10 @@ export default function DemoPage() {
           </p>
 
           <div className={heroStyles.heroActions}>
-            <a href="/demo-app/" className="btn-primary">
-              Open sandbox →
-            </a>
-            <Link href="/" className="btn-ghost btn-large">
+            <ButtonLink href="/demo-app/">Open sandbox <Icon name="arrowRight" /></ButtonLink>
+            <ButtonLink href="/" variant="ghost">
               Back to homepage
-            </Link>
+            </ButtonLink>
           </div>
         </section>
 
@@ -149,9 +147,7 @@ export default function DemoPage() {
           />
 
           <div>
-            <a href="/demo-app/" className="btn-primary">
-              Launch sandbox →
-            </a>
+            <ButtonLink href="/demo-app/">Launch sandbox <Icon name="arrowRight" /></ButtonLink>
           </div>
         </Section>
       </Page>
