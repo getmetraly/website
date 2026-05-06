@@ -54,10 +54,16 @@ export default function BlogPage() {
   return (
     <SiteShell>
       <Page>
-        <Section>
+        <Section hero center>
           <SectionHeader
             eyebrow="Blog"
-            title="Build trust before asking teams to connect engineering data."
+            title={
+              <>
+                Build trust before asking teams
+                <br />
+                to connect engineering data.
+              </>
+            }
             description="Metraly blog will collect product notes, technical explainers, community posts, and build-in-public updates about self-hosted engineering intelligence."
           />
 
@@ -73,19 +79,23 @@ export default function BlogPage() {
           </Stack>
         </Section>
 
-        <Section tone="surface">
-          <SectionHeader
-            eyebrow="Featured draft"
-            title="Start with one clear public argument."
-            description="The first blog card acts like a hero article: larger, easier to scan, and intentionally status-labeled before the content becomes a published claim."
-          />
+        {heroPost ? (
+          <Section>
+            <SectionHeader
+              eyebrow="Featured draft"
+              title="Start with one clear public argument."
+              description="The first article acts like a public-facing hero post before the publishing pipeline becomes automated."
+            />
 
-          {heroPost ? (
-            <CardLink href={heroPost.canonicalPath}>
+            <CardLink href={heroPost.canonicalPath} featured accent>
               <CardHeader title={heroPost.title} status={heroPost.status} />
               <CardText>{heroPost.excerpt}</CardText>
+
               <Stack>
-                <CardText>{heroPost.date} · {heroPost.readingTime}</CardText>
+                <CardText>
+                  {heroPost.date} · {heroPost.readingTime}
+                </CardText>
+
                 <div>
                   {heroPost.tags.map((tag) => (
                     <StatusPill key={tag}>{tag}</StatusPill>
@@ -93,10 +103,10 @@ export default function BlogPage() {
                 </div>
               </Stack>
             </CardLink>
-          ) : null}
-        </Section>
+          </Section>
+        ) : null}
 
-        <Section>
+        <Section tone="surface">
           <SectionHeader
             eyebrow="Latest drafts"
             title="Article pipeline."
@@ -108,8 +118,12 @@ export default function BlogPage() {
               <CardLink key={post.slug} href={post.canonicalPath}>
                 <CardHeader title={post.title} status={post.status} />
                 <CardText>{post.excerpt}</CardText>
+
                 <Stack>
-                  <CardText>{post.date} · {post.readingTime}</CardText>
+                  <CardText>
+                    {post.date} · {post.readingTime}
+                  </CardText>
+
                   <div>
                     {post.tags.map((tag) => (
                       <StatusPill key={tag}>{tag}</StatusPill>
@@ -121,7 +135,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section tone="surface">
+        <Section>
           <SectionHeader
             eyebrow="Content strategy"
             title="Three types of posts."
@@ -138,7 +152,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section>
+        <Section tone="surface">
           <SectionHeader
             eyebrow="Distribution"
             title="Where each article type should live."
@@ -155,11 +169,12 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section width="small">
+        <Section width="small" center>
           <SectionHeader
             title="Next: turn ideas into a two-week publishing plan."
             description="The next layer can add planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
           />
+
           <ButtonLink href="/docs" variant="ghost">
             Review claim-safe docs
           </ButtonLink>
