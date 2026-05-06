@@ -34,7 +34,7 @@ const docsNav = [
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
-    <SiteShell>
+    <SiteShell showFooter={false}>
       <div className={layoutStyles.shell}>
         <div className={layoutStyles.sidebarWrap}>
           <aside className={layoutStyles.sidebar}>
