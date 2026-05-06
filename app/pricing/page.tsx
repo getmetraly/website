@@ -174,7 +174,7 @@ export default function PricingPage() {
                 ))}
               </div>
               <p className={styles.note} style={{ marginTop: 18 }}>
-                Current public wording should say pricing preview, planned Pro, paid pilots, or designed billing/license flow — not “Pro is available”.
+                Current public wording should say pricing preview, planned Pro, paid pilots, or designed billing/license flow — not live Pro availability.
               </p>
             </div>
           </div>
