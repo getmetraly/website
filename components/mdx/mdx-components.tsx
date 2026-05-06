@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { CodeBlock as HighlightedCodeBlock } from "@/components/mdx/code-block";
 import { ButtonLink, Card, CardHeader, CardText, Icon, Stack, StatusPill } from "@/components/ui/primitives";
@@ -19,6 +20,69 @@ export function Callout({
       </div>
       <div className="mdx-callout-body">{children}</div>
     </aside>
+  );
+}
+
+export function Figure({
+  caption,
+  children,
+}: {
+  caption?: string;
+  children: ReactNode;
+}) {
+  return (
+    <figure className="mdx-figure">
+      <div className="mdx-figure-frame">{children}</div>
+      {caption ? <figcaption>{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+export function ResponsiveImage({
+  src,
+  alt,
+  caption,
+  width = 1600,
+  height = 900,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
+}) {
+  return (
+    <Figure caption={caption}>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        sizes="(max-width: 900px) 100vw, 860px"
+        className="mdx-responsive-image"
+      />
+    </Figure>
+  );
+}
+
+export function DiagramPanel({
+  title = "Diagram",
+  caption,
+  children,
+}: {
+  title?: string;
+  caption?: string;
+  children: ReactNode;
+}) {
+  return (
+    <figure className="mdx-diagram-panel">
+      <figcaption>{title}</figcaption>
+      <div className="mdx-diagram-panel-body">{children}</div>
+      {caption ? <p>{caption}</p> : null}
+    </figure>
   );
 }
 
