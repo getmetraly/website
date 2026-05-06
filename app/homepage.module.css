@@ -269,6 +269,16 @@
   margin-right: auto;
 }
 
+.finalCta {
+  padding-top: 32px;
+}
+
+.finalCta .demoCtaLink {
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+
 .grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
