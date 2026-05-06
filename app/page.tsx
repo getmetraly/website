@@ -154,27 +154,34 @@ export default function HomePage() {
           </div>
         </section>
 
-        <div className={styles.grid4}>
-          {roadmap.map(([stage, summary, items], index) => (
-            <div className={styles.roadmapCard} key={stage}>
-              <div className={styles.roadmapStep}>0{index + 1}</div>
-              <div className={styles.roadmapStage}>{stage}</div>
-              <p className={styles.roadmapSummary}>{summary}</p>
-              <ul className={styles.roadmapList}>
-                {items.map((item) => (
-                  <li key={item} className={styles.roadmapItem}>
-                    <span />{item}
-                  </li>
-                ))}
-              </ul>
+        <section id="roadmap" className={styles.surface}>
+          <div className={styles.section}>
+            <SectionHeader eyebrow="Roadmap" title="What exists. What’s next. What we’re validating.">
+              The website should make the current maturity visible: real UI and synthetic workflows now, dashboard editing next, connectors and real user cases after that.
+            </SectionHeader>
+            <div className={styles.grid4}>
+              {roadmap.map(([stage, summary, items], index) => (
+                <div className={styles.roadmapCard} key={stage}>
+                  <div className={styles.roadmapStep}>0{index + 1}</div>
+                  <div className={styles.roadmapStage}>{stage}</div>
+                  <p className={styles.roadmapSummary}>{summary}</p>
+                  <ul className={styles.roadmapList}>
+                    {items.map((item) => (
+                      <li key={item} className={styles.roadmapItem}>
+                        <span />{item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
 
         <section id="demo-cta">
           <div className={`${styles.sectionSmall} ${styles.cta}`}>
             <h2 className={styles.sectionTitle}>Explore Metraly with synthetic data.</h2>
-            <p className={styles.sectionSub} style={{ marginLeft: "auto", marginRight: "auto" }}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
+            <p className={styles.sectionSubCentered}>See real workflows before live integrations are available. No login, no real company data, no credentials.</p>
             <Link href="/demo" className={styles.demoCtaLink}>Open demo <span aria-hidden="true">→</span></Link>
           </div>
         </section>
