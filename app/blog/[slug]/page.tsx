@@ -3,6 +3,7 @@ import { ReadingProgress } from "@/components/blog/reading-progress";
 import { SiteShell } from "@/components/site-shell";
 import {
   ContentPage,
+  Icon,
   Prose,
   Section,
   SectionHeader,
@@ -72,7 +73,7 @@ export default async function BlogArticlePage({
 
   return (
     <SiteShell>
-      <ReadingProgress />
+      <ReadingProgress targetId="article-body" />
       <ContentPage>
         <Section width="small">
           <Stack className={styles.articleLayout}>
@@ -99,24 +100,45 @@ export default async function BlogArticlePage({
             </div>
 
             <div className={styles.articleToc}>
-              <div className={styles.articleTocTitle}>Topics</div>
+              <div className={styles.articleTocTitle}>Contents</div>
               <div className={styles.articleTocLinks}>
-                {post.tags.map((tag) => (
-                  <a key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`}>
-                    {tag}
+                {post.sections.map((section) => (
+                  <a key={section.id} href={`#${section.id}`}>
+                    {section.title}
                   </a>
                 ))}
               </div>
             </div>
 
-            <Prose>
-              <p>
-                <strong>Audience:</strong> {post.audience}
-              </p>
+            <Prose className={styles.articleBody}>
+              <div id="article-body">
+                <p>
+                  <strong>Audience:</strong> {post.audience}
+                </p>
 
-              {post.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+                {post.sections.map((section) => (
+                  <section
+                    key={section.id}
+                    id={section.id}
+                    className={styles.articleSection}
+                  >
+                    <h2 className={styles.articleHeading}>
+                      {section.title}
+                      <a
+                        href={`#${section.id}`}
+                        className={styles.articleAnchor}
+                        aria-label={`Link to ${section.title}`}
+                      >
+                        <Icon name="external" />
+                      </a>
+                    </h2>
+
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </section>
+                ))}
+              </div>
             </Prose>
           </Stack>
         </Section>
