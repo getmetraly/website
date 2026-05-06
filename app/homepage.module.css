@@ -380,7 +380,8 @@ a.card:hover {
   gap: 12px;
 }
 
-.cardHead > span {
+.cardHead > span,
+.tags > span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
