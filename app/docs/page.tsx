@@ -1,6 +1,17 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import styles from "@/components/marketing/marketing.module.css";
+import {
+  Card,
+  CardHeader,
+  CardLink,
+  CardText,
+  Grid,
+  Page,
+  Section,
+  SectionHeader,
+  Stack,
+} from "@/components/ui/primitives";
 
 const docSections = [
   {
@@ -56,6 +67,14 @@ const statusRows = [
   ["Plugin ecosystem", "Planned", "Marketplace-style extensibility is part of the long-term platform direction."],
 ];
 
+const safeWording = [
+  "Real interface and backend-backed preview flows.",
+  "Dashboards are actively being developed.",
+  "Connectors are planned / next.",
+  "AI is designed / evolving.",
+  "Pro and Enterprise pricing are preview anchors until license activation works.",
+];
+
 export const metadata = {
   title: "Documentation — Metraly",
   description:
@@ -65,7 +84,7 @@ export const metadata = {
 export default function DocsPage() {
   return (
     <SiteShell>
-      <main className={styles.page}>
+      <Page>
         <section className={styles.hero}>
           <div className={styles.heroGlow} />
           <div className={styles.badge}>Docs · Public documentation</div>
@@ -87,120 +106,106 @@ export default function DocsPage() {
           </div>
         </section>
 
-        <section className={styles.surface}>
-          <div className={styles.section}>
-            <div className={styles.eyebrow}>Documentation map</div>
-            <h2 className={styles.title}>Start with the public docs.</h2>
-            <p className={styles.sub}>
-              These sections are copied and maintained in the website so readers do not need access to the private planning repository.
-            </p>
+        <Section tone="surface">
+          <SectionHeader
+            eyebrow="Documentation map"
+            title="Start with the public docs."
+            description="These sections are copied and maintained in the website so readers do not need access to the private planning repository."
+          />
 
-            <div className={styles.grid3}>
-              {docSections.map((doc) => (
-                <a key={doc.title} href={doc.href} className={styles.card} style={{ textDecoration: "none", color: "inherit" }}>
-                  <div className={styles.cardHead}>
-                    <h3 className={styles.cardTitle}>{doc.title}</h3>
-                    <span className={styles.status}>{doc.label}</span>
-                  </div>
-                  <p className={styles.cardDesc}>{doc.desc}</p>
-                </a>
+          <Grid columns={3}>
+            {docSections.map((doc) => (
+              <CardLink key={doc.title} href={doc.href}>
+                <CardHeader title={doc.title} status={doc.label} />
+                <CardText>{doc.desc}</CardText>
+              </CardLink>
+            ))}
+          </Grid>
+        </Section>
+
+        <Section id="quick-start" split>
+          <div>
+            <SectionHeader
+              eyebrow="Quick start"
+              title="Run the local preview path."
+              description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
+            />
+            <div className={styles.heroActions}>
+              <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source</a>
+              <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
+            </div>
+          </div>
+
+          <Card>
+            <CardHeader title="Current local baseline" />
+            <Stack>
+              <CardText>→ Start locally with <code>make up</code></CardText>
+              <CardText>→ App preview: <code>http://localhost:3000</code></CardText>
+              <CardText>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></CardText>
+              <CardText>→ <code>make docker-up</code> remains a legacy compatibility alias</CardText>
+            </Stack>
+          </Card>
+        </Section>
+
+        <Section id="self-hosting" tone="surface">
+          <SectionHeader
+            eyebrow="Self-hosting"
+            title="Your engineering data stays under your control."
+            description="Metraly is designed around self-hosted deployment so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform."
+          />
+
+          <Grid columns={3}>
+            <Card>
+              <CardHeader title="Community core" />
+              <CardText>The core product is AGPLv3 open core. Community remains useful and auditable.</CardText>
+            </Card>
+            <Card>
+              <CardHeader title="Seeded local preview" />
+              <CardText>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</CardText>
+            </Card>
+            <Card>
+              <CardHeader title="Connectors next" />
+              <CardText>Live Git and CI/CD data integrations are the next product step after dashboard rendering and editor work.</CardText>
+            </Card>
+          </Grid>
+        </Section>
+
+        <Section id="status">
+          <SectionHeader
+            eyebrow="Product status"
+            title="What exists. What is next."
+            description="Public docs use status labels so the website does not overclaim implementation readiness."
+          />
+
+          <Grid columns={3}>
+            {statusRows.map(([area, status, note]) => (
+              <Card key={area}>
+                <CardHeader title={area} status={status} />
+                <CardText>{note}</CardText>
+              </Card>
+            ))}
+          </Grid>
+        </Section>
+
+        <Section id="claims" tone="surface" split>
+          <div>
+            <SectionHeader
+              eyebrow="Claim policy"
+              title="Docs describe direction. Code proves claims."
+              description="Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code."
+            />
+          </div>
+
+          <Card accent>
+            <CardHeader title="Safe public wording" />
+            <Stack>
+              {safeWording.map((item) => (
+                <CardText key={item}>→ {item}</CardText>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="quick-start">
-          <div className={`${styles.section} ${styles.split}`}>
-            <div>
-              <div className={styles.eyebrow}>Quick start</div>
-              <h2 className={styles.title}>Run the local preview path.</h2>
-              <p className={styles.sub}>
-                The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly.
-              </p>
-              <div className={styles.heroActions} style={{ justifyContent: "flex-start" }}>
-                <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source</a>
-                <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <h3 className={styles.cardTitle}>Current local baseline</h3>
-              <div style={{ display: "grid", gap: 12 }}>
-                <p className={styles.cardDesc}>→ Start locally with <code>make up</code></p>
-                <p className={styles.cardDesc}>→ App preview: <code>http://localhost:3000</code></p>
-                <p className={styles.cardDesc}>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></p>
-                <p className={styles.cardDesc}>→ <code>make docker-up</code> remains a legacy compatibility alias</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="self-hosting" className={styles.surface}>
-          <div className={styles.section}>
-            <div className={styles.eyebrow}>Self-hosting</div>
-            <h2 className={styles.title}>Your engineering data stays under your control.</h2>
-            <p className={styles.sub}>
-              Metraly is designed around self-hosted deployment so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform.
-            </p>
-            <div className={styles.grid3}>
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Community core</h3>
-                <p className={styles.cardDesc}>The core product is AGPLv3 open core. Community remains useful and auditable.</p>
-              </div>
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Seeded local preview</h3>
-                <p className={styles.cardDesc}>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</p>
-              </div>
-              <div className={styles.card}>
-                <h3 className={styles.cardTitle}>Connectors next</h3>
-                <p className={styles.cardDesc}>Live Git and CI/CD data integrations are the next product step after dashboard rendering and editor work.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="status">
-          <div className={styles.section}>
-            <div className={styles.eyebrow}>Product status</div>
-            <h2 className={styles.title}>What exists. What is next.</h2>
-            <p className={styles.sub}>
-              Public docs use status labels so the website does not overclaim implementation readiness.
-            </p>
-            <div className={styles.grid3}>
-              {statusRows.map(([area, status, note]) => (
-                <div className={styles.card} key={area}>
-                  <div className={styles.cardHead}>
-                    <h3 className={styles.cardTitle}>{area}</h3>
-                    <span className={styles.status}>{status}</span>
-                  </div>
-                  <p className={styles.cardDesc}>{note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="claims" className={styles.surface}>
-          <div className={`${styles.section} ${styles.split}`}>
-            <div>
-              <div className={styles.eyebrow}>Claim policy</div>
-              <h2 className={styles.title}>Docs describe direction. Code proves claims.</h2>
-              <p className={styles.sub}>
-                Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code.
-              </p>
-            </div>
-            <div className={`${styles.card} ${styles.cardAccent}`}>
-              <h3 className={styles.cardTitle} style={{ marginBottom: 16 }}>Safe public wording</h3>
-              <div style={{ display: "grid", gap: 12 }}>
-                <p className={styles.cardDesc}>→ Real interface and backend-backed preview flows.</p>
-                <p className={styles.cardDesc}>→ Dashboards are actively being developed.</p>
-                <p className={styles.cardDesc}>→ Connectors are planned / next.</p>
-                <p className={styles.cardDesc}>→ AI is designed / evolving.</p>
-                <p className={styles.cardDesc}>→ Pro and Enterprise pricing are preview anchors until license activation works.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+            </Stack>
+          </Card>
+        </Section>
+      </Page>
     </SiteShell>
   );
 }
