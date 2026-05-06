@@ -42,22 +42,26 @@ const channels = [
   ["GitHub Discussions", "Technical community feedback, roadmap discussions, and contribution-oriented threads."],
 ];
 
-const heroBadgeStyle = {
+const heroEyebrowStyle = {
   display: "inline-flex",
   alignItems: "center",
   gap: 8,
-  padding: "6px 14px",
-  borderRadius: 20,
-  background: "color-mix(in srgb, var(--purple) 12%, transparent)",
-  border: "1px solid color-mix(in srgb, var(--purple) 24%, transparent)",
-  color: "var(--purple)",
+  color: "var(--cyan)",
   fontSize: 12,
   fontWeight: 700,
-  letterSpacing: 0.3,
-  marginBottom: 28,
-  position: "relative" as const,
-  zIndex: 1,
+  letterSpacing: 1,
+  marginBottom: 16,
+  textTransform: "uppercase" as const,
 };
+
+function HeroEyebrow() {
+  return (
+    <div style={heroEyebrowStyle}>
+      <span style={{ width: 20, height: 2, borderRadius: 999, background: "linear-gradient(90deg, var(--cyan), var(--purple))" }} />
+      Blog · Build in public · Claim-safe drafts
+    </div>
+  );
+}
 
 export const metadata = {
   title: "Blog — Metraly",
@@ -72,7 +76,7 @@ export default function BlogPage() {
     <SiteShell>
       <Page>
         <Section hero center>
-          <div style={heroBadgeStyle}>Blog · Build in public · Claim-safe drafts</div>
+          <HeroEyebrow />
 
           <SectionHeader
             title={
