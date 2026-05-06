@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./shell-polish.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
