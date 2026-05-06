@@ -4,7 +4,7 @@ import styles from "@/components/marketing/marketing.module.css";
 const docSections = [
   {
     title: "Quick start",
-    desc: "Install Metraly locally, open the app, and explore the synthetic sandbox before connecting real engineering data.",
+    desc: "Run Metraly locally with `make up`, sign in with seeded preview credentials, and explore backend-backed dashboards before connecting real engineering data.",
     href: "#quick-start",
     label: "Start",
   },
@@ -40,19 +40,19 @@ const docSections = [
   },
   {
     title: "Public claim policy",
-    desc: "Metraly uses conservative public wording: real UI, synthetic data, and clear status labels for roadmap capabilities.",
+    desc: "Metraly uses conservative public wording: real UI, backend-backed preview flows, synthetic data, and clear status labels for roadmap capabilities.",
     href: "#claims",
     label: "Policy",
   },
 ];
 
 const statusRows = [
-  ["Real product UI", "Preview", "Role dashboards and UI direction are visible using synthetic data."],
+  ["Real product UI", "Preview", "Role dashboards and UI direction are visible using synthetic and backend-backed preview data."],
+  ["Local preview auth", "Implemented", "Seeded local preview credentials exist for evaluation and onboarding flows."],
   ["Dashboard editor", "In progress", "Drag-and-drop editing and real dashboard rendering are active product work."],
   ["Connectors", "Next", "GitHub / GitLab and CI/CD integrations are the next major product step."],
   ["Private AI insights", "Designed", "AI is a product direction with synthetic examples, not a shipped production claim."],
   ["Plugin ecosystem", "Planned", "Marketplace-style extensibility is part of the long-term platform direction."],
-  ["Billing / license", "Designed", "Paid plans require signed license activation and local app verification before GA claims."],
 ];
 
 export const metadata = {
@@ -111,20 +111,23 @@ export default function DocsPage() {
         <div className={`${styles.section} ${styles.split}`}>
           <div>
             <div className={styles.eyebrow}>Quick start</div>
-            <h2 className={styles.title}>Explore with synthetic data first.</h2>
+            <h2 className={styles.title}>Run the local preview path.</h2>
             <p className={styles.sub}>
-              Metraly is currently best evaluated through the public website, synthetic demo, and source repository. Live connectors and production data workflows are being built after the dashboard foundation.
+              The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly.
             </p>
             <div className={styles.heroActions} style={{ justifyContent: "flex-start" }}>
-              <Link href="/demo" className="btn-primary">Open demo</Link>
-              <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-ghost btn-large">View source</a>
+              <a href="https://github.com/getmetraly/metraly" target="_blank" rel="noreferrer" className="btn-primary">View source</a>
+              <Link href="/demo" className="btn-ghost btn-large">Open synthetic demo</Link>
             </div>
           </div>
           <div className={styles.card}>
-            <h3 className={styles.cardTitle}>Current public baseline</h3>
-            <p className={styles.cardDesc}>
-              Metraly is being built as a self-hosted Engineering Intelligence platform for teams that cannot send engineering data to another SaaS. The current public experience uses real UI direction with synthetic data and status-labeled roadmap capabilities.
-            </p>
+            <h3 className={styles.cardTitle}>Current local baseline</h3>
+            <div style={{ display: "grid", gap: 12 }}>
+              <p className={styles.cardDesc}>→ Start locally with <code>make up</code></p>
+              <p className={styles.cardDesc}>→ App preview: <code>http://localhost:3000</code></p>
+              <p className={styles.cardDesc}>→ Login: <code>admin@metraly.local</code> / <code>admin123</code></p>
+              <p className={styles.cardDesc}>→ <code>make docker-up</code> remains a legacy compatibility alias</p>
+            </div>
           </div>
         </div>
       </section>
@@ -142,8 +145,8 @@ export default function DocsPage() {
               <p className={styles.cardDesc}>The core product is AGPLv3 open core. Community remains useful and auditable.</p>
             </div>
             <div className={styles.card}>
-              <h3 className={styles.cardTitle}>Synthetic demo first</h3>
-              <p className={styles.cardDesc}>Use the demo sandbox before connecting any real repository, CI/CD, or team data.</p>
+              <h3 className={styles.cardTitle}>Seeded local preview</h3>
+              <p className={styles.cardDesc}>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</p>
             </div>
             <div className={styles.card}>
               <h3 className={styles.cardTitle}>Connectors next</h3>
@@ -180,13 +183,13 @@ export default function DocsPage() {
             <div className={styles.eyebrow}>Claim policy</div>
             <h2 className={styles.title}>Docs describe direction. Code proves claims.</h2>
             <p className={styles.sub}>
-              Public pages may describe real UI, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code.
+              Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code.
             </p>
           </div>
           <div className={`${styles.card} ${styles.cardAccent}`}>
             <h3 className={styles.cardTitle} style={{ marginBottom: 16 }}>Safe public wording</h3>
             <div style={{ display: "grid", gap: 12 }}>
-              <p className={styles.cardDesc}>→ Real interface, synthetic data.</p>
+              <p className={styles.cardDesc}>→ Real interface and backend-backed preview flows.</p>
               <p className={styles.cardDesc}>→ Dashboards are actively being developed.</p>
               <p className={styles.cardDesc}>→ Connectors are planned / next.</p>
               <p className={styles.cardDesc}>→ AI is designed / evolving.</p>
