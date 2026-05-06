@@ -95,7 +95,7 @@ export default function PricingPage() {
             <span className={styles.gradientText}>Scale when trust matters.</span>
           </h1>
           <p className={styles.heroSub}>
-            Community is the free self-hosted core. Pro and Enterprise pricing are public anchors for paid pilots and future signed-license activation.
+            Community is the free self-hosted core. Pro and Enterprise pricing are public anchors for paid pilots and future signed-license activation, not a self-service checkout launch.
           </p>
           <div className={styles.heroActions}>
             <a href="https://github.com/getmetraly/metraly" className="btn-primary" target="_blank" rel="noreferrer">
@@ -113,6 +113,9 @@ export default function PricingPage() {
             <h2 className={styles.title}>Open core pricing without a SaaS trap.</h2>
             <p className={styles.sub}>
               Free stays useful. Paid plans add scale, automation, support, and regulated deployment paths as billing and license activation mature.
+            </p>
+            <p className={styles.note}>
+              Limits are packaging targets until enforced in the app. Pro and Enterprise remain preview/pilot offers until the signed-license flow works end to end.
             </p>
 
             <div className={styles.grid3} style={{ alignItems: "stretch" }}>
@@ -188,7 +191,7 @@ export default function PricingPage() {
                 ["What does Enterprise add?", "Procurement support, custom agreements, dedicated support, and roadmap capabilities for regulated or restricted environments."],
                 ["Is checkout live today?", "No. Billing and license activation are being implemented in phases. Paid pilots should use manually issued signed licenses first."],
                 ["Do you offer hosted SaaS?", "Not currently. Metraly is designed around self-hosting and data sovereignty."],
-                ["Can prices change?", "The public model is Community / Pro / Enterprise. Exact pilot terms may be validated with design partners."],
+                ["Can prices change?", "The public model is Community / Pro / Enterprise. These are anchor prices while pilot terms, packaging, and willingness-to-pay are validated with design partners."],
               ].map(([q, a]) => (
                 <div className={styles.card} key={q}>
                   <h3 className={styles.cardTitle}>{q}</h3>
