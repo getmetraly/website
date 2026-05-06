@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CodeBlock as HighlightedCodeBlock } from "@/components/mdx/code-block";
 import { ButtonLink, Card, CardHeader, CardText, Icon, Stack, StatusPill } from "@/components/ui/primitives";
 
 export function Callout({
@@ -95,18 +96,21 @@ export function EmbeddedDemo({
   );
 }
 
-export function CodeBlock({
+export async function CodeBlock({
   filename,
-  children,
+  language = "ts",
+  code,
 }: {
   filename?: string;
-  children: ReactNode;
+  language?: string;
+  code: string;
 }) {
   return (
-    <div className="mdx-codeblock">
-      {filename ? <div className="mdx-codeblock-filename">{filename}</div> : null}
-      <pre>{children}</pre>
-    </div>
+    <HighlightedCodeBlock
+      code={code}
+      lang={language}
+      filename={filename}
+    />
   );
 }
 
