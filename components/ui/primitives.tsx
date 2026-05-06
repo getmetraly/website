@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode, SVGProps } from "react";
 import styles from "./primitives.module.css";
 
@@ -5,6 +6,7 @@ type Tone = "default" | "surface";
 type Width = "default" | "small";
 type GridColumns = 2 | 3 | 4;
 type IconName = "arrowRight" | "external" | "github" | "spark" | "check";
+type ButtonVariant = "primary" | "ghost";
 
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -20,26 +22,27 @@ const iconPaths: Record<IconName, ReactNode> = {
   check: <path d="m5 12 4 4L19 6" />,
 };
 
-export function Icon({
-  name,
-  className,
-  ...props
-}: SVGProps<SVGSVGElement> & { name: IconName }) {
+export function Icon({ name, className, ...props }: SVGProps<SVGSVGElement> & { name: IconName }) {
   return (
-    <svg
-      className={cx(styles.icon, className)}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
+    <svg className={cx(styles.icon, className)} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
       {iconPaths[name]}
     </svg>
   );
+}
+
+export function ButtonLink({ href, children, variant = "primary", external = false, className, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { href: string; variant?: ButtonVariant; external?: boolean }) {
+  const buttonClass = variant === "primary" ? "btn-primary" : "btn-ghost btn-large";
+  const body = <>{children}{external ? <Icon name="external" /> : null}</>;
+
+  if (href.startsWith("/")) {
+    return <Link href={href} className={cx(buttonClass, className)} {...props}>{body}</Link>;
+  }
+
+  return <a href={href} className={cx(buttonClass, className)} target={external ? "_blank" : props.target} rel={external ? "noopener noreferrer" : props.rel} {...props}>{body}</a>;
+}
+
+export function Callout({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div className={cx(styles.callout, className)} {...props}>{children}</div>;
 }
 
 export function Skeleton({ className, ...props }: HTMLAttributes<HTMLSpanElement>) {
@@ -50,230 +53,68 @@ export function SkeletonCard({ className, ...props }: HTMLAttributes<HTMLDivElem
   return <div className={cx("skeleton-card", className)} aria-hidden="true" {...props} />;
 }
 
-export function ContentPage({
-  children,
-  className,
-  ...props
-}: HTMLAttributes<HTMLElement>) {
-  return (
-    <main className={cx(styles.contentPage, className)} {...props}>
-      {children}
-    </main>
-  );
+export function ContentPage({ children, className, ...props }: HTMLAttributes<HTMLElement>) {
+  return <main className={cx(styles.contentPage, className)} {...props}>{children}</main>;
 }
 
-export function Page({
-  children,
-  className,
-  ...props
-}: HTMLAttributes<HTMLElement>) {
-  return (
-    <main className={cx(styles.page, className)} {...props}>
-      {children}
-    </main>
-  );
+export function Page({ children, className, ...props }: HTMLAttributes<HTMLElement>) {
+  return <main className={cx(styles.page, className)} {...props}>{children}</main>;
 }
 
-export function Section({
-  children,
-  className,
-  tone = "default",
-  width = "default",
-  center = false,
-  split = false,
-  ...props
-}: HTMLAttributes<HTMLElement> & {
-  tone?: Tone;
-  width?: Width;
-  center?: boolean;
-  split?: boolean;
-}) {
-  const body = (
-    <div
-      className={cx(
-        width === "small" ? styles.sectionSmall : styles.section,
-        center && styles.center,
-        split && styles.split,
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-
-  return (
-    <section className={tone === "surface" ? styles.surface : undefined} {...props}>
-      {body}
-    </section>
-  );
+export function Section({ children, className, tone = "default", width = "default", center = false, split = false, ...props }: HTMLAttributes<HTMLElement> & { tone?: Tone; width?: Width; center?: boolean; split?: boolean }) {
+  const body = <div className={cx(width === "small" ? styles.sectionSmall : styles.section, center && styles.center, split && styles.split, className)}>{children}</div>;
+  return <section className={tone === "surface" ? styles.surface : undefined} {...props}>{body}</section>;
 }
 
-export function DocsLayout({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function DocsLayout({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cx(styles.docsLayout, className)}>{children}</div>;
 }
 
-export function DocsNav({
-  links,
-  className,
-}: {
-  links: Array<{ href: string; label: string }>;
-  className?: string;
-}) {
-  return (
-    <nav className={cx(styles.docsNav, className)} aria-label="Documentation sections">
-      {links.map((link) => (
-        <a key={link.href} href={link.href}>
-          {link.label}
-        </a>
-      ))}
-    </nav>
-  );
+export function DocsNav({ links, className }: { links: Array<{ href: string; label: string }>; className?: string }) {
+  return <nav className={cx(styles.docsNav, className)} aria-label="Documentation sections">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</nav>;
 }
 
-export function SectionHeader({
-  eyebrow,
-  title,
-  description,
-  children,
-  className,
-}: {
-  eyebrow?: ReactNode;
-  title: ReactNode;
-  description?: ReactNode;
-  children?: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cx(styles.header, className)}>
-      {eyebrow ? <div className={styles.eyebrow}>{eyebrow}</div> : null}
-      <h2 className={styles.title}>{title}</h2>
-      {description ? <p className={styles.description}>{description}</p> : null}
-      {children}
-    </div>
-  );
+export function SectionHeader({ eyebrow, title, description, children, className }: { eyebrow?: ReactNode; title: ReactNode; description?: ReactNode; children?: ReactNode; className?: string }) {
+  return <div className={cx(styles.header, className)}>{eyebrow ? <div className={styles.eyebrow}>{eyebrow}</div> : null}<h2 className={styles.title}>{title}</h2>{description ? <p className={styles.description}>{description}</p> : null}{children}</div>;
 }
 
-export function Grid({
-  children,
-  columns = 3,
-  className,
-}: {
-  children: ReactNode;
-  columns?: GridColumns;
-  className?: string;
-}) {
+export function Grid({ children, columns = 3, className }: { children: ReactNode; columns?: GridColumns; className?: string }) {
   const gridClass = columns === 2 ? styles.grid2 : columns === 4 ? styles.grid4 : styles.grid3;
-
   return <div className={cx(gridClass, className)}>{children}</div>;
 }
 
-export function Card({
-  children,
-  className,
-  accent = false,
-  ...props
-}: HTMLAttributes<HTMLDivElement> & { accent?: boolean }) {
-  return (
-    <div className={cx(styles.card, accent && styles.cardAccent, className)} {...props}>
-      {children}
-    </div>
-  );
+export function Card({ children, className, accent = false, ...props }: HTMLAttributes<HTMLDivElement> & { accent?: boolean }) {
+  return <div className={cx(styles.card, accent && styles.cardAccent, className)} {...props}>{children}</div>;
 }
 
-export function CardLink({
-  children,
-  className,
-  accent = false,
-  ...props
-}: AnchorHTMLAttributes<HTMLAnchorElement> & { accent?: boolean }) {
-  return (
-    <a className={cx(styles.card, styles.cardLink, accent && styles.cardAccent, className)} {...props}>
-      {children}
-    </a>
-  );
+export function CardLink({ children, className, accent = false, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { accent?: boolean }) {
+  return <a className={cx(styles.card, styles.cardLink, accent && styles.cardAccent, className)} {...props}>{children}</a>;
 }
 
-export function CardHeader({
-  title,
-  status,
-  className,
-}: {
-  title: ReactNode;
-  status?: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={cx(styles.cardHead, className)}>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      {status ? <StatusPill>{status}</StatusPill> : null}
-    </div>
-  );
+export function CardHeader({ title, status, className }: { title: ReactNode; status?: ReactNode; className?: string }) {
+  return <div className={cx(styles.cardHead, className)}><h3 className={styles.cardTitle}>{title}</h3>{status ? <StatusPill>{status}</StatusPill> : null}</div>;
 }
 
-export function CardText({
-  children,
-  className,
-  ...props
-}: HTMLAttributes<HTMLParagraphElement>) {
-  return (
-    <p className={cx(styles.cardDesc, className)} {...props}>
-      {children}
-    </p>
-  );
+export function CardText({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
+  return <p className={cx(styles.cardDesc, className)} {...props}>{children}</p>;
 }
 
-export function Stack({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function Stack({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cx(styles.stack, className)}>{children}</div>;
 }
 
-export function StatusPill({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function StatusPill({ children, className }: { children: ReactNode; className?: string }) {
   return <span className={cx(styles.statusPill, className)}>{children}</span>;
 }
 
-export function Prose({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function Prose({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cx(styles.prose, className)}>{children}</div>;
 }
 
-export function Note({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function Note({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cx(styles.note, className)}>{children}</div>;
 }
 
-export function Highlight({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function Highlight({ children, className }: { children: ReactNode; className?: string }) {
   return <div className={cx(styles.highlight, className)}>{children}</div>;
 }
