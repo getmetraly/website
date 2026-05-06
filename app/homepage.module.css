@@ -498,6 +498,13 @@
     box-shadow 0.2s;
 }
 
+.demoCtaLink svg,
+.heroPrimaryCta svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
 .finalCta .demoCtaLink {
   min-height: 42px;
   padding: 0 18px;
