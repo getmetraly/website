@@ -22,6 +22,12 @@ const docSections = [
     label: "Truth",
   },
   {
+    title: "Trust",
+    desc: "Understand Metraly's privacy, telemetry, AI, plugin and claim boundaries before connecting data.",
+    href: "/trust",
+    label: "Trust",
+  },
+  {
     title: "Pricing and license",
     desc: "Community is free. Pro and Enterprise pricing are public anchors for future signed-license activation and paid pilots.",
     href: "/pricing",
@@ -37,7 +43,7 @@ const docSections = [
     title: "Public claim policy",
     desc: "Metraly uses conservative public wording: real UI, synthetic data, and clear status labels for roadmap capabilities.",
     href: "#claims",
-    label: "Trust",
+    label: "Policy",
   },
 ];
 
