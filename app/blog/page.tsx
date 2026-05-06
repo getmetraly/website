@@ -42,6 +42,23 @@ const channels = [
   ["GitHub Discussions", "Technical community feedback, roadmap discussions, and contribution-oriented threads."],
 ];
 
+const heroBadgeStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  padding: "6px 14px",
+  borderRadius: 20,
+  background: "color-mix(in srgb, var(--purple) 12%, transparent)",
+  border: "1px solid color-mix(in srgb, var(--purple) 24%, transparent)",
+  color: "var(--purple)",
+  fontSize: 12,
+  fontWeight: 700,
+  letterSpacing: 0.3,
+  marginBottom: 28,
+  position: "relative" as const,
+  zIndex: 1,
+};
+
 export const metadata = {
   title: "Blog — Metraly",
   description:
@@ -55,9 +72,7 @@ export default function BlogPage() {
     <SiteShell>
       <Page>
         <Section hero center>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-            <StatusPill>Blog · Build in public · Claim-safe drafts</StatusPill>
-          </div>
+          <div style={heroBadgeStyle}>Blog · Build in public · Claim-safe drafts</div>
 
           <SectionHeader
             title={
