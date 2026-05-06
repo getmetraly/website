@@ -80,7 +80,7 @@ export default function BlogPage() {
         </Section>
 
         {heroPost ? (
-          <Section>
+          <Section tone="surface">
             <SectionHeader
               eyebrow="Featured draft"
               title="Start with one clear public argument."
@@ -106,7 +106,7 @@ export default function BlogPage() {
           </Section>
         ) : null}
 
-        <Section tone="surface">
+        <Section>
           <SectionHeader
             eyebrow="Latest drafts"
             title="Article pipeline."
@@ -135,7 +135,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section>
+        <Section tone="surface">
           <SectionHeader
             eyebrow="Content strategy"
             title="Three types of posts."
@@ -152,7 +152,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section tone="surface">
+        <Section>
           <SectionHeader
             eyebrow="Distribution"
             title="Where each article type should live."
@@ -169,7 +169,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section width="small" center>
+        <Section width="small" center tone="surface">
           <SectionHeader
             title="Next: turn ideas into a two-week publishing plan."
             description="The next layer can add planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
