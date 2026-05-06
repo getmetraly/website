@@ -6,10 +6,44 @@
   <title>Metraly — Engineering Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .demo-safety-banner {
+      position: fixed;
+      z-index: 2147483647;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(10, 13, 24, 0.92);
+      color: #f8fafc;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      backdrop-filter: blur(16px);
+    }
+
+    .demo-safety-banner strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .demo-safety-banner span {
+      color: #cbd5e1;
+    }
+  </style>
   <script type="module" crossorigin src="/demo-app/assets/index-DGXWYcdi.js"></script>
   <link rel="stylesheet" crossorigin href="/demo-app/assets/index-D9YxlQvp.css">
 </head>
 <body>
   <div id="root"></div>
+  <div class="demo-safety-banner" role="note" aria-label="Synthetic demo safety notice">
+    <strong>Synthetic preview only.</strong>
+    <span> Do not enter real credentials, source tokens, repository names, customer data, secrets, or personal information.</span>
+  </div>
 </body>
 </html>
