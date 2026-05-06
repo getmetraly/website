@@ -9,16 +9,11 @@
 
 .sidebarWrap {
   align-self: start;
-  min-height: calc(100vh - 192px);
 }
 
 .sidebar {
-  position: sticky;
-  top: 104px;
   display: grid;
   gap: 22px;
-  max-height: calc(100vh - 132px);
-  overflow: auto;
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -90,14 +85,5 @@
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 100px 20px 70px;
-  }
-
-  .sidebarWrap {
-    min-height: 0;
-  }
-
-  .sidebar {
-    position: static;
-    max-height: none;
   }
 }
