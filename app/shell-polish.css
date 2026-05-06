@@ -1,16 +1,18 @@
 /* Shell polish layer: nav, footer, CTA, theme, icon and skeleton systems. */
 
 :root {
-  --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.18);
-  --shadow-card: 0 20px 70px rgba(0, 0, 0, 0.16);
+  --shadow-soft: 0 14px 44px rgba(0, 0, 0, 0.16);
+  --shadow-card: 0 16px 52px rgba(0, 0, 0, 0.14);
   --motion-fast: 150ms ease;
-  --motion-med: 240ms ease;
+  --motion-med: 220ms ease;
+  --button-h: 38px;
+  --button-radius: 10px;
 }
 
 [data-theme="dark"] {
   --text-secondary: #a6b3c8;
-  --text-muted: #6f7c91;
-  --nav-bg: rgba(8, 11, 16, 0.72);
+  --text-muted: #728096;
+  --nav-bg: rgba(8, 11, 16, 0.74);
   --bg-card-hover: #202a3a;
   --border-bright: rgba(255, 255, 255, 0.18);
 }
@@ -18,7 +20,7 @@
 [data-theme="light"] {
   --text-secondary: #344054;
   --text-muted: #667085;
-  --nav-bg: rgba(255, 255, 255, 0.78);
+  --nav-bg: rgba(255, 255, 255, 0.8);
   --bg-base: #f8fafc;
   --bg-surface: #ffffff;
   --bg-card-hover: #eef2f7;
@@ -31,19 +33,19 @@
     linear-gradient(180deg, var(--nav-bg), color-mix(in srgb, var(--nav-bg) 86%, transparent));
   backdrop-filter: blur(22px) saturate(1.18);
   -webkit-backdrop-filter: blur(22px) saturate(1.18);
-  box-shadow: 0 1px 0 var(--border), 0 18px 60px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 0 var(--border), 0 14px 48px rgba(0, 0, 0, 0.08);
 }
 
 .nav-logo {
-  transition: transform var(--motion-fast), color var(--motion-fast);
+  transition: color var(--motion-fast);
 }
 
 .nav-logo:hover {
-  transform: translateY(-1px);
+  color: color-mix(in srgb, var(--text-primary) 88%, var(--cyan));
 }
 
 .nav-logo-icon {
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--purple) 32%, transparent);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--purple) 28%, transparent);
 }
 
 .nav-links a,
@@ -76,41 +78,67 @@
   height: 1em;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
   font-size: 0.95em;
   line-height: 1;
   color: currentColor;
 }
 
 .btn-primary,
-.btn-ghost {
-  min-height: 36px;
+.btn-ghost,
+.heroPrimaryCta,
+.demoCtaLink {
+  min-height: var(--button-h);
   justify-content: center;
   white-space: nowrap;
+  border-radius: var(--button-radius);
+  line-height: 1;
   transition:
     transform var(--motion-fast),
     box-shadow var(--motion-med),
     background var(--motion-fast),
     border-color var(--motion-fast),
     color var(--motion-fast);
+  will-change: transform;
 }
 
-.btn-primary {
+.btn-primary,
+.heroPrimaryCta,
+.demoCtaLink {
   border: 1px solid color-mix(in srgb, white 12%, transparent);
 }
 
+.btn-primary svg,
+.btn-ghost svg,
+.heroPrimaryCta svg,
+.demoCtaLink svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+}
+
+.btn-primary:hover,
+.btn-ghost:hover,
+.heroPrimaryCta:hover,
+.demoCtaLink:hover {
+  transform: translateY(-1px);
+}
+
 .btn-primary:active,
-.btn-ghost:active {
+.btn-ghost:active,
+.heroPrimaryCta:active,
+.demoCtaLink:active {
   transform: translateY(0);
 }
 
 .btn-ghost:hover {
-  border-color: color-mix(in srgb, var(--cyan) 28%, var(--border-bright));
+  border-color: color-mix(in srgb, var(--cyan) 24%, var(--border-bright));
 }
 
 .mobile-nav {
   top: 64px;
   background:
-    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--purple) 14%, transparent), transparent 24rem),
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--purple) 12%, transparent), transparent 24rem),
     color-mix(in srgb, var(--bg-base) 96%, transparent);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -132,28 +160,68 @@
   margin-top: 8px;
 }
 
+.card,
+[class*="card"],
+[class*="Card"] {
+  transition:
+    transform var(--motion-med),
+    box-shadow var(--motion-med),
+    border-color var(--motion-fast),
+    background var(--motion-fast);
+}
+
+.cardHead,
+[class*="cardHead"] {
+  align-items: flex-start !important;
+  min-height: 28px;
+}
+
+.status,
+[class*="status"],
+.nav-badge,
+.footer-fsl {
+  line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stabilize marketing/pricing callouts without changing page copy. */
+[class*="note"] {
+  max-width: 760px;
+  line-height: 1.55;
+}
+
+[class*="section"] > [class*="note"] {
+  padding: 12px 14px;
+  border-left: 2px solid color-mix(in srgb, var(--cyan) 45%, var(--purple));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg-card) 58%, transparent);
+}
+
 footer {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--purple) 12%, transparent), transparent 28rem),
-    radial-gradient(circle at 82% 10%, color-mix(in srgb, var(--cyan) 8%, transparent), transparent 24rem),
+    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--purple) 9%, transparent), transparent 28rem),
+    radial-gradient(circle at 82% 10%, color-mix(in srgb, var(--cyan) 6%, transparent), transparent 24rem),
     color-mix(in srgb, var(--bg-base) 96%, #000);
-  padding-top: 72px;
+  padding-top: 56px;
+  padding-bottom: 28px;
 }
 
 .footer-topline {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-  gap: 32px;
+  gap: 28px;
   align-items: start;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .footer-status-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 18px;
   background: color-mix(in srgb, var(--bg-card) 88%, transparent);
   box-shadow: var(--shadow-soft);
 }
@@ -161,18 +229,23 @@ footer {
 .footer-status-card p {
   color: var(--text-secondary);
   font-size: 13px;
-  line-height: 1.7;
-  margin-top: 12px;
+  line-height: 1.62;
+  margin-top: 10px;
 }
 
 .footer-brand-desc {
-  max-width: 520px;
+  max-width: 500px;
   color: var(--text-secondary);
 }
 
 .footer-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.footer-links {
+  gap: 8px;
 }
 
 .footer-links a {
@@ -186,6 +259,35 @@ footer {
 
 .footer-bottom {
   align-items: center;
+}
+
+/* Docs/sidebar stabilization */
+[class*="docsNav"] {
+  opacity: 0.88;
+  padding: 12px !important;
+  box-shadow: none !important;
+}
+
+[class*="docsNav"] a {
+  font-size: 12px !important;
+  padding: 7px 9px !important;
+}
+
+/* Hero/typography rhythm stabilization across marketing pages. */
+[class*="hero"] [class*="heroTitle"],
+[class*="heroTitle"] {
+  text-wrap: balance;
+}
+
+[class*="sectionTitle"],
+[class*="title"] {
+  text-wrap: balance;
+}
+
+[class*="sectionSub"],
+[class*="sub"],
+[class*="description"] {
+  text-wrap: pretty;
 }
 
 .skeleton {
@@ -263,6 +365,14 @@ footer {
   footer {
     padding-inline: 20px;
   }
+
+  .btn-primary,
+  .btn-ghost,
+  .heroPrimaryCta,
+  .demoCtaLink {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -273,7 +383,22 @@ footer {
   .mobile-nav,
   .btn-primary,
   .btn-ghost,
-  .nav-logo {
+  .nav-logo,
+  .heroPrimaryCta,
+  .demoCtaLink,
+  .card,
+  [class*="card"],
+  [class*="Card"] {
     transition: none;
+  }
+
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .heroPrimaryCta:hover,
+  .demoCtaLink:hover,
+  .card:hover,
+  [class*="card"]:hover,
+  [class*="Card"]:hover {
+    transform: none;
   }
 }
