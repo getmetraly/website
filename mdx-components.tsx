@@ -1,4 +1,13 @@
 import type { MDXComponents } from "mdx/types";
+import {
+  ArchitectureDiagram,
+  Callout,
+  CodeBlock,
+  EmbeddedDemo,
+  Expandable,
+  MdxStatus,
+  Tabs,
+} from "@/components/mdx/mdx-components";
 import { Prose } from "@/components/ui/primitives";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -14,6 +23,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     blockquote: (props) => <blockquote {...props} />,
     code: (props) => <code {...props} />,
     pre: (props) => <pre {...props} />,
+    Callout,
+    ArchitectureDiagram,
+    Tabs,
+    Expandable,
+    EmbeddedDemo,
+    CodeBlock,
+    MdxStatus,
     ...components,
   };
 }
