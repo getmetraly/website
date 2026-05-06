@@ -114,7 +114,8 @@ export default function PricingPage() {
             <p className={styles.sub}>
               Free stays useful. Paid plans add scale, automation, support, and regulated deployment paths as billing and license activation mature.
             </p>
-            <p className={styles.note}>
+
+            <p className={styles.notice}>
               Limits are packaging targets until enforced in the app. Pro and Enterprise remain preview/pilot offers until the signed-license flow works end to end.
             </p>
 

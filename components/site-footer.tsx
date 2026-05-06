@@ -24,7 +24,6 @@ const footerGroups = [
     title: "Open source",
     links: [
       { href: "https://github.com/getmetraly/metraly", label: "App repository ↗", external: true },
-      { href: "https://github.com/getmetraly/website", label: "Website repository ↗", external: true },
     ],
   },
   {

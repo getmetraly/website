@@ -34,6 +34,29 @@
   position: relative;
 }
 
+.heroSection {
+  min-height: 82vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 132px 32px 88px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroSection .title {
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+}
+
+.heroSection .description {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .sectionSmall {
   max-width: 980px;
   margin: 0 auto;
@@ -85,6 +108,15 @@
 .center .header {
   display: grid;
   justify-items: center;
+}
+
+.center .header + .stack {
+  justify-content: center;
+  justify-items: center;
+}
+
+.center .header + .stack > div {
+  justify-content: center;
 }
 
 .eyebrow {
@@ -145,6 +177,25 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.24s ease;
+}
+
+.cardFeatured {
+  min-height: 180px;
+  padding: 34px 36px;
+  border-color: color-mix(in srgb, var(--cyan) 24%, var(--border-bright));
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--cyan) 8%, transparent), transparent 36%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 98%, transparent), color-mix(in srgb, var(--bg-card) 88%, transparent));
+}
+
+.cardFeatured .cardTitle {
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.5px;
+}
+
+.cardFeatured .cardDesc {
+  max-width: 760px;
+  font-size: 15px;
 }
 
 .cardLink {
@@ -213,6 +264,13 @@
   gap: 12px;
 }
 
+.stack > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
 .statusPill {
   display: inline-flex;
   align-items: center;
@@ -230,6 +288,25 @@
 .prose {
   color: var(--text-secondary);
   animation: fadeUp 0.5s ease both;
+}
+
+.prose:global(.content-hero-centered) {
+  min-height: 72vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 56px 0 88px;
+}
+
+.prose:global(.content-hero-centered) h1,
+.prose:global(.content-hero-centered) p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose:global(.content-hero-centered) .stack > div {
+  justify-content: center;
 }
 
 .prose h1 {
@@ -358,6 +435,12 @@
 }
 
 @media (max-width: 900px) {
+  .heroSection {
+    min-height: 72vh;
+    padding-top: 108px;
+    padding-bottom: 72px;
+  }
+
   .section {
     padding-top: 78px;
     padding-bottom: 78px;
@@ -384,6 +467,7 @@
     padding-top: 104px;
   }
 
+  .heroSection,
   .section,
   .sectionSmall {
     padding-left: 20px;

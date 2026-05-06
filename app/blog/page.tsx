@@ -42,6 +42,23 @@ const channels = [
   ["GitHub Discussions", "Technical community feedback, roadmap discussions, and contribution-oriented threads."],
 ];
 
+const heroBadgeStyle = {
+  display: "inline-flex",
+  alignItems: "center",
+  gap: 8,
+  padding: "6px 14px",
+  borderRadius: 20,
+  background: "color-mix(in srgb, var(--purple) 12%, transparent)",
+  border: "1px solid color-mix(in srgb, var(--purple) 24%, transparent)",
+  color: "var(--purple)",
+  fontSize: 12,
+  fontWeight: 700,
+  letterSpacing: 0.3,
+  marginBottom: 28,
+  position: "relative" as const,
+  zIndex: 1,
+};
+
 export const metadata = {
   title: "Blog — Metraly",
   description:
@@ -49,13 +66,22 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  const [heroPost, ...draftPosts] = blogPosts;
+
   return (
     <SiteShell>
       <Page>
-        <Section center>
+        <Section hero center>
+          <div style={heroBadgeStyle}>Blog · Build in public · Claim-safe drafts</div>
+
           <SectionHeader
-            eyebrow="Blog"
-            title="Build trust before asking teams to connect engineering data."
+            title={
+              <>
+                Build trust before asking teams
+                <br />
+                to connect engineering data.
+              </>
+            }
             description="Metraly blog will collect product notes, technical explainers, community posts, and build-in-public updates about self-hosted engineering intelligence."
           />
 
@@ -71,7 +97,34 @@ export default function BlogPage() {
           </Stack>
         </Section>
 
-        <Section tone="surface">
+        {heroPost ? (
+          <Section tone="surface">
+            <SectionHeader
+              eyebrow="Featured draft"
+              title="Start with one clear public argument."
+              description="The first article acts like a public-facing hero post before the publishing pipeline becomes automated."
+            />
+
+            <CardLink href={heroPost.canonicalPath} featured accent>
+              <CardHeader title={heroPost.title} status={heroPost.status} />
+              <CardText>{heroPost.excerpt}</CardText>
+
+              <Stack>
+                <CardText>
+                  {heroPost.date} · {heroPost.readingTime}
+                </CardText>
+
+                <div>
+                  {heroPost.tags.map((tag) => (
+                    <StatusPill key={tag}>{tag}</StatusPill>
+                  ))}
+                </div>
+              </Stack>
+            </CardLink>
+          </Section>
+        ) : null}
+
+        <Section>
           <SectionHeader
             eyebrow="Latest drafts"
             title="Article pipeline."
@@ -79,12 +132,16 @@ export default function BlogPage() {
           />
 
           <Grid columns={3}>
-            {blogPosts.map((post) => (
+            {draftPosts.map((post) => (
               <CardLink key={post.slug} href={post.canonicalPath}>
                 <CardHeader title={post.title} status={post.status} />
                 <CardText>{post.excerpt}</CardText>
+
                 <Stack>
-                  <CardText>{post.date} · {post.readingTime}</CardText>
+                  <CardText>
+                    {post.date} · {post.readingTime}
+                  </CardText>
+
                   <div>
                     {post.tags.map((tag) => (
                       <StatusPill key={tag}>{tag}</StatusPill>
@@ -96,7 +153,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section>
+        <Section tone="surface">
           <SectionHeader
             eyebrow="Content strategy"
             title="Three types of posts."
@@ -113,7 +170,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section tone="surface">
+        <Section>
           <SectionHeader
             eyebrow="Distribution"
             title="Where each article type should live."
@@ -130,11 +187,12 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section width="small" center>
+        <Section width="small" center tone="surface">
           <SectionHeader
             title="Next: turn ideas into a two-week publishing plan."
             description="The next layer can add planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
           />
+
           <ButtonLink href="/docs" variant="ghost">
             Review claim-safe docs
           </ButtonLink>
