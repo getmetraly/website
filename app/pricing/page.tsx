@@ -109,7 +109,7 @@ export default function PricingPage() {
 
         <section className={styles.surface}>
           <div className={styles.section}>
-            <div className={styles.eyebrowPlain}>Plans</div>
+            <div className={styles.eyebrow}>Plans</div>
             <h2 className={styles.title}>Open core pricing without a SaaS trap.</h2>
             <p className={styles.sub}>
               Free stays useful. Paid plans add scale, automation, support, and regulated deployment paths as billing and license activation mature.
