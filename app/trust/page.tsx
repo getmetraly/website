@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardText,
   Grid,
-  Icon,
   Note,
   Page,
   Prose,
@@ -53,36 +52,12 @@ const headingStyle = {
   marginTop: 14,
 };
 
-const listIconStyle = {
-  width: 18,
-  height: 18,
-  flex: "0 0 auto",
-  marginTop: 4,
-  color: "color-mix(in srgb, var(--cyan) 82%, white)",
-};
-
-const listItemStyle = {
-  display: "flex",
-  alignItems: "flex-start",
-  gap: 8,
-  paddingLeft: 0,
-};
-
 function Eyebrow({ children }: { children: string }) {
   return (
     <div style={eyebrowStyle}>
       <span style={{ width: 20, height: 2, borderRadius: 999, background: "linear-gradient(90deg, var(--cyan), var(--purple))" }} />
       {children}
     </div>
-  );
-}
-
-function ArrowItem({ children }: { children: string }) {
-  return (
-    <li style={listItemStyle}>
-      <Icon name="arrowRight" style={listIconStyle} />
-      <span>{children}</span>
-    </li>
   );
 }
 
@@ -170,12 +145,12 @@ export default function TrustPage() {
               environments rather than sent to a SaaS analytics backend by default.
             </p>
             <ul>
-              <ArrowItem>Repository and pull request metadata</ArrowItem>
-              <ArrowItem>Commit and review patterns</ArrowItem>
-              <ArrowItem>Issue and project signals</ArrowItem>
-              <ArrowItem>Build and deployment events</ArrowItem>
-              <ArrowItem>Incident and recovery data</ArrowItem>
-              <ArrowItem>Team and workflow metrics</ArrowItem>
+              <li>Repository and pull request metadata</li>
+              <li>Commit and review patterns</li>
+              <li>Issue and project signals</li>
+              <li>Build and deployment events</li>
+              <li>Incident and recovery data</li>
+              <li>Team and workflow metrics</li>
             </ul>
           </Prose>
 
@@ -196,11 +171,11 @@ export default function TrustPage() {
               and evaluation results exist.
             </p>
             <ul>
-              <ArrowItem>Designed Dual-LLM architecture</ArrowItem>
-              <ArrowItem>Synthetic examples first</ArrowItem>
-              <ArrowItem>Prompt-injection tests planned in the AI benchmark</ArrowItem>
-              <ArrowItem>Sensitive-data leakage checks required before public AI safety claims</ArrowItem>
-              <ArrowItem>Local, BYO and external model modes treated as different trust models</ArrowItem>
+              <li>Designed Dual-LLM architecture</li>
+              <li>Synthetic examples first</li>
+              <li>Prompt-injection tests planned in the AI benchmark</li>
+              <li>Sensitive-data leakage checks required before public AI safety claims</li>
+              <li>Local, BYO and external model modes treated as different trust models</li>
             </ul>
           </Prose>
         </Section>
@@ -216,11 +191,11 @@ export default function TrustPage() {
               update controls, revocation and install flows are implemented.
             </p>
             <ul>
-              <ArrowItem>Plugin manifest requirements defined</ArrowItem>
-              <ArrowItem>Permission model defined</ArrowItem>
-              <ArrowItem>Signing and package integrity policy defined</ArrowItem>
-              <ArrowItem>Revocation policy defined</ArrowItem>
-              <ArrowItem>Marketplace launch gates documented</ArrowItem>
+              <li>Plugin manifest requirements defined</li>
+              <li>Permission model defined</li>
+              <li>Signing and package integrity policy defined</li>
+              <li>Revocation policy defined</li>
+              <li>Marketplace launch gates documented</li>
             </ul>
           </Prose>
         </Section>
@@ -237,10 +212,10 @@ export default function TrustPage() {
             </p>
             <p>Product telemetry must not collect:</p>
             <ul>
-              <ArrowItem>source code, repository names or organization names;</ArrowItem>
-              <ArrowItem>commit messages, PR or issue titles;</ArrowItem>
-              <ArrowItem>personal data, secrets, tokens or credentials;</ArrowItem>
-              <ArrowItem>raw LLM prompts or raw customer logs.</ArrowItem>
+              <li>source code, repository names or organization names;</li>
+              <li>commit messages, PR or issue titles;</li>
+              <li>personal data, secrets, tokens or credentials;</li>
+              <li>raw LLM prompts or raw customer logs.</li>
             </ul>
           </Prose>
         </Section>
