@@ -49,10 +49,12 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  const [heroPost, ...draftPosts] = blogPosts;
+
   return (
     <SiteShell>
       <Page>
-        <Section center>
+        <Section>
           <SectionHeader
             eyebrow="Blog"
             title="Build trust before asking teams to connect engineering data."
@@ -73,13 +75,36 @@ export default function BlogPage() {
 
         <Section tone="surface">
           <SectionHeader
+            eyebrow="Featured draft"
+            title="Start with one clear public argument."
+            description="The first blog card acts like a hero article: larger, easier to scan, and intentionally status-labeled before the content becomes a published claim."
+          />
+
+          {heroPost ? (
+            <CardLink href={heroPost.canonicalPath}>
+              <CardHeader title={heroPost.title} status={heroPost.status} />
+              <CardText>{heroPost.excerpt}</CardText>
+              <Stack>
+                <CardText>{heroPost.date} · {heroPost.readingTime}</CardText>
+                <div>
+                  {heroPost.tags.map((tag) => (
+                    <StatusPill key={tag}>{tag}</StatusPill>
+                  ))}
+                </div>
+              </Stack>
+            </CardLink>
+          ) : null}
+        </Section>
+
+        <Section>
+          <SectionHeader
             eyebrow="Latest drafts"
             title="Article pipeline."
             description="Initial post ideas are intentionally status-labeled. Drafts should stay claim-safe until the matching product evidence exists."
           />
 
           <Grid columns={3}>
-            {blogPosts.map((post) => (
+            {draftPosts.map((post) => (
               <CardLink key={post.slug} href={post.canonicalPath}>
                 <CardHeader title={post.title} status={post.status} />
                 <CardText>{post.excerpt}</CardText>
@@ -96,7 +121,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section>
+        <Section tone="surface">
           <SectionHeader
             eyebrow="Content strategy"
             title="Three types of posts."
@@ -113,7 +138,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section tone="surface">
+        <Section>
           <SectionHeader
             eyebrow="Distribution"
             title="Where each article type should live."
@@ -130,7 +155,7 @@ export default function BlogPage() {
           </Grid>
         </Section>
 
-        <Section width="small" center>
+        <Section width="small">
           <SectionHeader
             title="Next: turn ideas into a two-week publishing plan."
             description="The next layer can add planned publishing dates, target channels, article briefs, and claim-safe review checkpoints."
