@@ -513,16 +513,39 @@ body::before {
 }
 
 #main-content > main:not([class]) .card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   gap: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+#main-content > main:not([class]) .card-header h3 {
+  margin: 0;
+  max-width: none;
 }
 
 #main-content > main:not([class]) .card p {
   margin-bottom: 0;
   font-size: 14px;
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--purple) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--purple) 24%, transparent);
+  color: color-mix(in srgb, var(--purple) 82%, white);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
 }
 
 #main-content > main:not([class]) .note,
