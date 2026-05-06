@@ -68,7 +68,7 @@ export default function HomePage() {
 
         <section className={styles.surface}>
           <div className={styles.sectionSmall}>
-            <SectionHeader eyebrow="Build in public" title="Metraly is being built in the open." center>
+            <SectionHeader eyebrow="Build in public" title="Metraly is being built in the open.">
               The interface you see is real. Dashboards are actively being developed. Data integrations and real-world workflows are the next step.
             </SectionHeader>
           </div>
