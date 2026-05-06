@@ -60,10 +60,18 @@ const channels = [
   ],
 ];
 
+const heroEyebrowWrapperStyle = {
+  display: "flex",
+  justifyContent: "center",
+  width: "100%",
+};
+
 const heroEyebrowStyle = {
   display: "inline-flex",
   alignItems: "center",
   gap: 8,
+  width: "fit-content",
+  flex: "0 0 auto",
   color: "var(--cyan)",
   fontSize: 12,
   fontWeight: 700,
@@ -84,9 +92,11 @@ const heroPulseStyle = {
 
 function HeroEyebrow() {
   return (
-    <div style={heroEyebrowStyle}>
-      <span style={heroPulseStyle} />
-      Blog · Build in public
+    <div style={heroEyebrowWrapperStyle}>
+      <div style={heroEyebrowStyle}>
+        <span style={heroPulseStyle} />
+        Blog · Build in public
+      </div>
     </div>
   );
 }
