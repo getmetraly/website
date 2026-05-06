@@ -613,12 +613,37 @@ a.card:hover {
 }
 
 .roadmapItem span {
+  position: relative;
+  width: 14px;
+  height: 10px;
+  margin-top: 5px;
+  flex: 0 0 14px;
+  color: color-mix(in srgb, var(--cyan) 78%, white);
+}
+
+.roadmapItem span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 11px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--cyan) 30%, transparent);
+  transform: translateY(-50%);
+}
+
+.roadmapItem span::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
   width: 5px;
   height: 5px;
-  border-radius: 999px;
-  margin-top: 7px;
-  flex: 0 0 auto;
-  background: color-mix(in srgb, var(--cyan) 78%, white);
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
 }
 
 @keyframes cardIn {
