@@ -353,16 +353,23 @@
 }
 
 .prose li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   line-height: 1.65;
-  padding-left: 24px;
+  padding-left: 0;
   position: relative;
 }
 
 .prose li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--cyan);
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: 4px;
+  color: color-mix(in srgb, var(--cyan) 82%, white);
+  background-color: currentColor;
+  clip-path: path("M4 11H13.6L10 7.4L11.4 6L17.4 12L11.4 18L10 16.6L13.6 13H4Z");
 }
 
 .prose a {
