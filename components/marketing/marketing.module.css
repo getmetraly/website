@@ -104,26 +104,7 @@
   text-align: center;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 16px;
-}
-
-.eyebrow::before {
-  content: "";
-  width: 20px;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
-}
-
+.eyebrow,
 .eyebrowPlain {
   display: inline-flex;
   align-items: center;
@@ -136,12 +117,15 @@
   margin-bottom: 16px;
 }
 
+.eyebrow::before,
 .eyebrowPlain::before {
   content: "";
-  width: 20px;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  width: 24px;
+  height: 12px;
+  flex: 0 0 24px;
+  background: currentColor;
+  clip-path: polygon(0 52%, 20% 52%, 26% 25%, 36% 82%, 47% 8%, 58% 52%, 100% 52%, 100% 66%, 52% 66%, 47% 48%, 37% 100%, 27% 55%, 23% 66%, 0 66%);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--cyan) 24%, transparent));
 }
 
 .title {
