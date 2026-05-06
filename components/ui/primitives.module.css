@@ -101,6 +101,7 @@
 }
 
 .header {
+  width: 100%;
   margin-bottom: 48px;
   animation: fadeUp 0.5s ease both;
 }
@@ -399,41 +400,6 @@
   animation: fadeUp 0.55s ease both;
 }
 
-.docsLayout {
-  display: grid;
-  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
-  gap: 32px;
-  align-items: start;
-}
-
-.docsNav {
-  position: sticky;
-  top: 84px;
-  display: grid;
-  gap: 8px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
-  backdrop-filter: blur(14px);
-}
-
-.docsNav a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 13px;
-  line-height: 1.4;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: background 0.18s ease, color 0.18s ease;
-}
-
-.docsNav a:hover,
-.docsNav a:focus-visible {
-  color: var(--text-primary);
-  background: color-mix(in srgb, var(--purple) 12%, transparent);
-}
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -462,14 +428,6 @@
     padding-bottom: 72px;
   }
 
-  .docsLayout {
-    grid-template-columns: 1fr;
-  }
-
-  .docsNav {
-    position: static;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
 }
 
 @media (max-width: 700px) {
@@ -515,8 +473,7 @@
   }
 
   .cardLink,
-  .card::before,
-  .docsNav a {
+  .card::before {
     transition: none;
   }
 

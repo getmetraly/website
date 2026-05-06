@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Icon } from "@/components/ui/primitives";
+import { ButtonLink, Icon } from "@/components/ui/primitives";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
+  { href: "/", label: "Home" },
   { href: "/ai", label: "AI", badge: "Soon" },
   { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
@@ -55,23 +56,13 @@ export function SiteNav() {
 
           <div className="nav-right">
             <ThemeToggle />
-            <a
-              href="https://github.com/getmetraly"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost nav-github"
-            >
+            <ButtonLink href="https://github.com/getmetraly" external variant="ghost" className="nav-github">
               <Icon name="github" />
               GitHub <Icon name="external" />
-            </a>
-            <Link
-              href="/demo"
-              className="btn-primary nav-cta"
-              aria-label="Try synthetic demo preview"
-              onClick={closeMenu}
-            >
+            </ButtonLink>
+            <ButtonLink href="/demo" className="nav-cta" aria-label="Try synthetic demo preview">
               Try Demo <Icon name="arrowRight" />
-            </Link>
+            </ButtonLink>
             <button
               className={`hamburger ${isOpen ? "open" : ""}`}
               aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -101,12 +92,12 @@ export function SiteNav() {
           </Link>
         ))}
         <div className="mobile-nav-divider" />
-        <Link href="/demo" className="btn-primary" onClick={closeMenu}>
+        <ButtonLink href="/demo" onClick={closeMenu}>
           Try Demo <Icon name="arrowRight" />
-        </Link>
-        <a href="https://github.com/getmetraly" target="_blank" rel="noreferrer" className="btn-ghost">
+        </ButtonLink>
+        <ButtonLink href="https://github.com/getmetraly" external variant="ghost">
           <Icon name="github" /> GitHub <Icon name="external" />
-        </a>
+        </ButtonLink>
       </div>
     </>
   );

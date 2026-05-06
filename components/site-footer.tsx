@@ -36,9 +36,15 @@ const footerGroups = [
   },
 ];
 
-export function SiteFooter() {
+type FooterLink = {
+  href: string;
+  label: string;
+  external?: boolean;
+};
+
+export function SiteFooter({ className }: { className?: string } = {}) {
   return (
-    <footer>
+    <footer className={className}>
       <div className="footer-inner">
         <div className="footer-topline">
           <div>
@@ -61,7 +67,7 @@ export function SiteFooter() {
             <div key={group.title}>
               <div className="footer-col-title">{group.title}</div>
               <ul className="footer-links">
-                {group.links.map((link) => (
+                {group.links.map((link: FooterLink) => (
                   <li key={link.href}>
                     {link.external ? (
                       <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>

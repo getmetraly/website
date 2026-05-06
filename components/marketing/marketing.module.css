@@ -145,6 +145,64 @@
   margin-bottom: 56px;
 }
 
+.docsShell {
+  margin-top: 8px;
+}
+
+.docsContent {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.docsFooter {
+  border-top: 0;
+}
+
+.docsBody {
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0;
+}
+
+.docsPanel,
+.docsPanelSurface {
+  display: grid;
+  gap: 24px;
+  padding: 40px 0;
+}
+
+.docsPanelSurface {
+  width: 100%;
+  padding: 40px 0;
+  position: relative;
+  isolation: isolate;
+  border-radius: 0;
+}
+
+.docsPanelSurface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-surface) 88%, transparent), color-mix(in srgb, var(--bg-surface) 96%, transparent));
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--border) 22%, transparent),
+    0 18px 48px rgba(15, 23, 42, 0.05);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.docsPanelInner {
+  width: min(1120px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
 .center .sub {
   margin-left: auto;
   margin-right: auto;
@@ -205,6 +263,18 @@
   margin-bottom: 12px;
 }
 
+.principleLead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.principleLead .icon {
+  margin-bottom: 0;
+  flex: 0 0 auto;
+}
+
 .cardTitle {
   font-size: 16px;
   font-weight: 700;
@@ -216,6 +286,11 @@
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.insightTitle {
+  font-size: 22px;
+  margin-bottom: 12px;
 }
 
 .status {
@@ -285,7 +360,45 @@
     padding-right: 20px;
   }
 
+  .docsPanel,
+  .docsPanelSurface {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .docsPanelSurface {
+    border-radius: 0;
+  }
+
+  .docsPanelSurface::before {
+    width: 100vw;
+  }
+
+  .docsContent {
+    width: 100%;
+  }
+
   .cardHead {
     align-items: flex-start;
+  }
+
+  .docsBody {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .docsContent {
+    width: 100%;
+  }
+
+  .docsPanelSurface {
+    width: 100%;
+  }
+
+  .docsPanelInner {
+    width: 100%;
+  }
+
+  .insightTitle {
+    padding-right: 24px;
   }
 }
