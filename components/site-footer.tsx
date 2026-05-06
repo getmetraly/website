@@ -14,6 +14,7 @@ const footerGroups = [
     title: "Explore",
     links: [
       { href: "/docs", label: "Documentation" },
+      { href: "/blog", label: "Blog" },
       { href: "/demo", label: "Synthetic demo" },
       { href: "/demo-app/", label: "Open sandbox" },
       { href: "/trust", label: "Trust center" },
@@ -31,6 +32,7 @@ const footerGroups = [
     links: [
       { href: "/privacy", label: "Privacy policy" },
       { href: "/terms", label: "Terms of service" },
+      { href: "/rss.xml", label: "RSS feed" },
     ],
   },
 ];
@@ -79,6 +81,7 @@ export function SiteFooter() {
           <div className="footer-bottom-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
+            <Link href="/blog">Blog</Link>
             <a href="https://github.com/getmetraly" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </div>
