@@ -230,7 +230,8 @@
   content: "";
   width: 20px;
   height: 2px;
-  background: var(--cyan);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
 }
 
 .sectionTitle {
