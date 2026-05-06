@@ -1,12 +1,53 @@
-import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode, SVGProps } from "react";
 import styles from "./primitives.module.css";
 
 type Tone = "default" | "surface";
 type Width = "default" | "small";
 type GridColumns = 2 | 3 | 4;
+type IconName = "arrowRight" | "external" | "github" | "spark" | "check";
 
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
+}
+
+const iconPaths: Record<IconName, ReactNode> = {
+  arrowRight: <path d="M5 12h14M13 5l7 7-7 7" />,
+  external: <path d="M7 17 17 7M9 7h8v8" />,
+  github: (
+    <path d="M12 2.75C6.9 2.75 2.75 6.9 2.75 12c0 4.08 2.65 7.54 6.32 8.77.46.09.63-.2.63-.45v-1.58c-2.57.56-3.11-1.1-3.11-1.1-.42-1.06-1.03-1.34-1.03-1.34-.84-.57.06-.56.06-.56.93.07 1.42.96 1.42.96.82 1.4 2.15 1 2.68.76.08-.6.32-1 .59-1.23-2.05-.23-4.21-1.02-4.21-4.55 0-1 .36-1.83.95-2.47-.1-.23-.41-1.18.09-2.46 0 0 .77-.25 2.53.94A8.76 8.76 0 0 1 12 6.38c.78 0 1.57.1 2.31.31 1.76-1.19 2.53-.94 2.53-.94.5 1.28.19 2.23.09 2.46.59.64.95 1.47.95 2.47 0 3.54-2.17 4.32-4.23 4.55.33.28.62.84.62 1.69v2.5c0 .25.17.54.64.45A9.26 9.26 0 0 0 21.25 12c0-5.1-4.15-9.25-9.25-9.25Z" />
+  ),
+  spark: <path d="m12 3 1.7 5.1L19 10l-5.3 1.9L12 17l-1.7-5.1L5 10l5.3-1.9L12 3Zm6 10 .8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8L18 13Z" />,
+  check: <path d="m5 12 4 4L19 6" />,
+};
+
+export function Icon({
+  name,
+  className,
+  ...props
+}: SVGProps<SVGSVGElement> & { name: IconName }) {
+  return (
+    <svg
+      className={cx(styles.icon, className)}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      {iconPaths[name]}
+    </svg>
+  );
+}
+
+export function Skeleton({ className, ...props }: HTMLAttributes<HTMLSpanElement>) {
+  return <span className={cx("skeleton", className)} aria-hidden="true" {...props} />;
+}
+
+export function SkeletonCard({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div className={cx("skeleton-card", className)} aria-hidden="true" {...props} />;
 }
 
 export function ContentPage({
