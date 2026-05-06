@@ -119,7 +119,9 @@ export default function BlogPage() {
               <>
                 Build trust before asking teams
                 <br />
-                to connect engineering data.
+                
+                <span className={styles.gradientText}>to connect engineering data.</span>
+                
               </>
             }
             description="Metraly blog will collect product notes, technical explainers, community posts, and build-in-public updates about self-hosted engineering intelligence."

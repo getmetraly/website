@@ -12,6 +12,7 @@ import {
   Section,
   Stack,
 } from "@/components/ui/primitives";
+import styles from "@/components/marketing/marketing.module.css";
 
 export const metadata = {
   title: "Trust — Metraly",
@@ -112,7 +113,10 @@ export default function TrustPage() {
           <Prose className="content-hero-centered">
             <div style={heroBadgeStyle}>Trust · Self-hosted by design · Claim-safe roadmap</div>
 
-            <h1>Trust starts with keeping engineering data under your control.</h1>
+            <h1>Trust starts with keeping 
+              <br/>
+            <span className={styles.gradientText}>engineering data under your control.</span>
+             </h1>
             <p>
               Metraly is being built as a self-hosted Engineering Intelligence
               platform for teams that need visibility without making another SaaS
