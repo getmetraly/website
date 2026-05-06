@@ -14,6 +14,7 @@ import {
   StatusPill,
 } from "@/components/ui/primitives";
 import { blogPosts } from "@/content/blog/posts";
+import styles from "@/components/marketing/marketing.module.css";
 
 const ideas = [
   [
@@ -93,10 +94,7 @@ const heroPulseStyle = {
 function HeroEyebrow() {
   return (
     <div style={heroEyebrowWrapperStyle}>
-      <div style={heroEyebrowStyle}>
-        <span style={heroPulseStyle} />
-        Blog · Build in public
-      </div>
+      <div className={styles.badge}>Blog · Build in public</div>
     </div>
   );
 }
