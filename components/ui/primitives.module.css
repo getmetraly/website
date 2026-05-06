@@ -290,6 +290,29 @@
   animation: fadeUp 0.5s ease both;
 }
 
+.prose :global(.content-hero-centered) {
+  text-align: center;
+}
+
+:global(.content-hero-centered) {
+  min-height: 72vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 56px 0 88px;
+}
+
+:global(.content-hero-centered) h1,
+:global(.content-hero-centered) p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global(.content-hero-centered) .stack > div {
+  justify-content: center;
+}
+
 .prose h1 {
   max-width: 920px;
   font-size: clamp(42px, 6vw, 72px);
