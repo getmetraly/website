@@ -33,6 +33,13 @@ const docSections = [
     label: "Truth",
   },
   {
+    title: "Brandbook",
+    desc: "Review the canonical Metraly visual direction, telemetry-first design language, pulse-wave system and component standards.",
+    href: "https://github.com/getmetraly/brandbook",
+    label: "Design",
+    external: true,
+  },
+  {
     title: "Trust",
     desc: "Understand Metraly's privacy, telemetry, AI, plugin and claim boundaries before connecting data.",
     href: "/trust",
@@ -108,7 +115,7 @@ function PulseCardText({ children }: { children: React.ReactNode }) {
 export const metadata = {
   title: "Documentation — Metraly",
   description:
-    "Metraly public documentation for quick start, self-hosting, product status, demo, pricing, and claim-safe product boundaries.",
+    "Metraly public documentation for quick start, self-hosting, product status, demo, pricing, brandbook, and claim-safe product boundaries.",
 };
 
 export default function DocsPage() {
@@ -124,7 +131,7 @@ export default function DocsPage() {
             <span className={styles.gradientText}>before you connect data.</span>
           </h1>
           <p className={styles.heroSub}>
-            Public documentation for the self-hosted engineering intelligence platform: quick start, demo, status, pricing, and safe product boundaries.
+            Public documentation for the self-hosted engineering intelligence platform: quick start, demo, status, pricing, brandbook, and safe product boundaries.
           </p>
           <div className={styles.heroActions}>
             <ButtonLink href="#quick-start">Start reading <Icon name="arrowRight" /></ButtonLink>
@@ -147,112 +154,17 @@ export default function DocsPage() {
 
                 <Grid columns={3}>
                   {docSections.map((doc) => (
-                    <CardLink key={doc.title} href={doc.href}>
+                    <CardLink
+                      key={doc.title}
+                      href={doc.href}
+                      target={doc.external ? "_blank" : undefined}
+                      rel={doc.external ? "noopener noreferrer" : undefined}
+                    >
                       <CardHeader title={doc.title} status={doc.label} />
                       <CardText>{doc.desc}</CardText>
                     </CardLink>
                   ))}
                 </Grid>
-              </div>
-            </div>
-
-            <div id="quick-start" className={styles.docsPanel}>
-              <div className={styles.docsPanelInner}>
-                <SectionHeader
-                  eyebrow="Quick start"
-                  title="Run the local preview path."
-                  description="The current canonical preview flow uses seeded authentication and backend-backed dashboards for local evaluation. Dashboard data should still be treated as synthetic/preview until live connectors are verified publicly."
-                />
-
-                <Grid columns={2}>
-                  <Card>
-                    <CardHeader title="Current local baseline" />
-                    <Stack>
-                      <PulseCardText>Start locally with <code>make up</code></PulseCardText>
-                      <PulseCardText>App preview: <code>http://localhost:3000</code></PulseCardText>
-                      <PulseCardText>Login: <code>admin@metraly.local</code> / <code>admin123</code></PulseCardText>
-                      <PulseCardText><code>make docker-up</code> remains a legacy compatibility alias</PulseCardText>
-                    </Stack>
-                    <div style={quickStartActionsStyle}>
-                      <ButtonLink href="https://github.com/getmetraly/metraly" external>
-                        View source <Icon name="arrowRight" />
-                      </ButtonLink>
-                      <ButtonLink href="/demo" variant="ghost">Open synthetic demo</ButtonLink>
-                    </div>
-                  </Card>
-
-                  <Card accent>
-                    <CardHeader title="Validate locally" status="Recommended" />
-                    <Stack>
-                      <PulseCardText>Use <code>npm ci</code> for website dependencies.</PulseCardText>
-                      <PulseCardText>Use <code>npm run ci</code> before publishing copy or UI changes.</PulseCardText>
-                      <PulseCardText>Keep public website claims status-labeled.</PulseCardText>
-                    </Stack>
-                  </Card>
-                </Grid>
-              </div>
-            </div>
-
-            <div id="self-hosting" className={styles.docsPanelSurface}>
-              <div className={styles.docsPanelInner}>
-                <SectionHeader
-                  eyebrow="Self-hosting"
-                  title="Your engineering data stays under your control."
-                  description="Metraly is designed around self-hosted deployment so repository, CI/CD, project, and team signals can be analyzed without routing sensitive engineering data through another SaaS platform."
-                />
-
-                <Grid columns={3}>
-                  <Card>
-                    <CardHeader title="Community core" />
-                    <CardText>The core product is AGPLv3 open core. Community remains useful and auditable.</CardText>
-                  </Card>
-                  <Card>
-                    <CardHeader title="Seeded local preview" />
-                    <CardText>The current local preview path includes seeded authentication and backend-backed dashboards for onboarding and evaluation.</CardText>
-                  </Card>
-                  <Card>
-                    <CardHeader title="Connectors next" />
-                    <CardText>Live Git and CI/CD data integrations are the next product step after dashboard rendering and editor work.</CardText>
-                  </Card>
-                </Grid>
-              </div>
-            </div>
-
-            <div id="status" className={styles.docsPanel}>
-              <div className={styles.docsPanelInner}>
-                <SectionHeader
-                  eyebrow="Product status"
-                  title="What exists. What is next."
-                  description="Public docs use status labels so the website does not overclaim implementation readiness."
-                />
-
-                <Grid columns={3}>
-                  {statusRows.map(([area, status, note]) => (
-                    <Card key={area}>
-                      <CardHeader title={area} status={status} />
-                      <CardText>{note}</CardText>
-                    </Card>
-                  ))}
-                </Grid>
-              </div>
-            </div>
-
-            <div id="claims" className={styles.docsPanelSurface}>
-              <div className={styles.docsPanelInner}>
-                <SectionHeader
-                  eyebrow="Claim policy"
-                  title="Docs describe direction. Code proves claims."
-                  description="Public pages may describe real UI, backend-backed preview flows, synthetic data, self-hosted direction, planned connectors, designed AI, and pricing previews. They must not claim production-ready AI, live marketplace, finished billing, or enterprise compliance until verified in product code."
-                />
-
-                <Card accent>
-                  <CardHeader title="Safe public wording" />
-                  <Stack>
-                    {safeWording.map((item) => (
-                      <PulseCardText key={item}>{item}</PulseCardText>
-                    ))}
-                  </Stack>
-                </Card>
               </div>
             </div>
           </Stack>
