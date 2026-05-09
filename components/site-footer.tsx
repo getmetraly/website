@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MetralyLogoMark } from "./metraly-logo-mark";
 
 const footerGroups = [
   {
@@ -49,7 +50,7 @@ export function SiteFooter({ className }: { className?: string } = {}) {
         <div className="footer-topline">
           <div>
             <Link className="nav-logo" href="/" aria-label="Metraly home">
-              <div className="nav-logo-icon" aria-hidden="true">M</div>
+              <MetralyLogoMark />
               Metraly
             </Link>
             <p className="footer-brand-desc">
