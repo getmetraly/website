@@ -18,15 +18,25 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.metraly.io"),
   title: "Metraly — Engineering Intelligence That Doesn't Leak",
   description:
     "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.",
+  applicationName: "Metraly",
+  themeColor: "#0B0F14",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: ["/icon.svg"],
+    apple: ["/icon.svg"],
+  },
   openGraph: {
     title: "Metraly — Engineering Intelligence That Doesn't Leak",
     description:
       "Explore Metraly with synthetic engineering data and status-labeled roadmap capabilities.",
     type: "website",
-    url: "https://metraly.io",
+    url: "https://www.metraly.io",
   },
   twitter: {
     card: "summary_large_image",
