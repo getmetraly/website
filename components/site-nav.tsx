@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ButtonLink, Icon } from "@/components/ui/primitives";
+import { MetralyLogoMark } from "./metraly-logo-mark";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
@@ -11,7 +12,6 @@ const navItems = [
   { href: "/ai", label: "AI", badge: "Soon" },
   { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
-  { href: "/blog", label: "Blog" },
   { href: "/trust", label: "Trust" },
 ];
 
@@ -30,9 +30,7 @@ export function SiteNav() {
       <nav className="nav" role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
           <Link className="nav-logo" href="/" aria-label="Metraly home" onClick={closeMenu}>
-            <div className="nav-logo-icon" aria-hidden="true">
-              M
-            </div>
+            <MetralyLogoMark />
             Metraly
           </Link>
 

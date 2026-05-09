@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MetralyLogoMark } from "./metraly-logo-mark";
 
 const footerGroups = [
   {
@@ -14,7 +15,6 @@ const footerGroups = [
     title: "Explore",
     links: [
       { href: "/docs", label: "Documentation" },
-      { href: "/blog", label: "Blog" },
       { href: "/demo", label: "Synthetic demo" },
       { href: "/demo-app/", label: "Open sandbox" },
       { href: "/trust", label: "Trust center" },
@@ -49,7 +49,7 @@ export function SiteFooter({ className }: { className?: string } = {}) {
         <div className="footer-topline">
           <div>
             <Link className="nav-logo" href="/" aria-label="Metraly home">
-              <div className="nav-logo-icon" aria-hidden="true">M</div>
+              <MetralyLogoMark />
               Metraly
             </Link>
             <p className="footer-brand-desc">
@@ -86,7 +86,6 @@ export function SiteFooter({ className }: { className?: string } = {}) {
           <div className="footer-bottom-links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
-            <Link href="/blog">Blog</Link>
             <a href="https://github.com/getmetraly" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           </div>
         </div>
