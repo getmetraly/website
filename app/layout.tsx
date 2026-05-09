@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,6 +22,10 @@ const siteUrl = "https://www.metraly.io";
 const siteTitle = "Metraly — Engineering Intelligence That Doesn't Leak";
 const siteDescription =
   "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.";
+
+export const viewport: Viewport = {
+  themeColor: "#0B0F14",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -59,7 +63,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  themeColor: "#0B0F14",
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
