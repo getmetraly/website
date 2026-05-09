@@ -12,7 +12,6 @@ const navItems = [
   { href: "/ai", label: "AI", badge: "Soon" },
   { href: "/pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
-  { href: "/blog", label: "Blog" },
   { href: "/trust", label: "Trust" },
 ];
 
