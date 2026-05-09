@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import "./shell-polish.css";
+
+const siteUrl = "https://www.metraly.io";
+const defaultTitle = "Metraly — Self-Hosted Engineering Intelligence";
+const defaultDescription =
+  "Self-hosted engineering intelligence for privacy-conscious teams that need delivery flow, DORA metrics, CI/CD health, bottleneck analysis, and controlled engineering data boundaries.";
+const dashboardPreviewImage = "/images/vp-dashboard.png";
 
 const plusJakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -17,19 +23,72 @@ const jetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0B0F14",
+  colorScheme: "dark light",
+};
+
 export const metadata: Metadata = {
-  title: "Metraly — Engineering Intelligence That Doesn't Leak",
-  description:
-    "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: "%s | Metraly",
+  },
+  description: defaultDescription,
+  applicationName: "Metraly",
+  authors: [{ name: "Metraly" }],
+  creator: "Metraly",
+  publisher: "Metraly",
+  category: "DeveloperApplication",
+  keywords: [
+    "self-hosted engineering intelligence",
+    "DORA metrics dashboard",
+    "developer productivity analytics",
+    "engineering analytics",
+    "CI/CD analytics",
+    "pull request bottlenecks",
+    "engineering data sovereignty",
+    "privacy-first engineering analytics",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+  },
   openGraph: {
-    title: "Metraly — Engineering Intelligence That Doesn't Leak",
-    description:
-      "Explore Metraly with synthetic engineering data and status-labeled roadmap capabilities.",
+    title: defaultTitle,
+    description: defaultDescription,
+    siteName: "Metraly",
     type: "website",
-    url: "https://metraly.io",
+    locale: "en_US",
+    url: "/",
+    images: [
+      {
+        url: dashboardPreviewImage,
+        width: 2240,
+        height: 1260,
+        alt: "Metraly VP Engineering dashboard using synthetic engineering data",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [dashboardPreviewImage],
   },
 };
 
