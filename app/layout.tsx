@@ -18,29 +18,77 @@ const jetBrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+const siteUrl = "https://www.metraly.io";
+const siteTitle = "Metraly — Engineering Intelligence That Doesn't Leak";
+const siteDescription =
+  "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.metraly.io"),
-  title: "Metraly — Engineering Intelligence That Doesn't Leak",
-  description:
-    "Self-hosted Engineering Intelligence for privacy-conscious teams, starting with real UI, synthetic demo data, and a claim-safe roadmap toward connectors, AI insights, and plugin extensibility.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | Metraly",
+  },
+  description: siteDescription,
   applicationName: "Metraly",
+  creator: "Metraly",
+  publisher: "Metraly",
+  category: "DeveloperApplication",
+  keywords: [
+    "Metraly",
+    "engineering intelligence",
+    "self-hosted engineering analytics",
+    "DORA metrics",
+    "developer productivity analytics",
+    "CI/CD analytics",
+    "engineering dashboard",
+    "private engineering data",
+    "open core developer tools",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   themeColor: "#0B0F14",
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
-    shortcut: ["/icon.svg"],
-    apple: ["/icon.svg"],
+    shortcut: ["/favicon.ico", "/icon.svg"],
+    apple: ["/apple-icon.png", "/icon.svg"],
   },
   openGraph: {
-    title: "Metraly — Engineering Intelligence That Doesn't Leak",
-    description:
-      "Explore Metraly with synthetic engineering data and status-labeled roadmap capabilities.",
+    title: siteTitle,
+    description: "Explore Metraly with synthetic engineering data and status-labeled roadmap capabilities.",
     type: "website",
-    url: "https://www.metraly.io",
+    url: siteUrl,
+    siteName: "Metraly",
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/vp-dashboard.png",
+        width: 2240,
+        height: 1260,
+        alt: "Metraly VP Engineering dashboard using synthetic data",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/vp-dashboard.png"],
   },
 };
 
