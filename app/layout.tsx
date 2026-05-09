@@ -62,11 +62,10 @@ export const metadata: Metadata = {
   themeColor: "#0B0F14",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
-    shortcut: ["/favicon.ico", "/icon.svg"],
-    apple: ["/apple-icon.png", "/icon.svg"],
+    shortcut: ["/icon.svg"],
+    apple: ["/icon.svg"],
   },
   openGraph: {
     title: siteTitle,
