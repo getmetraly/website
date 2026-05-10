@@ -237,7 +237,7 @@ export default function PrivacyPage() {
             Depending on your location, you may have rights to access, correct or
             delete personal data, object to or restrict processing, request
             portability, or withdraw consent where processing is based on consent.
-            To make a request, contact <a href="mailto:admin@metraly.io">admin@metraly.io</a>.
+            To make a request, contact <a href="mailto:privacy@metraly.io">privacy@metraly.io</a>.
           </p>
 
           <h2>14. Security</h2>
@@ -274,11 +274,13 @@ export default function PrivacyPage() {
 
           <h2>18. Contact</h2>
           <p>
-            Privacy/admin requests: <a href="mailto:admin@metraly.io">admin@metraly.io</a>
+            Privacy requests: <a href="mailto:privacy@metraly.io">privacy@metraly.io</a>
             <br />
             Security reports: <a href="mailto:security@metraly.io">security@metraly.io</a>
             <br />
             Support: <a href="mailto:support@metraly.io">support@metraly.io</a>
+            <br />
+            Enterprise inquiries: <a href="mailto:enterprise@metraly.io">enterprise@metraly.io</a>
             <br />
             General inquiries: <a href="mailto:hello@metraly.io">hello@metraly.io</a>
           </p>
