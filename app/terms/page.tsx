@@ -223,7 +223,11 @@ export default function TermsPage() {
 
           <h2>17. Contact</h2>
           <p>
-            Legal questions: <a href="mailto:legal@metraly.io">legal@metraly.io</a>
+            Admin/legal questions: <a href="mailto:admin@metraly.io">admin@metraly.io</a>
+            <br />
+            Security reports: <a href="mailto:security@metraly.io">security@metraly.io</a>
+            <br />
+            Support: <a href="mailto:support@metraly.io">support@metraly.io</a>
             <br />
             General inquiries: <a href="mailto:hello@metraly.io">hello@metraly.io</a>
           </p>
